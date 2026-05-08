@@ -1,8 +1,7 @@
-// src/pages/UserProfile.jsx - COMPLETE FIXED VERSION (No FiHistory)
+// src/pages/UserProfile.jsx - FIXED for Google Login
 import React, { useMemo, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-// IMPORTANT: Only use icons that exist in react-icons/fi
 import { 
   FiUser, 
   FiMail, 
@@ -25,9 +24,6 @@ import {
   FiEdit2, 
   FiMap, 
   FiBarChart2,
-  FiBookOpen,
-  FiSettings,
-  FiHelpCircle
 } from 'react-icons/fi';
 import styles from './UserProfile.module.css';
 import {
@@ -41,23 +37,49 @@ const UserProfile = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
+  // Get user from localStorage
   const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-  const candidateUserId =
-    storedUser?._id ||
-    storedUser?.id ||
-    storedUser?.user?._id ||
-    storedUser?.user?.id ||
-    localStorage.getItem('userId') ||
-    localStorage.getItem('backendUserId') ||
+  
+  // Check if user is logged in with Google (has uid but not ObjectId)
+  const isGoogleUser = storedUser?.authProvider === 'google' || (storedUser?._id && storedUser?._id.length !== 24);
+  
+  // For Google users, use a flag to show limited profile
+  // For regular users, try to get the ObjectId
+  const candidateUserId = storedUser?._id || 
+    storedUser?.id || 
+    storedUser?.user?._id || 
+    storedUser?.user?.id || 
+    localStorage.getItem('userId') || 
+    localStorage.getItem('backendUserId') || 
     '';
-  const userId = /^[a-fA-F0-9]{24}$/.test(String(candidateUserId)) ? candidateUserId : '';
+  
+  // Check if it's a valid MongoDB ObjectId (24 hex chars)
+  const isValidObjectId = /^[a-fA-F0-9]{24}$/.test(String(candidateUserId));
+  const userId = isValidObjectId ? candidateUserId : '';
+  
+  // Only fetch data if we have a valid ObjectId and not a Google-only user
+  const shouldFetch = !isGoogleUser && userId;
+  
+  const { data: profile, isLoading: profileLoading, refetch: refetchProfile } = useGetUserProfileQuery(userId, { skip: !shouldFetch });
+  const { data: walletSummary, isLoading: walletLoading, refetch: refetchWallet } = useGetWalletSummaryQuery(userId, { skip: !shouldFetch });
+  const { data: callHistory = [], isLoading: historyLoading, refetch: refetchHistory } = useGetUserCallHistoryQuery(userId, { skip: !shouldFetch });
 
-  const { data: profile, isLoading: profileLoading, refetch: refetchProfile } = useGetUserProfileQuery(userId, { skip: !userId });
-  const { data: walletSummary, isLoading: walletLoading, refetch: refetchWallet } = useGetWalletSummaryQuery(userId, { skip: !userId });
-  const { data: callHistory = [], isLoading: historyLoading, refetch: refetchHistory } = useGetUserCallHistoryQuery(userId, { skip: !userId });
-
-  const userData = useMemo(
-    () => ({
+  // For Google users, show Google profile data
+  const userData = useMemo(() => {
+    if (isGoogleUser && storedUser) {
+      return {
+        name: storedUser.name || 'Google User',
+        email: storedUser.email || '-',
+        phone: storedUser.phone || '-',
+        gender: storedUser.gender || '-',
+        dateOfBirth: storedUser.dateOfBirth || '-',
+        timeOfBirth: storedUser.timeOfBirth || '-',
+        placeOfBirth: storedUser.placeOfBirth || '-',
+        address: storedUser.address || '-',
+        profileImage: storedUser.profileImage || storedUser.profile || `https://ui-avatars.com/api/?name=${encodeURIComponent(storedUser.name || 'User')}&background=ffd700&color=1a0a2e&bold=true`,
+      };
+    }
+    return {
       name: profile?.name || storedUser?.name || 'User',
       email: profile?.email || storedUser?.email || '-',
       phone: profile?.mobileNo || storedUser?.mobileNo || '-',
@@ -67,9 +89,8 @@ const UserProfile = () => {
       placeOfBirth: profile?.placeOfBirth || '-',
       address: profile?.address || '-',
       profileImage: profile?.profile || storedUser?.profileImage || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile?.name || storedUser?.name || 'User')}&background=ffd700&color=1a0a2e&bold=true`,
-    }),
-    [profile, storedUser]
-  );
+    };
+  }, [profile, storedUser, isGoogleUser]);
 
   const historyItems = useMemo(
     () =>
@@ -98,14 +119,17 @@ const UserProfile = () => {
   const totalSpent = Number(walletSummary?.totalSpent || 0);
 
   useEffect(() => {
-    if (userId) {
+    if (shouldFetch && userId) {
       refetchProfile();
       refetchWallet();
       refetchHistory();
     }
-  }, [userId, refetchProfile, refetchWallet, refetchHistory]);
+  }, [userId, shouldFetch, refetchProfile, refetchWallet, refetchHistory]);
 
-  if (!userId) {
+  // Check if user is logged in at all
+  const isLoggedIn = storedUser && Object.keys(storedUser).length > 0;
+  
+  if (!isLoggedIn) {
     return (
       <div className={styles.profileContainer}>
         <div className={styles.contentBody}>
@@ -379,7 +403,7 @@ const UserProfile = () => {
           <p>{userData.email}</p>
           <div className={styles.userCredits}>
             <FiCreditCard />
-            <span>₹{walletBalance.toFixed(2)} Credits</span>
+            <span>{isGoogleUser ? 'Google User' : `₹${walletBalance.toFixed(2)} Credits`}</span>
           </div>
         </div>
 
@@ -438,7 +462,7 @@ const UserProfile = () => {
         </div>
 
         <div className={styles.contentBody}>
-          {loading ? (
+          {loading && !isGoogleUser ? (
             <div className={styles.loaderContainer}>
               <div className={styles.loaderRing}></div>
               <div className={styles.loaderRing}></div>

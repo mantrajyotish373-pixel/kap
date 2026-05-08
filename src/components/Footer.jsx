@@ -89,13 +89,13 @@ const Footer = () => {
               <GiSun />
               <GiMoon className="logo-moon" />
             </div>
-            <span>Kalp<span className="logo-highlight">Jyotish</span></span>
+            <span>Mantra<span className="logo-highlight">Jyotish</span></span>
           </Link>
           
           <div className="about-section">
             <h4 className="footer-heading with-icon">
               <GiCompass />
-              <span>About KalpJyotish</span>
+              <span>About MantraJyotish</span>
             </h4>
             <div className="about-divider"></div>
             <p className="about-text">

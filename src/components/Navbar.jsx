@@ -148,7 +148,7 @@ const Navbar = ({ onSignupClick }) => {
               <div className="logo-glow"></div>
             </div>
             <div className="logo-text">
-              <span className="logo-kalp">Kalp</span>
+              <span className="logo-kalp">Mantra</span>
               <span className="logo-jyotish">Jyotish</span>
             </div>
           </NavLink>

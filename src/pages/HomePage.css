@@ -1,29 +1,36 @@
-/* ========================================
-   PEACEFUL ASTROLOGY HERO SECTION
-   No Slider - Pure Calm Cosmic Animation
-======================================== */
+/* HomePage.css - Professional Astrology Theme Based on Logo */
 
 :root {
-  /* Astrology Color Palette */
-  --cosmic-purple: #6b21e5;
-  --cosmic-indigo: #4c1d95;
-  --cosmic-deep: #1a0b2e;
-  --cosmic-gold: #d4af37;
-  --cosmic-gold-light: #f5e6a3;
-  --cosmic-silver: #c0c0c0;
-  --cosmic-mystic: #2d1b69;
-  --cosmic-aurora: #00b4d8;
-  --cosmic-twilight: #0f0c29;
-  --cosmic-dusk: #1e1b4b;
+  /* Primary Colors from Logo */
+  --gold-primary: #FFD700;
+  --gold-dark: #F5A623;
+  --gold-light: #FFE44D;
+  --purple-primary: #6B21E5;
+  --purple-dark: #4C1D95;
+  --purple-light: #8B5CF6;
   
-  /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  /* Background Colors */
+  --bg-dark: #0A0A0A;
+  --bg-deep: #0F0C29;
+  --bg-mid: #1A0B2E;
+  --bg-card: rgba(26, 11, 46, 0.85);
   
-  /* Animations */
-  --transition-smooth: all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-  --transition-peaceful: all 1.2s cubic-bezier(0.2, 0.8, 0.4, 1);
+  /* Text Colors */
+  --text-white: #FFFFFF;
+  --text-gold: #FFD700;
+  --text-muted: #C9B3E0;
+  --text-dim: #8B7BA8;
+  
+  /* Borders & Effects */
+  --border-glow: rgba(255, 215, 0, 0.25);
+  --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.15);
+  --shadow-purple: 0 0 20px rgba(107, 33, 229, 0.15);
+  
+  /* Gradients */
+  --gradient-gold: linear-gradient(135deg, #FFD700 0%, #F5A623 100%);
+  --gradient-purple: linear-gradient(135deg, #6B21E5 0%, #4C1D95 100%);
+  --gradient-hero: linear-gradient(135deg, #0F0C29 0%, #1A0B2E 50%, #0A0A0A 100%);
+  --gradient-card: linear-gradient(145deg, rgba(26, 11, 46, 0.9), rgba(15, 12, 41, 0.9));
 }
 
 * {
@@ -33,93 +40,20 @@
 }
 
 /* ========================================
-   HERO SECTION - PEACEFUL CONTAINER
+   HERO SECTION - STARRY COSMIC THEME
 ======================================== */
 
 .hero-section {
   position: relative;
-  width: 100%;
   min-height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--cosmic-twilight) 0%, var(--cosmic-deep) 50%, var(--cosmic-mystic) 100%);
+  background: var(--gradient-hero);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* ========================================
-   COSMIC BACKGROUND EFFECTS
-======================================== */
-
-.cosmic-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   overflow: hidden;
-  z-index: 0;
 }
 
-.nebula {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.25;
-  animation: floatNebula 25s ease-in-out infinite;
-}
-
-.nebula-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--cosmic-purple), transparent);
-  top: -200px;
-  left: -200px;
-}
-
-.nebula-2 {
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, var(--cosmic-gold), transparent);
-  bottom: -250px;
-  right: -250px;
-  animation-delay: -8s;
-}
-
-.nebula-3 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--cosmic-aurora), transparent);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-delay: -15s;
-  opacity: 0.15;
-}
-
-.nebula-4 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, var(--cosmic-pink), transparent);
-  top: 30%;
-  right: 20%;
-  animation-delay: -5s;
-  opacity: 0.2;
-}
-
-@keyframes floatNebula {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(40px, 30px) scale(1.05);
-  }
-  66% {
-    transform: translate(-20px, 40px) scale(0.98);
-  }
-}
-
-/* Stars Background */
+/* Animated Stars Background */
 .hero-section::before {
   content: '';
   position: absolute;
@@ -128,28 +62,138 @@
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(2px 2px at 20% 30%, white, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 60% 70%, white, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 85% 15%, white, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 40% 85%, white, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 10% 50%, white, rgba(0,0,0,0));
-  background-size: 200px 200px;
+    radial-gradient(2px 2px at 15% 25%, #FFD700, transparent),
+    radial-gradient(1px 1px at 35% 65%, #FFD700, transparent),
+    radial-gradient(2px 2px at 55% 15%, #FFD700, transparent),
+    radial-gradient(1px 1px at 75% 45%, #FFD700, transparent),
+    radial-gradient(2px 2px at 85% 85%, #FFD700, transparent),
+    radial-gradient(1px 1px at 45% 95%, #FFD700, transparent),
+    radial-gradient(2px 2px at 5% 55%, #8B5CF6, transparent),
+    radial-gradient(1px 1px at 95% 35%, #8B5CF6, transparent);
+  background-size: 250px 250px;
   background-repeat: no-repeat;
-  opacity: 0.5;
-  animation: starTwinkle 4s ease-in-out infinite;
+  opacity: 0.6;
+  animation: starsFloat 20s linear infinite;
   pointer-events: none;
-  z-index: 0;
 }
 
-@keyframes starTwinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
+@keyframes starsFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-50px); }
 }
 
-/* ========================================
-   HERO CONTAINER
-======================================== */
+/* Nebula Effects */
+.cosmic-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  animation: nebulaFloat 25s ease-in-out infinite;
+}
+
+.nebula-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--purple-primary), transparent);
+  top: -150px;
+  left: -150px;
+}
+
+.nebula-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--gold-primary), transparent);
+  bottom: -200px;
+  right: -200px;
+  animation-delay: -8s;
+}
+
+.nebula-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #8B5CF6, transparent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -15s;
+  opacity: 0.15;
+}
+
+@keyframes nebulaFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.1); }
+}
+
+/* Floating Particles */
+.cosmic-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, var(--gold-primary), transparent);
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
+}
+
+/* Floating Zodiac Icons */
+.floating-zodiacs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.zodiac-icon {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0.08;
+  animation: zodiacFloat linear infinite;
+  color: var(--gold-primary);
+}
+
+@keyframes zodiacFloat {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.08; }
+  90% { opacity: 0.08; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Hero Vignette */
+.hero-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+}
+
+/* Container */
 .hero-container {
   position: relative;
   z-index: 10;
@@ -165,695 +209,819 @@
   margin: 0 auto;
 }
 
-/* ========================================
-   HERO BADGE
-======================================== */
-
-.hero-badge {
+/* Hero Banner - Logo Style */
+.hero-banner {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 24px;
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  border-radius: 60px;
-  margin-bottom: 32px;
+  gap: 15px;
+  margin-bottom: 2rem;
+  padding: 8px 24px 8px 20px;
+  background: rgba(255, 215, 0, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 80px;
   backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-gold);
 }
 
-.badge-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--cosmic-gold);
-  animation: gentlePulse 3s ease-in-out infinite;
+.banner-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-primary);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
 }
 
-.hero-badge span {
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  color: var(--cosmic-gold-light);
-  text-transform: uppercase;
+.banner-text {
+  text-align: left;
 }
 
-@keyframes gentlePulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-}
-
-/* ========================================
-   HERO TITLE
-======================================== */
-
-.hero-title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 24px;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-}
-
-.title-gradient {
+.banner-text span {
   display: block;
-  background: linear-gradient(135deg, var(--cosmic-gold) 0%, var(--cosmic-gold-light) 50%, #ffffff 100%);
+  font-size: 1.3rem;
+  font-weight: 800;
+  background: var(--gradient-gold);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-top: 8px;
+  letter-spacing: 1px;
 }
 
-.title-underline {
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--cosmic-gold), var(--cosmic-gold-light), var(--cosmic-gold), transparent);
-  margin: 0 auto 32px;
-  border-radius: 3px;
+.banner-text p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  margin-top: 2px;
 }
 
-/* ========================================
-   HERO SUBTITLE
-======================================== */
+/* Hero Title */
+.hero-title {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text-white);
+  line-height: 1.2;
+}
 
+.hero-title span {
+  display: block;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 5px;
+}
+
+/* Hero Subtitle */
 .hero-subtitle {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 700px;
-  margin: 0 auto 40px;
-  font-weight: 400;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 35px;
 }
 
-/* ========================================
-   CTA BUTTONS
-======================================== */
-
+/* CTA Buttons */
 .hero-cta-group {
   display: flex;
   gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   padding: 14px 32px;
   border-radius: 60px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
-  transition: var(--transition-smooth);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .cta-btn.primary {
-  background: linear-gradient(135deg, var(--cosmic-gold), var(--cosmic-gold-light));
-  color: var(--cosmic-deep);
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+  background: var(--gradient-gold);
+  color: #1A0A2E;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
 }
 
 .cta-btn.primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
 }
 
 .cta-btn.secondary {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: var(--text-white);
 }
 
 .cta-btn.secondary:hover {
-  background: rgba(212, 175, 55, 0.15);
+  background: rgba(255, 215, 0, 0.1);
   transform: translateY(-3px);
-  border-color: var(--cosmic-gold);
+  border-color: var(--gold-primary);
 }
 
-.cta-btn svg {
-  transition: transform 0.3s ease;
-}
-
-.cta-btn:hover svg {
-  transform: translateX(5px);
-}
-
-/* ========================================
-   STATS SECTION
-======================================== */
-
-.hero-stats {
+/* Quick Stats */
+.quick-stats {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 48px;
-  margin-bottom: 48px;
+  gap: 40px;
   flex-wrap: wrap;
-  padding: 24px 0;
-  border-top: 1px solid rgba(212, 175, 55, 0.15);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
 }
 
-.stat-item {
+.stat-card {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  border-radius: 60px;
+  transition: all 0.3s ease;
 }
 
-.stat-icon svg {
-  width: 32px;
-  height: 32px;
-  color: var(--cosmic-gold);
-  opacity: 0.8;
+.stat-card:hover {
+  background: rgba(255, 215, 0, 0.05);
+  transform: translateY(-2px);
 }
 
-.stat-info {
-  text-align: left;
-}
-
-.stat-number {
-  display: block;
+.stat-card svg {
   font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-  line-height: 1.2;
+  color: var(--gold-primary);
 }
 
-.stat-label {
+.stat-card strong {
   display: block;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-white);
 }
 
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.4), transparent);
-}
-
-/* ========================================
-   TRUST BADGES
-======================================== */
-
-.trust-badges {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.trust-text {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 1px;
-}
-
-.badges {
-  display: flex;
-  gap: 16px;
-}
-
-.badges span {
-  padding: 6px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 30px;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.7);
+.stat-card span {
+  font-size: 0.7rem;
+  color: var(--text-muted);
   letter-spacing: 0.5px;
 }
 
-/* ========================================
-   SCROLL INDICATOR - PEACEFUL
-======================================== */
-
+/* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  z-index: 20;
+  text-align: center;
   cursor: pointer;
 }
 
 .scroll-mouse {
   width: 28px;
-  height: 46px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  height: 45px;
+  border: 2px solid rgba(255, 215, 0, 0.5);
   border-radius: 20px;
+  margin: 0 auto 10px;
   position: relative;
 }
 
 .scroll-wheel {
   width: 4px;
   height: 8px;
-  background: var(--cosmic-gold);
+  background: var(--gold-primary);
   border-radius: 2px;
   position: absolute;
   top: 8px;
   left: 50%;
   transform: translateX(-50%);
-  animation: scrollWheel 2.5s ease-in-out infinite;
+  animation: scrollWheel 2s ease-in-out infinite;
 }
 
 @keyframes scrollWheel {
-  0% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  80% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(16px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-.scroll-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.scroll-text span {
+.scroll-indicator p {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-muted);
   letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.scroll-arrow {
-  font-size: 1rem;
-  color: var(--cosmic-gold);
-  animation: gentleBounce 2s ease-in-out infinite;
-}
-
-@keyframes gentleBounce {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.5;
-  }
-  50% {
-    transform: translateY(5px);
-    opacity: 1;
-  }
 }
 
 /* ========================================
-   FLOATING PARTICLES
+   SECTION COMMON STYLES
 ======================================== */
 
-.cosmic-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.particle {
-  position: absolute;
-  background: radial-gradient(circle, var(--cosmic-gold), transparent);
+.section-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.section-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ========================================
+   HOW IT WORKS SECTION
+======================================== */
+
+.how-it-works {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, #0A0A0A 0%, #0F0C29 100%);
+}
+
+.steps-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.step {
+  flex: 1;
+  min-width: 200px;
+  padding: 1.8rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-radius: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold-primary);
+  box-shadow: var(--shadow-gold);
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 1rem;
+  background: var(--gradient-gold);
   border-radius: 50%;
-  animation: floatParticle linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1A0A2E;
 }
 
-@keyframes floatParticle {
-  0% {
-    transform: translateY(0) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.5;
-  }
-  90% {
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(-100vh) translateX(20px);
-    opacity: 0;
+.step h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.step-arrow {
+  font-size: 1.8rem;
+  color: var(--gold-primary);
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .step-arrow {
+    display: none;
   }
 }
 
 /* ========================================
-   FLOATING ZODIAC ICONS
+   FEATURED ASTROLOGERS SECTION
 ======================================== */
 
-.floating-zodiacs {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
+.featured-astrologers {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, #0F0C29 0%, #1A0B2E 100%);
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Astrologer Card */
+.featured-astro-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-radius: 28px;
+  padding: 1.8rem;
+  transition: all 0.3s ease;
+  position: relative;
   overflow: hidden;
 }
 
-.zodiac-icon {
-  position: absolute;
-  font-size: 1.2rem;
-  opacity: 0.08;
-  animation: floatZodiac linear infinite;
-  color: var(--cosmic-gold);
-}
-
-@keyframes floatZodiac {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.08;
-  }
-  90% {
-    opacity: 0.08;
-  }
-  100% {
-    transform: translate(80px, -100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* ========================================
-   VIGNETTE EFFECT
-======================================== */
-
-.hero-vignette {
+.featured-astro-card::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-gold);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.featured-astro-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 215, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.featured-astro-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Avatar */
+.astro-card-header {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.astro-avatar-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem;
+}
+
+.avatar-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  animation: rotateRing 4s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.astro-avatar {
+  position: relative;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
-  pointer-events: none;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1A0A2E;
+  background: #1A0A2E;
   z-index: 2;
 }
 
-/* ========================================
-   GRADIENT OVERLAY
-======================================== */
-
-.hero-gradient-overlay {
+.online-dot {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 150px;
-  background: linear-gradient(to top, var(--cosmic-deep), transparent);
-  pointer-events: none;
+  bottom: 5px;
+  right: 5px;
+  width: 14px;
+  height: 14px;
+  background: #22C55E;
+  border: 2px solid #1A0A2E;
+  border-radius: 50%;
   z-index: 3;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.astro-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.3rem;
+}
+
+/* Rating */
+.astro-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+}
+
+.star {
+  font-size: 0.75rem;
+  color: #4A4A4A;
+}
+
+.star.filled {
+  color: var(--gold-primary);
+  filter: drop-shadow(0 0 2px var(--gold-primary));
+}
+
+.rating-value {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.astro-expertise {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Pricing */
+.astro-pricing {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.8rem 0;
+  margin: 1rem 0;
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+}
+
+.price-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.price-item svg {
+  font-size: 0.85rem;
+  color: var(--gold-primary);
+}
+
+.price-item span {
+  color: var(--text-white);
+  font-weight: 700;
+}
+
+/* Action Buttons */
+.astro-actions-home {
+  display: flex;
+  gap: 12px;
+}
+
+.connect-chat-btn,
+.connect-call-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.connect-chat-btn {
+  background: var(--gradient-gold);
+  border: none;
+  color: #1A0A2E;
+}
+
+.connect-chat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.connect-call-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: var(--gold-primary);
+}
+
+.connect-call-btn:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* View All Button */
+.view-all-container {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 32px;
+  background: transparent;
+  border: 2px solid var(--gold-primary);
+  border-radius: 60px;
+  color: var(--gold-primary);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background: var(--gradient-gold);
+  color: #1A0A2E;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
 }
 
 /* ========================================
-   RESPONSIVE STYLES
+   WHY CHOOSE US SECTION
+======================================== */
+
+.why-choose-us {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, #1A0B2E 0%, #0A0A0A 100%);
+}
+
+.features-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.feature {
+  flex: 1;
+  min-width: 220px;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: var(--shadow-purple);
+}
+
+.feature svg {
+  font-size: 2.2rem;
+  color: var(--gold-primary);
+  margin-bottom: 1rem;
+}
+
+.feature h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ========================================
+   LOADER
+======================================== */
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 215, 0, 0.2);
+  border-top-color: var(--gold-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
 ======================================== */
 
 /* Tablet */
-@media (max-width: 768px) {
-  .hero-stats {
-    gap: 24px;
-  }
-  
-  .stat-divider {
-    display: none;
-  }
-  
-  .stat-item {
-    flex: 1;
-    justify-content: center;
-  }
-  
-  .hero-cta-group {
-    gap: 16px;
-  }
-  
-  .cta-btn {
-    padding: 12px 24px;
-    font-size: 0.9rem;
-  }
-  
-  .hero-badge {
-    padding: 6px 20px;
-  }
-  
-  .badges {
-    gap: 12px;
-  }
-  
-  .badges span {
-    padding: 4px 12px;
-    font-size: 0.7rem;
-  }
-}
-
-/* Mobile Landscape */
-@media (max-width: 576px) {
+@media (max-width: 1024px) {
   .hero-container {
     padding: 0 20px;
   }
   
-  .hero-title {
-    line-height: 1.3;
+  .featured-grid {
+    gap: 1.5rem;
   }
-  
-  .hero-subtitle {
-    margin-bottom: 32px;
-  }
-  
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
   .hero-cta-group {
     flex-direction: column;
-    width: 100%;
-    max-width: 280px;
-    margin: 0 auto 40px;
+    align-items: center;
   }
   
   .cta-btn {
-    justify-content: center;
     width: 100%;
-  }
-  
-  .hero-stats {
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .stat-item {
-    width: 100%;
+    max-width: 260px;
     justify-content: center;
   }
   
-  .trust-badges {
+  .quick-stats {
     flex-direction: column;
-    gap: 12px;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .stat-card {
+    width: 100%;
+    max-width: 220px;
+    justify-content: center;
+  }
+  
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .steps-container {
+    flex-direction: column;
+  }
+  
+  .step {
+    width: 100%;
+  }
+  
+  .features-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feature {
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .hero-banner {
+    padding: 6px 18px;
+  }
+  
+  .banner-logo {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .banner-text span {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 576px) {
+  .hero-section {
+    min-height: 90vh;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .astro-actions-home {
+    flex-direction: column;
+  }
+  
+  .astro-pricing {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .price-item {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .featured-astro-card {
+    padding: 1.2rem;
+  }
+  
+  .astro-avatar-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .astro-name {
+    font-size: 1.1rem;
   }
   
   .scroll-indicator {
-    bottom: 20px;
+    bottom: 15px;
   }
   
   .scroll-mouse {
     width: 24px;
-    height: 40px;
-  }
-  
-  .zodiac-icon {
-    font-size: 0.8rem;
+    height: 38px;
   }
 }
 
 /* Extra Small */
 @media (max-width: 375px) {
-  .hero-badge span {
-    font-size: 0.7rem;
+  .hero-title {
+    font-size: 1.5rem;
   }
   
-  .badges {
-    flex-wrap: wrap;
-    justify-content: center;
+  .cta-btn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
   }
   
-  .stat-icon svg {
-    width: 24px;
-    height: 24px;
+  .stat-card {
+    padding: 6px 16px;
   }
   
-  .stat-number {
+  .stat-card svg {
     font-size: 1.2rem;
   }
   
-  .stat-label {
-    font-size: 0.65rem;
+  .stat-card strong {
+    font-size: 1rem;
   }
 }
 
-/* ========================================
-   ACCESSIBILITY & PERFORMANCE
-======================================== */
-
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .nebula,
   .particle,
   .zodiac-icon,
   .scroll-wheel,
-  .scroll-arrow,
+  .avatar-ring,
   .hero-section::before {
     animation: none;
   }
   
-  .cta-btn,
-  .cta-btn svg {
-    transition: none;
-  }
-  
-  .nebula {
-    opacity: 0.1;
+  .featured-astro-card:hover,
+  .cta-btn:hover,
+  .view-all-btn:hover {
+    transform: none;
   }
 }
 
 /* High Contrast Mode */
 @media (prefers-contrast: high) {
-  .hero-title {
-    background: none;
-    -webkit-text-fill-color: var(--cosmic-gold);
-    color: var(--cosmic-gold);
-  }
-  
   .cta-btn.primary {
-    background: var(--cosmic-gold);
+    background: var(--gold-primary);
     color: black;
   }
   
-  .hero-stats {
-    border-color: var(--cosmic-gold);
-  }
-}
-
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Loading Animation */
-.hero-content {
-  animation: fadeInUp 1.2s ease-out;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========================================
-   FIXED MOBILE HERO TITLE - WORKING SOLUTION
-======================================== */
-
-.hero-title {
-  font-size: clamp(2rem, 7vw, 5rem);
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 24px;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-.title-line {
-  display: block;
-  font-size: inherit;
-  color: #ffffff;
-}
-
-.title-gradient {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--cosmic-gold) 0%, var(--cosmic-gold-light) 50%, #ffffff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Desktop styles - keep on one line */
-@media (min-width: 769px) {
-  .hero-title {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
+  .featured-astro-card {
+    border: 2px solid var(--gold-primary);
   }
   
-  .title-line {
-    display: inline-block;
-  }
-  
-  .title-gradient {
-    display: inline-block;
-  }
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.5rem;
-    gap: 8px;
-  }
-}
-
-/* Mobile Landscape */
-@media (max-width: 576px) {
-  .hero-title {
-    font-size: 2rem;
-    gap: 5px;
-  }
-}
-
-/* Mobile Portrait */
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.6rem;
-  }
-}
-
-/* Extra Small */
-@media (max-width: 375px) {
-  .hero-title {
-    font-size: 1.4rem;
-  }
-}
-
-/* Very Small Devices */
-@media (max-width: 320px) {
-  .hero-title {
-    font-size: 1.2rem;
+  .hero-title span {
+    -webkit-text-fill-color: var(--gold-primary);
   }
 }
