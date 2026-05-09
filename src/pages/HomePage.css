@@ -1,36 +1,27 @@
-/* HomePage.css - Professional Astrology Theme Based on Logo */
+/* src/pages/HomePage.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Primary Colors from Logo */
-  --gold-primary: #FFD700;
-  --gold-dark: #F5A623;
-  --gold-light: #FFE44D;
-  --purple-primary: #6B21E5;
-  --purple-dark: #4C1D95;
-  --purple-light: #8B5CF6;
-  
-  /* Background Colors */
-  --bg-dark: #0A0A0A;
-  --bg-deep: #0F0C29;
-  --bg-mid: #1A0B2E;
-  --bg-card: rgba(26, 11, 46, 0.85);
-  
-  /* Text Colors */
-  --text-white: #FFFFFF;
-  --text-gold: #FFD700;
-  --text-muted: #C9B3E0;
-  --text-dim: #8B7BA8;
-  
-  /* Borders & Effects */
-  --border-glow: rgba(255, 215, 0, 0.25);
-  --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.15);
-  --shadow-purple: 0 0 20px rgba(107, 33, 229, 0.15);
+  /* Divine Colors - Inspired by Temple & Vedic Themes */
+  --saffron-primary: #E67E22;
+  --saffron-dark: #D35400;
+  --saffron-light: #F39C12;
+  --gold-deep: #B8860B;
+  --gold-sacred: #DAA520;
+  --vermillion: #C0392B;
+  --sandstone: #D4A373;
+  --temple-bg: #1A1108;
+  --palm-bg: #241A0E;
+  --vedic-parchment: #2C2416;
+  --text-offwhite: #F5E6CC;
+  --text-muted: #C4B498;
+  --border-divine: rgba(230, 126, 34, 0.3);
+  --glow-saffron: 0 0 20px rgba(230, 126, 34, 0.15);
   
   /* Gradients */
-  --gradient-gold: linear-gradient(135deg, #FFD700 0%, #F5A623 100%);
-  --gradient-purple: linear-gradient(135deg, #6B21E5 0%, #4C1D95 100%);
-  --gradient-hero: linear-gradient(135deg, #0F0C29 0%, #1A0B2E 50%, #0A0A0A 100%);
-  --gradient-card: linear-gradient(145deg, rgba(26, 11, 46, 0.9), rgba(15, 12, 41, 0.9));
+  --gradient-saffron: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+  --gradient-temple: linear-gradient(145deg, #1A1108 0%, #2C2416 100%);
+  --gradient-palm: linear-gradient(135deg, #241A0E 0%, #1A1108 100%);
 }
 
 * {
@@ -39,51 +30,28 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background: #1A1108;
+  color: var(--text-offwhite);
+}
+
 /* ========================================
-   HERO SECTION - STARRY COSMIC THEME
+   HERO SECTION - TEMPLE INSPIRED
 ======================================== */
 
 .hero-section {
   position: relative;
   min-height: 100vh;
-  background: var(--gradient-hero);
+  background: var(--gradient-temple);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-/* Animated Stars Background */
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(2px 2px at 15% 25%, #FFD700, transparent),
-    radial-gradient(1px 1px at 35% 65%, #FFD700, transparent),
-    radial-gradient(2px 2px at 55% 15%, #FFD700, transparent),
-    radial-gradient(1px 1px at 75% 45%, #FFD700, transparent),
-    radial-gradient(2px 2px at 85% 85%, #FFD700, transparent),
-    radial-gradient(1px 1px at 45% 95%, #FFD700, transparent),
-    radial-gradient(2px 2px at 5% 55%, #8B5CF6, transparent),
-    radial-gradient(1px 1px at 95% 35%, #8B5CF6, transparent);
-  background-size: 250px 250px;
-  background-repeat: no-repeat;
-  opacity: 0.6;
-  animation: starsFloat 20s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes starsFloat {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-50px); }
-}
-
-/* Nebula Effects */
-.cosmic-background {
+/* Mandala Background */
+.divine-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -92,48 +60,39 @@
   overflow: hidden;
 }
 
-.nebula {
+.mandala-bg {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.25;
-  animation: nebulaFloat 25s ease-in-out infinite;
-}
-
-.nebula-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--purple-primary), transparent);
-  top: -150px;
-  left: -150px;
-}
-
-.nebula-2 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, var(--gold-primary), transparent);
-  bottom: -200px;
-  right: -200px;
-  animation-delay: -8s;
-}
-
-.nebula-3 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, #8B5CF6, transparent);
   top: 50%;
   left: 50%;
+  width: 120%;
+  height: 120%;
   transform: translate(-50%, -50%);
-  animation-delay: -15s;
-  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.08' d='M50,5 L95,50 L50,95 L5,50 Z M50,15 L85,50 L50,85 L15,50 Z M50,25 L75,50 L50,75 L25,50 Z M50,35 L65,50 L50,65 L35,50 Z'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.06'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 120px;
+  animation: mandalaRotate 60s linear infinite;
 }
 
-@keyframes nebulaFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, 30px) scale(1.1); }
+@keyframes mandalaRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Floating Particles */
+.om-bg {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  font-size: 15rem;
+  opacity: 0.03;
+  font-family: serif;
+  pointer-events: none;
+}
+
+.om-bg::after {
+  content: "🕉️";
+}
+
+/* Particle Animation */
 .cosmic-particles {
   position: absolute;
   top: 0;
@@ -145,20 +104,20 @@
 
 .particle {
   position: absolute;
-  background: radial-gradient(circle, var(--gold-primary), transparent);
+  background: radial-gradient(circle, var(--saffron-primary), transparent);
   border-radius: 50%;
   animation: particleFloat linear infinite;
 }
 
 @keyframes particleFloat {
   0% { transform: translateY(0) translateX(0); opacity: 0; }
-  10% { opacity: 0.6; }
-  90% { opacity: 0.6; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
   100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
 }
 
-/* Floating Zodiac Icons */
-.floating-zodiacs {
+/* Floating Divine Symbols */
+.floating-symbols {
   position: absolute;
   top: 0;
   left: 0;
@@ -167,33 +126,30 @@
   pointer-events: none;
 }
 
-.zodiac-icon {
+.divine-symbol {
   position: absolute;
-  font-size: 1.2rem;
-  opacity: 0.08;
-  animation: zodiacFloat linear infinite;
-  color: var(--gold-primary);
+  font-size: 1.1rem;
+  opacity: 0.06;
+  animation: symbolDrift linear infinite;
 }
 
-@keyframes zodiacFloat {
+@keyframes symbolDrift {
   0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.08; }
-  90% { opacity: 0.08; }
+  10% { opacity: 0.06; }
+  90% { opacity: 0.06; }
   100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
 
-/* Hero Vignette */
 .hero-vignette {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.5) 100%);
   pointer-events: none;
 }
 
-/* Container */
 .hero-container {
   position: relative;
   z-index: 10;
@@ -209,76 +165,72 @@
   margin: 0 auto;
 }
 
-/* Hero Banner - Logo Style */
+/* Hero Banner */
 .hero-banner {
   display: inline-flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   margin-bottom: 2rem;
   padding: 8px 24px 8px 20px;
-  background: rgba(255, 215, 0, 0.08);
-  border: 1px solid rgba(255, 215, 0, 0.25);
+  background: rgba(230, 126, 34, 0.08);
+  border: 1px solid rgba(230, 126, 34, 0.25);
   border-radius: 80px;
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-gold);
+  backdrop-filter: blur(8px);
 }
 
 .banner-logo {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--gold-primary);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-}
-
-.banner-text {
-  text-align: left;
+  border: 2px solid var(--saffron-primary);
 }
 
 .banner-text span {
   display: block;
-  font-size: 1.3rem;
-  font-weight: 800;
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--saffron-primary);
   letter-spacing: 1px;
 }
 
 .banner-text p {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   margin-top: 2px;
 }
 
-/* Hero Title */
+/* Hero Titles */
 .hero-title {
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 20px;
-  color: var(--text-white);
-  line-height: 1.2;
+  margin-bottom: 24px;
 }
 
-.hero-title span {
+.sanskrit-text {
   display: block;
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-top: 5px;
+  font-size: 0.9rem;
+  font-family: serif;
+  color: var(--gold-sacred);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  opacity: 0.85;
 }
 
-/* Hero Subtitle */
+.title-main {
+  display: block;
+  font-size: clamp(2rem, 6vw, 3.8rem);
+  font-weight: 800;
+  color: var(--text-offwhite);
+  line-height: 1.25;
+}
+
 .hero-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   line-height: 1.6;
   color: var(--text-muted);
   max-width: 650px;
   margin: 0 auto 35px;
+  font-family: serif;
 }
 
 /* CTA Buttons */
@@ -293,37 +245,39 @@
 .cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding: 14px 32px;
   border-radius: 60px;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
   cursor: pointer;
+  border: none;
+  font-family: inherit;
 }
 
 .cta-btn.primary {
-  background: var(--gradient-gold);
-  color: #1A0A2E;
-  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  background: var(--gradient-saffron);
+  color: #1A1108;
+  box-shadow: 0 4px 20px rgba(230, 126, 34, 0.35);
 }
 
 .cta-btn.primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 8px 30px rgba(230, 126, 34, 0.5);
 }
 
 .cta-btn.secondary {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(230, 126, 34, 0.4);
+  color: var(--text-offwhite);
 }
 
 .cta-btn.secondary:hover {
-  background: rgba(255, 215, 0, 0.1);
+  background: rgba(230, 126, 34, 0.1);
   transform: translateY(-3px);
-  border-color: var(--gold-primary);
+  border-color: var(--saffron-primary);
 }
 
 /* Quick Stats */
@@ -338,34 +292,32 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 24px;
+  padding: 8px 24px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(230, 126, 34, 0.15);
   border-radius: 60px;
   transition: all 0.3s ease;
 }
 
 .stat-card:hover {
-  background: rgba(255, 215, 0, 0.05);
-  transform: translateY(-2px);
+  background: rgba(230, 126, 34, 0.06);
 }
 
 .stat-card svg {
-  font-size: 1.5rem;
-  color: var(--gold-primary);
+  font-size: 1.4rem;
+  color: var(--saffron-primary);
 }
 
 .stat-card strong {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: var(--text-white);
+  color: var(--text-offwhite);
 }
 
 .stat-card span {
   font-size: 0.7rem;
   color: var(--text-muted);
-  letter-spacing: 0.5px;
 }
 
 /* Scroll Indicator */
@@ -379,9 +331,9 @@
 }
 
 .scroll-mouse {
-  width: 28px;
-  height: 45px;
-  border: 2px solid rgba(255, 215, 0, 0.5);
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(230, 126, 34, 0.5);
   border-radius: 20px;
   margin: 0 auto 10px;
   position: relative;
@@ -390,7 +342,7 @@
 .scroll-wheel {
   width: 4px;
   height: 8px;
-  background: var(--gold-primary);
+  background: var(--saffron-primary);
   border-radius: 2px;
   position: absolute;
   top: 8px;
@@ -408,32 +360,147 @@
 .scroll-indicator p {
   font-size: 0.7rem;
   color: var(--text-muted);
-  letter-spacing: 2px;
 }
 
 /* ========================================
-   SECTION COMMON STYLES
+   OUR ASTROLOGERS SECTION - AVATARS ONLY
 ======================================== */
+
+.our-astrologers-section {
+  padding: 5rem 2rem;
+  background: var(--gradient-palm);
+}
 
 .section-header {
   text-align: center;
   margin-bottom: 3rem;
 }
 
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(230, 126, 34, 0.12);
+  padding: 6px 16px;
+  border-radius: 40px;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: var(--saffron-primary);
+}
+
 .section-header h2 {
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 700;
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.title-highlight {
+  color: var(--saffron-primary);
+  border-bottom: 2px solid var(--saffron-primary);
+  padding-bottom: 3px;
 }
 
 .section-header p {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Avatars Grid */
+.astrologer-avatars-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.astro-avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+}
+
+.avatar-frame {
+  position: relative;
+  width: 85px;
+  height: 85px;
+  margin-bottom: 0.8rem;
+}
+
+.astro-mini-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold-sacred);
+  background: #3A2A1A;
+  transition: all 0.3s ease;
+}
+
+.astro-avatar-card:hover .astro-mini-avatar {
+  transform: scale(1.05);
+  border-color: var(--saffron-primary);
+  box-shadow: 0 0 15px rgba(230, 126, 34, 0.3);
+}
+
+.avatar-pulse {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(230, 126, 34, 0.4);
+  animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  70% { transform: scale(1.15); opacity: 0; }
+  100% { transform: scale(0.9); opacity: 0; }
+}
+
+.astro-mini-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-offwhite);
+  text-align: center;
+}
+
+/* View All Button */
+.view-all-container {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  background: transparent;
+  border: 1.5px solid var(--saffron-primary);
+  border-radius: 60px;
+  color: var(--saffron-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(230, 126, 34, 0.05);
+}
+
+.view-all-btn:hover {
+  background: var(--gradient-saffron);
+  color: #1A1108;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 126, 34, 0.3);
 }
 
 /* ========================================
@@ -442,7 +509,7 @@
 
 .how-it-works {
   padding: 5rem 2rem;
-  background: linear-gradient(180deg, #0A0A0A 0%, #0F0C29 100%);
+  background: var(--temple-bg);
 }
 
 .steps-container {
@@ -458,51 +525,51 @@
 .step {
   flex: 1;
   min-width: 200px;
-  padding: 1.8rem;
-  background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  background: rgba(44, 36, 22, 0.6);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(230, 126, 34, 0.15);
+  border-radius: 20px;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .step:hover {
+  border-color: var(--saffron-primary);
   transform: translateY(-5px);
-  border-color: var(--gold-primary);
-  box-shadow: var(--shadow-gold);
 }
 
 .step-number {
   width: 50px;
   height: 50px;
   margin: 0 auto 1rem;
-  background: var(--gradient-gold);
+  background: var(--gradient-saffron);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #1A0A2E;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1A1108;
+  font-family: serif;
 }
 
 .step h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--text-white);
+  color: var(--text-offwhite);
   margin-bottom: 0.5rem;
 }
 
 .step p {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
 .step-arrow {
-  font-size: 1.8rem;
-  color: var(--gold-primary);
-  opacity: 0.7;
+  font-size: 1.5rem;
+  color: var(--saffron-primary);
+  opacity: 0.6;
 }
 
 @media (max-width: 768px) {
@@ -512,262 +579,87 @@
 }
 
 /* ========================================
-   FEATURED ASTROLOGERS SECTION
+   ANCIENT WISDOM SECTION
 ======================================== */
 
-.featured-astrologers {
+.ancient-wisdom {
   padding: 5rem 2rem;
-  background: linear-gradient(180deg, #0F0C29 0%, #1A0B2E 100%);
+  background: linear-gradient(135deg, #2C2416 0%, #1A1108 100%);
 }
 
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
-  max-width: 1400px;
+.wisdom-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3rem;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-/* Astrologer Card */
-.featured-astro-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 28px;
-  padding: 1.8rem;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+.wisdom-content {
+  flex: 2;
+  min-width: 280px;
 }
 
-.featured-astro-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient-gold);
-  transform: scaleX(0);
-  transition: transform 0.4s ease;
-}
-
-.featured-astro-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 215, 0, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
-.featured-astro-card:hover::before {
-  transform: scaleX(1);
-}
-
-/* Avatar */
-.astro-card-header {
-  text-align: center;
-  margin-bottom: 1.2rem;
-}
-
-.astro-avatar-wrapper {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 1rem;
-}
-
-.avatar-ring {
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  border-radius: 50%;
-  background: var(--gradient-gold);
-  animation: rotateRing 4s linear infinite;
-  opacity: 0.7;
-}
-
-@keyframes rotateRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.astro-avatar {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #1A0A2E;
-  background: #1A0A2E;
-  z-index: 2;
-}
-
-.online-dot {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  width: 14px;
-  height: 14px;
-  background: #22C55E;
-  border: 2px solid #1A0A2E;
-  border-radius: 50%;
-  z-index: 3;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.8; }
-}
-
-.astro-name {
-  font-size: 1.3rem;
+.wisdom-content h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
-  color: var(--text-white);
-  margin-bottom: 0.3rem;
+  color: var(--saffron-primary);
+  margin-bottom: 1rem;
 }
 
-/* Rating */
-.astro-rating {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-bottom: 0.5rem;
-}
-
-.stars {
-  display: flex;
-  gap: 3px;
-}
-
-.star {
-  font-size: 0.75rem;
-  color: #4A4A4A;
-}
-
-.star.filled {
-  color: var(--gold-primary);
-  filter: drop-shadow(0 0 2px var(--gold-primary));
-}
-
-.rating-value {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-white);
-}
-
-.astro-expertise {
-  font-size: 0.7rem;
+.wisdom-content p {
   color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
 }
 
-/* Pricing */
-.astro-pricing {
+.wisdom-features {
   display: flex;
-  justify-content: space-around;
-  padding: 0.8rem 0;
-  margin: 1rem 0;
-  border-top: 1px solid rgba(255, 215, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.price-item {
+.wisdom-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-.price-item svg {
-  font-size: 0.85rem;
-  color: var(--gold-primary);
-}
-
-.price-item span {
-  color: var(--text-white);
-  font-weight: 700;
-}
-
-/* Action Buttons */
-.astro-actions-home {
-  display: flex;
-  gap: 12px;
-}
-
-.connect-chat-btn,
-.connect-call-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 8px;
-  padding: 10px;
+  background: rgba(230, 126, 34, 0.1);
+  padding: 8px 16px;
   border-radius: 40px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 0.8rem;
 }
 
-.connect-chat-btn {
-  background: var(--gradient-gold);
-  border: none;
-  color: #1A0A2E;
+.wisdom-item svg {
+  color: var(--saffron-primary);
 }
 
-.connect-chat-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-}
-
-.connect-call-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  color: var(--gold-primary);
-}
-
-.connect-call-btn:hover {
-  background: rgba(255, 215, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-/* View All Button */
-.view-all-container {
+.wisdom-symbol {
+  flex: 1;
   text-align: center;
-  margin-top: 3rem;
+  min-width: 200px;
 }
 
-.view-all-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 32px;
-  background: transparent;
-  border: 2px solid var(--gold-primary);
-  border-radius: 60px;
-  color: var(--gold-primary);
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s ease;
+.rudraksha {
+  font-size: 4rem;
+  margin-bottom: 1rem;
 }
 
-.view-all-btn:hover {
-  background: var(--gradient-gold);
-  color: #1A0A2E;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+.shlok {
+  font-size: 0.9rem;
+  font-family: serif;
+  color: var(--gold-sacred);
+  font-style: italic;
 }
 
 /* ========================================
-   WHY CHOOSE US SECTION
+   WHY CHOOSE US
 ======================================== */
 
 .why-choose-us {
   padding: 5rem 2rem;
-  background: linear-gradient(180deg, #1A0B2E 0%, #0A0A0A 100%);
+  background: var(--palm-bg);
 }
 
 .features-grid {
@@ -784,36 +676,33 @@
   min-width: 220px;
   text-align: center;
   padding: 2rem 1.5rem;
-  background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.1);
-  border-radius: 24px;
+  background: rgba(44, 36, 22, 0.5);
+  border: 1px solid rgba(230, 126, 34, 0.1);
+  border-radius: 20px;
   transition: all 0.3s ease;
 }
 
 .feature:hover {
+  border-color: rgba(230, 126, 34, 0.3);
   transform: translateY(-5px);
-  border-color: rgba(255, 215, 0, 0.3);
-  box-shadow: var(--shadow-purple);
 }
 
 .feature svg {
-  font-size: 2.2rem;
-  color: var(--gold-primary);
+  font-size: 2rem;
+  color: var(--saffron-primary);
   margin-bottom: 1rem;
 }
 
 .feature h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: var(--text-white);
+  color: var(--text-offwhite);
   margin-bottom: 0.5rem;
 }
 
 .feature p {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
-  line-height: 1.5;
 }
 
 /* ========================================
@@ -824,38 +713,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 300px;
+  padding: 3rem;
 }
 
-.loader {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255, 215, 0, 0.2);
-  border-top-color: var(--gold-primary);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.divine-loader {
+  text-align: center;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.loader-om {
+  font-size: 2rem;
+  animation: omPulse 1.5s ease-in-out infinite;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes omPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
 }
 
 /* ========================================
    RESPONSIVE DESIGN
 ======================================== */
 
-/* Tablet */
 @media (max-width: 1024px) {
   .hero-container {
     padding: 0 20px;
   }
   
-  .featured-grid {
+  .astrologer-avatars-grid {
     gap: 1.5rem;
   }
 }
 
-/* Mobile Landscape */
 @media (max-width: 768px) {
   .hero-cta-group {
     flex-direction: column;
@@ -871,17 +760,13 @@
   .quick-stats {
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
   }
   
   .stat-card {
     width: 100%;
     max-width: 220px;
     justify-content: center;
-  }
-  
-  .featured-grid {
-    grid-template-columns: 1fr;
   }
   
   .steps-container {
@@ -902,60 +787,62 @@
     max-width: 320px;
   }
   
+  .wisdom-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .wisdom-features {
+    justify-content: center;
+  }
+  
   .hero-banner {
     padding: 6px 18px;
   }
   
   .banner-logo {
-    width: 35px;
-    height: 35px;
+    width: 38px;
+    height: 38px;
   }
   
   .banner-text span {
     font-size: 1rem;
   }
+  
+  .avatar-frame {
+    width: 70px;
+    height: 70px;
+  }
 }
 
-/* Mobile Portrait */
 @media (max-width: 576px) {
   .hero-section {
     min-height: 90vh;
   }
   
-  .hero-title {
-    font-size: 1.8rem;
+  .title-main {
+    font-size: 1.6rem;
+  }
+  
+  .sanskrit-text {
+    font-size: 0.7rem;
   }
   
   .hero-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
-  .astro-actions-home {
-    flex-direction: column;
+  .astrologer-avatars-grid {
+    gap: 1.2rem;
   }
   
-  .astro-pricing {
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
+  .avatar-frame {
+    width: 60px;
+    height: 60px;
   }
   
-  .price-item {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .featured-astro-card {
-    padding: 1.2rem;
-  }
-  
-  .astro-avatar-wrapper {
-    width: 80px;
-    height: 80px;
-  }
-  
-  .astro-name {
-    font-size: 1.1rem;
+  .astro-mini-name {
+    font-size: 0.7rem;
   }
   
   .scroll-indicator {
@@ -963,65 +850,39 @@
   }
   
   .scroll-mouse {
-    width: 24px;
-    height: 38px;
+    width: 22px;
+    height: 36px;
   }
 }
 
-/* Extra Small */
-@media (max-width: 375px) {
-  .hero-title {
-    font-size: 1.5rem;
+@media (max-width: 480px) {
+  .astrologer-avatars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
   }
   
-  .cta-btn {
-    padding: 10px 20px;
-    font-size: 0.85rem;
+  .avatar-frame {
+    width: 55px;
+    height: 55px;
   }
   
-  .stat-card {
-    padding: 6px 16px;
+  .our-astrologers-section {
+    padding: 3rem 1rem;
   }
   
-  .stat-card svg {
-    font-size: 1.2rem;
-  }
-  
-  .stat-card strong {
-    font-size: 1rem;
+  .view-all-btn {
+    padding: 10px 24px;
+    font-size: 0.8rem;
   }
 }
 
-/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .nebula,
+  .mandala-bg,
   .particle,
-  .zodiac-icon,
+  .divine-symbol,
   .scroll-wheel,
-  .avatar-ring,
-  .hero-section::before {
+  .avatar-pulse {
     animation: none;
-  }
-  
-  .featured-astro-card:hover,
-  .cta-btn:hover,
-  .view-all-btn:hover {
-    transform: none;
-  }
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  .cta-btn.primary {
-    background: var(--gold-primary);
-    color: black;
-  }
-  
-  .featured-astro-card {
-    border: 2px solid var(--gold-primary);
-  }
-  
-  .hero-title span {
-    -webkit-text-fill-color: var(--gold-primary);
   }
 }

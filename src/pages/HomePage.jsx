@@ -22,7 +22,8 @@ import {
   FiUsers,
   FiCheckCircle,
   FiTrendingUp,
-  FiUser
+  FiUser,
+  FiChevronRight
 } from 'react-icons/fi';
 
 // Import components
@@ -37,17 +38,17 @@ import Footer from '../components/Footer';
 // Import CSS
 import './HomePage.css';
 
-// Floating Particles Component
+// Floating Particles Component - subtle spiritual background
 const CosmicParticles = () => {
-  const particleCount = 80;
+  const particleCount = 40;
   const particles = Array.from({ length: particleCount }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
     top: Math.random() * 100,
-    size: Math.random() * 4 + 1,
-    duration: Math.random() * 20 + 15,
-    delay: Math.random() * 5,
-    opacity: Math.random() * 0.4 + 0.1
+    size: Math.random() * 2 + 1,
+    duration: Math.random() * 25 + 20,
+    delay: Math.random() * 8,
+    opacity: Math.random() * 0.25 + 0.05
   }));
 
   return (
@@ -71,119 +72,57 @@ const CosmicParticles = () => {
   );
 };
 
-// Floating Zodiac Icons
-const FloatingZodiacIcons = () => {
-  const zodiacIcons = ["♈", "♉", "♊", "♋", "♌", "♍", "♎", "♏", "♐", "♑", "♒", "♓"];
+// Floating Rudraksha / Divine Symbols
+const FloatingSymbols = () => {
+  const symbols = ["🕉️", "🔱", "🪔", "🌙", "☀️", "🔔"];
 
   return (
-    <div className="floating-zodiacs">
-      {zodiacIcons.map((icon, index) => (
+    <div className="floating-symbols">
+      {symbols.map((symbol, index) => (
         <div
           key={index}
-          className="zodiac-icon"
+          className="divine-symbol"
           style={{
-            animationDelay: `${index * 0.5}s`,
-            animationDuration: `${25 + index * 2}s`,
+            animationDelay: `${index * 1.2}s`,
+            animationDuration: `${30 + index * 3}s`,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`
           }}
         >
-          {icon}
+          {symbol}
         </div>
       ))}
     </div>
   );
 };
 
-// Featured Astrologer Card - Clickable to navigate to connect page
-const FeaturedAstrologerCard = ({ astrologer }) => {
+// Simplified Astrologer Avatar Card - Only Icon and Name
+const AstrologerAvatarCard = ({ astrologer }) => {
   const navigate = useNavigate();
-  const averageRating = astrologer.averageRating || 4.8;
-  
-  const handleCardClick = () => {
-    navigate(`/astro-connect`);
-  };
 
-  const handleChatClick = (e) => {
-    e.stopPropagation();
-    navigate(`/astro-connect`);
-  };
-
-  const handleCallClick = (e) => {
-    e.stopPropagation();
-    navigate(`/astro-connect`);
+  const handleClick = () => {
+    navigate('/astro-connect');
   };
 
   return (
     <motion.div 
-      className="featured-astro-card"
-      initial={{ opacity: 0, y: 30 }}
+      className="astro-avatar-card"
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ y: -5 }}
-      onClick={handleCardClick}
+      transition={{ duration: 0.4 }}
+      whileHover={{ y: -4 }}
+      onClick={handleClick}
     >
-      <div className="astro-card-header">
-        <div className="astro-avatar-wrapper">
-          <div className="avatar-ring"></div>
-          <img 
-            src={astrologer.profilePhoto || astrologer.user_profile || `https://ui-avatars.com/api/?name=${encodeURIComponent(astrologer.name)}&background=ffd700&color=1a0a2e&bold=true`}
-            alt={astrologer.name}
-            className="astro-avatar"
-          />
-          <div className="online-dot"></div>
-        </div>
-        <h3 className="astro-name">{astrologer.name}</h3>
-        <div className="astro-rating">
-          <div className="stars">
-            {[...Array(5)].map((_, i) => (
-              <FiStar key={i} className={`star ${i < Math.floor(averageRating) ? 'filled' : ''}`} />
-            ))}
-          </div>
-          <span className="rating-value">{averageRating}</span>
-          <span className="review-count">({astrologer.totalReviews || 128} reviews)</span>
-        </div>
-        <p className="astro-expertise">
-          {astrologer.all_skills?.slice(0, 2).join(" • ") || "Vedic Astrology • Tarot"}
-        </p>
-        <p className="astro-experience">
-          ⏱ {astrologer.experience || "10+"} Years Experience
-        </p>
+      <div className="avatar-frame">
+        <img 
+          src={astrologer.profilePhoto || astrologer.user_profile || `https://ui-avatars.com/api/?name=${encodeURIComponent(astrologer.name)}&background=b8860b&color=fff&bold=true&size=100`}
+          alt={astrologer.name}
+          className="astro-mini-avatar"
+        />
+        <div className="avatar-pulse"></div>
       </div>
-
-      <div className="astro-pricing">
-        <div className="price-item">
-          <FiMessageCircle />
-          <div>
-            <span>Chat</span>
-            <strong>₹{astrologer.chatFee || 15}/min</strong>
-          </div>
-        </div>
-        <div className="price-item">
-          <FiPhone />
-          <div>
-            <span>Call</span>
-            <strong>₹{astrologer.callFee || 20}/min</strong>
-          </div>
-        </div>
-        <div className="price-item">
-          <FiVideo />
-          <div>
-            <span>Video</span>
-            <strong>₹{astrologer.videoFee || 25}/min</strong>
-          </div>
-        </div>
-      </div>
-
-      <div className="astro-actions-home">
-        <button className="connect-chat-btn" onClick={handleChatClick}>
-          <FiMessageCircle /> Chat Now
-        </button>
-        <button className="connect-call-btn" onClick={handleCallClick}>
-          <FiPhone /> Call
-        </button>
-      </div>
+      <h4 className="astro-mini-name">{astrologer.name.split(' ')[0]}</h4>
     </motion.div>
   );
 };
@@ -192,7 +131,7 @@ const FeaturedAstrologerCard = ({ astrologer }) => {
 const HomePage = () => {
   const navigate = useNavigate();
   const { data: astrologers = [], isLoading } = useGetAstrologersQuery();
-  const featuredAstrologers = astrologers.slice(0, 6);
+  const featuredAstrologers = astrologers.slice(0, 8);
 
   const handleViewAll = () => {
     navigate('/astro-connect');
@@ -200,16 +139,15 @@ const HomePage = () => {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section - Divine & Spiritual */}
       <section className="hero-section">
-        <div className="cosmic-background">
-          <div className="nebula nebula-1"></div>
-          <div className="nebula nebula-2"></div>
-          <div className="nebula nebula-3"></div>
+        <div className="divine-background">
+          <div className="mandala-bg"></div>
+          <div className="om-bg"></div>
         </div>
 
         <CosmicParticles />
-        <FloatingZodiacIcons />
+        <FloatingSymbols />
 
         <div className="hero-vignette"></div>
 
@@ -218,31 +156,31 @@ const HomePage = () => {
             className="hero-content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1.2 }}
           >
-            {/* Logo Banner */}
+            {/* Divine Banner */}
             <motion.div 
               className="hero-banner"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <img src={logo} alt="KalpJyotish" className="banner-logo" />
+              <img src={logo} alt="MantraJyotish" className="banner-logo" />
               <div className="banner-text">
-                <span>MantraJyotish</span>
-                <p>Your Stars, Your Success</p>
+                <span>मंत्र ज्योतिष</span>
+                <p>MantraJyotish · आपके भाग्य का मार्गदर्शक</p>
               </div>
             </motion.div>
 
-            {/* Main Title */}
+            {/* Main Title - Sanskrit inspired */}
             <motion.h1 
               className="hero-title"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              Talk to Astrologers
-              <span> Get Answers Now</span>
+              <span className="sanskrit-text">ज्योतिषं परमं ज्ञानम्</span>
+              <span className="title-main">Connect with Vedas &<br />Trusted Astrologers</span>
             </motion.h1>
 
             <motion.p 
@@ -251,27 +189,27 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
-              Chat or call with expert astrologers. Get guidance on love, career, money & life.
+              आचार्यों से करें संवाद · प्रेम, करियर, धन और जीवन के हर प्रश्न का समाधान
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div 
               className="hero-cta-group"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8, duration: 0.5 }}
             >
               <button onClick={() => navigate('/astro-connect')} className="cta-btn primary">
-                <span>Find an Astrologer</span>
+                <span>विद्वानों से संपर्क करें</span>
                 <FiArrowRight />
               </button>
               <Link to="/horoscope" className="cta-btn secondary">
                 <FiSun />
-                <span>Free Horoscope</span>
+                <span>मुफ्त कुंडली</span>
               </Link>
             </motion.div>
 
-            {/* Quick Stats */}
+            {/* Divine Stats */}
             <motion.div 
               className="quick-stats"
               initial={{ opacity: 0 }}
@@ -281,22 +219,22 @@ const HomePage = () => {
               <div className="stat-card">
                 <FiUsers />
                 <div>
-                  <strong>50k+</strong>
-                  <span>Happy Users</span>
+                  <strong>50,000+</strong>
+                  <span>मार्गदर्शित आत्माएं</span>
                 </div>
               </div>
               <div className="stat-card">
                 <FiStar />
                 <div>
                   <strong>100+</strong>
-                  <span>Expert Astrologers</span>
+                  <span>सिद्धहस्त आचार्य</span>
                 </div>
               </div>
               <div className="stat-card">
                 <FiMessageCircle />
                 <div>
-                  <strong>24/7</strong>
-                  <span>Support</span>
+                  <strong>२४/७</strong>
+                  <span>सेवा में</span>
                 </div>
               </div>
             </motion.div>
@@ -312,96 +250,124 @@ const HomePage = () => {
           <div className="scroll-mouse">
             <div className="scroll-wheel"></div>
           </div>
-          <p>Scroll down</p>
+          <p>अधिक जानकारी के लिए नीचे स्क्रॉल करें</p>
         </motion.div>
       </section>
 
-      {/* Featured Astrologers Section - Directly after hero */}
-      <section className="featured-astrologers">
+      {/* Our Astrologers Section - Simplified Avatars only */}
+      <section className="our-astrologers-section">
         <div className="section-header">
           <div className="header-badge">
             <FiStar />
-            <span>Meet Our Celestial Guides</span>
+            <span>हमारे विद्वान आचार्य</span>
           </div>
           <h2>Our <span className="title-highlight">Astrologers</span></h2>
-          <p>Connect with India's most trusted and experienced astrologers for personalized guidance</p>
+          <p>ज्योतिष के क्षेत्र में दशकों का अनुभव रखने वाले हमारे प्रमाणित आचार्यों से जुड़ें</p>
         </div>
 
         {isLoading ? (
           <div className="loader-container">
-            <div className="cosmic-loader">
-              <div className="loader-ring"></div>
-              <div className="loader-ring"></div>
-              <div className="loader-ring"></div>
-              <p>Loading celestial guides...</p>
+            <div className="divine-loader">
+              <div className="loader-om">🕉️</div>
+              <p>आचार्यों की सूची लोड हो रही है...</p>
             </div>
           </div>
         ) : (
-          <div className="featured-grid">
-            {featuredAstrologers.map((astro) => (
-              <FeaturedAstrologerCard 
-                key={astro._id} 
-                astrologer={astro} 
-              />
-            ))}
-          </div>
-        )}
+          <>
+            <div className="astrologer-avatars-grid">
+              {featuredAstrologers.map((astro) => (
+                <AstrologerAvatarCard 
+                  key={astro._id} 
+                  astrologer={astro} 
+                />
+              ))}
+            </div>
 
-        <div className="view-all-container">
-          <button onClick={handleViewAll} className="view-all-btn">
-            View All Astrologers <FiArrowRight />
-          </button>
-        </div>
+            <div className="view-all-container">
+              <button onClick={handleViewAll} className="view-all-btn">
+                सभी आचार्यों को देखें <FiChevronRight />
+              </button>
+            </div>
+          </>
+        )}
       </section>
 
-      {/* How It Works Section */}
+      {/* How It Works Section - Divine Process */}
       <section className="how-it-works">
         <div className="section-header">
-          <h2>How It Works</h2>
-          <p>Get answers in 3 simple steps</p>
+          <h2>परामर्श प्रक्रिया</h2>
+          <p>सरल, त्वरित और प्रभावी — तीन सरल चरणों में समाधान</p>
         </div>
         <div className="steps-container">
           <div className="step">
-            <div className="step-number">1</div>
-            <h3>Choose an Astrologer</h3>
-            <p>Browse our expert astrologers</p>
+            <div className="step-number">१</div>
+            <h3>आचार्य का चयन करें</h3>
+            <p>विशेषज्ञता और अनुभव के अनुसार आचार्य चुनें</p>
           </div>
           <div className="step-arrow">→</div>
           <div className="step">
-            <div className="step-number">2</div>
-            <h3>Pick Your Service</h3>
-            <p>Chat, Call or Video Call</p>
+            <div className="step-number">२</div>
+            <h3>सेवा चुनें</h3>
+            <p>चैट, कॉल या वीडियो कॉल — जैसा आप चाहें</p>
           </div>
           <div className="step-arrow">→</div>
           <div className="step">
-            <div className="step-number">3</div>
-            <h3>Get Your Answers</h3>
-            <p>Talk & get guidance instantly</p>
+            <div className="step-number">३</div>
+            <h3>प्रश्न पूछें और समाधान पाएं</h3>
+            <p>तुरंत संवाद करें और मार्गदर्शन प्राप्त करें</p>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* Ancient Wisdom Section - New */}
+      <section className="ancient-wisdom">
+        <div className="wisdom-container">
+          <div className="wisdom-content">
+            <h2>वैदिक ज्योतिष की प्राचीन परंपरा</h2>
+            <p>मंत्र ज्योतिष पर, हम प्राचीन वैदिक ग्रंथों और भारतीय ज्योतिष की समृद्ध परंपराओं का पालन करते हैं। हमारे आचार्य पीढ़ियों से चली आ रही ज्योतिष विद्या में निपुण हैं।</p>
+            <div className="wisdom-features">
+              <div className="wisdom-item">
+                <FiCheckCircle />
+                <span>प्रामाणिक ज्योतिष गणना</span>
+              </div>
+              <div className="wisdom-item">
+                <FiCheckCircle />
+                <span>पंचांग और मुहूर्त विचार</span>
+              </div>
+              <div className="wisdom-item">
+                <FiCheckCircle />
+                <span>जन्म कुंडली विश्लेषण</span>
+              </div>
+            </div>
+          </div>
+          <div className="wisdom-symbol">
+            <div className="rudraksha">🔱</div>
+            <div className="shlok">"यथा पिण्डे तथा ब्रह्माण्डे"</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us - Spiritual Reasons */}
       <section className="why-choose-us">
         <div className="section-header">
-          <h2>Why Choose MantraJyotish?</h2>
-          <p>We make astrology simple and accessible</p>
+          <h2>क्यों चुनें मंत्र ज्योतिष?</h2>
+          <p>हम ज्योतिष को सरल, सुलभ और प्रभावी बनाते हैं</p>
         </div>
         <div className="features-grid">
           <div className="feature">
             <FiShield />
-            <h3>100% Private</h3>
-            <p>Your chats are secure & confidential</p>
+            <h3>१००% गोपनीय</h3>
+            <p>आपके संवाद पूर्णतः सुरक्षित और गुप्त</p>
           </div>
           <div className="feature">
-            <FiCheckCircle />
-            <h3>Verified Experts</h3>
-            <p>All astrologers are certified</p>
+            <FiAward />
+            <h3>प्रमाणित विद्वान</h3>
+            <p>सभी आचार्य ज्योतिष विषय में प्रमाणित</p>
           </div>
           <div className="feature">
             <FiTrendingUp />
-            <h3>Affordable</h3>
-            <p>Starting at just ₹15/min</p>
+            <h3>सस्ती सेवाएं</h3>
+            <p>मात्र ₹१५ प्रति मिनट से शुरू</p>
           </div>
         </div>
       </section>
