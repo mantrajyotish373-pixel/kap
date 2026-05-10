@@ -1,24 +1,16 @@
-/* src/pages/HomePage.css */
+/* src/pages/HomePage.css - Complete Updated CSS */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Divine Colors - Inspired by Temple & Vedic Themes */
   --saffron-primary: #E67E22;
   --saffron-dark: #D35400;
   --saffron-light: #F39C12;
   --gold-deep: #B8860B;
   --gold-sacred: #DAA520;
-  --vermillion: #C0392B;
-  --sandstone: #D4A373;
   --temple-bg: #1A1108;
   --palm-bg: #241A0E;
-  --vedic-parchment: #2C2416;
   --text-offwhite: #F5E6CC;
   --text-muted: #C4B498;
-  --border-divine: rgba(230, 126, 34, 0.3);
-  --glow-saffron: 0 0 20px rgba(230, 126, 34, 0.15);
-  
-  /* Gradients */
   --gradient-saffron: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
   --gradient-temple: linear-gradient(145deg, #1A1108 0%, #2C2416 100%);
   --gradient-palm: linear-gradient(135deg, #241A0E 0%, #1A1108 100%);
@@ -31,13 +23,244 @@
 }
 
 body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: #1A1108;
   color: var(--text-offwhite);
 }
 
 /* ========================================
-   HERO SECTION - TEMPLE INSPIRED
+   FULL SCREEN BANNER SLIDER
+======================================== */
+
+.fullscreen-banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 900px;
+  overflow: hidden;
+}
+
+.banner-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  z-index: 1;
+}
+
+.banner-bg.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.banner-overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%);
+  z-index: 3;
+}
+
+/* Banner Content */
+.banner-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.banner-text-container {
+  max-width: 900px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.banner-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.banner-highlight {
+  color: var(--saffron-primary);
+  display: inline-block;
+}
+
+.banner-subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gradient-saffron);
+  border: none;
+  padding: 14px 36px;
+  border-radius: 50px;
+  color: #1A1108;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+}
+
+.banner-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(230, 126, 34, 0.5);
+}
+
+/* Navigation Arrows */
+.banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  font-size: 2rem;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-arrow:hover {
+  background: var(--saffron-primary);
+  border-color: var(--saffron-primary);
+}
+
+.banner-arrow.prev {
+  left: 30px;
+}
+
+.banner-arrow.next {
+  right: 30px;
+}
+
+/* Dots */
+.banner-dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 20;
+}
+
+.banner-dot {
+  width: 45px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-dot.active {
+  background: var(--saffron-primary);
+  width: 70px;
+}
+
+/* Progress Bar */
+.banner-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--saffron-primary);
+  z-index: 20;
+  transition: width 0.1s linear;
+}
+
+/* ========================================
+   STATS SECTION - Below Banner
+======================================== */
+
+.stats-section {
+  background: linear-gradient(135deg, #1A1108 0%, #2C2416 100%);
+  padding: 40px 20px;
+  border-bottom: 1px solid rgba(230, 126, 34, 0.2);
+}
+
+.stats-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 800;
+  color: var(--saffron-primary);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 50px;
+  background: rgba(230, 126, 34, 0.3);
+}
+
+/* ========================================
+   HERO SECTION
 ======================================== */
 
 .hero-section {
@@ -50,7 +273,6 @@ body {
   overflow: hidden;
 }
 
-/* Mandala Background */
 .divine-background {
   position: absolute;
   top: 0;
@@ -92,7 +314,6 @@ body {
   content: "🕉️";
 }
 
-/* Particle Animation */
 .cosmic-particles {
   position: absolute;
   top: 0;
@@ -116,7 +337,6 @@ body {
   100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
 }
 
-/* Floating Divine Symbols */
 .floating-symbols {
   position: absolute;
   top: 0;
@@ -165,7 +385,6 @@ body {
   margin: 0 auto;
 }
 
-/* Hero Banner */
 .hero-banner {
   display: inline-flex;
   align-items: center;
@@ -201,7 +420,6 @@ body {
   margin-top: 2px;
 }
 
-/* Hero Titles */
 .hero-title {
   margin-bottom: 24px;
 }
@@ -230,10 +448,8 @@ body {
   color: var(--text-muted);
   max-width: 650px;
   margin: 0 auto 35px;
-  font-family: serif;
 }
 
-/* CTA Buttons */
 .hero-cta-group {
   display: flex;
   gap: 20px;
@@ -280,47 +496,6 @@ body {
   border-color: var(--saffron-primary);
 }
 
-/* Quick Stats */
-.quick-stats {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.stat-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 24px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(230, 126, 34, 0.15);
-  border-radius: 60px;
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-  background: rgba(230, 126, 34, 0.06);
-}
-
-.stat-card svg {
-  font-size: 1.4rem;
-  color: var(--saffron-primary);
-}
-
-.stat-card strong {
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text-offwhite);
-}
-
-.stat-card span {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-/* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
@@ -328,6 +503,7 @@ body {
   transform: translateX(-50%);
   text-align: center;
   cursor: pointer;
+  z-index: 10;
 }
 
 .scroll-mouse {
@@ -363,7 +539,7 @@ body {
 }
 
 /* ========================================
-   OUR ASTROLOGERS SECTION - AVATARS ONLY
+   OUR ASTROLOGERS SECTION
 ======================================== */
 
 .our-astrologers-section {
@@ -407,7 +583,6 @@ body {
   margin: 0 auto;
 }
 
-/* Avatars Grid */
 .astrologer-avatars-grid {
   display: flex;
   justify-content: center;
@@ -474,7 +649,6 @@ body {
   text-align: center;
 }
 
-/* View All Button */
 .view-all-container {
   text-align: center;
   margin-top: 3rem;
@@ -551,7 +725,6 @@ body {
   font-size: 1.4rem;
   font-weight: 700;
   color: #1A1108;
-  font-family: serif;
 }
 
 .step h3 {
@@ -570,12 +743,6 @@ body {
   font-size: 1.5rem;
   color: var(--saffron-primary);
   opacity: 0.6;
-}
-
-@media (max-width: 768px) {
-  .step-arrow {
-    display: none;
-  }
 }
 
 /* ========================================
@@ -735,17 +902,104 @@ body {
    RESPONSIVE DESIGN
 ======================================== */
 
-@media (max-width: 1024px) {
-  .hero-container {
-    padding: 0 20px;
+@media (max-width: 1200px) {
+  .banner-arrow {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
   }
   
-  .astrologer-avatars-grid {
-    gap: 1.5rem;
+  .banner-arrow.prev { left: 20px; }
+  .banner-arrow.next { right: 20px; }
+}
+
+@media (max-width: 992px) {
+  .fullscreen-banner {
+    min-height: 550px;
+  }
+  
+  .banner-title {
+    font-size: 2.5rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 1rem;
+  }
+  
+  .banner-cta {
+    padding: 12px 28px;
+    font-size: 0.9rem;
+  }
+  
+  .banner-dot {
+    width: 35px;
+  }
+  
+  .banner-dot.active {
+    width: 55px;
   }
 }
 
 @media (max-width: 768px) {
+  .fullscreen-banner {
+    min-height: 500px;
+  }
+  
+  .banner-title {
+    font-size: 1.8rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.85rem;
+    padding: 0 15px;
+  }
+  
+  .banner-cta {
+    padding: 10px 24px;
+    font-size: 0.85rem;
+  }
+  
+  .banner-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+  }
+  
+  .banner-arrow.prev { left: 12px; }
+  .banner-arrow.next { right: 12px; }
+  
+  .banner-dots {
+    bottom: 20px;
+    gap: 10px;
+  }
+  
+  .banner-dot {
+    width: 30px;
+    height: 3px;
+  }
+  
+  .banner-dot.active {
+    width: 45px;
+  }
+  
+  /* Stats Section */
+  .stats-container {
+    gap: 20px;
+  }
+  
+  .stat-divider {
+    height: 40px;
+  }
+  
+  .stat-value {
+    font-size: 1.3rem;
+  }
+  
+  .stat-label {
+    font-size: 0.7rem;
+  }
+  
+  /* Hero Section */
   .hero-cta-group {
     flex-direction: column;
     align-items: center;
@@ -757,24 +1011,16 @@ body {
     justify-content: center;
   }
   
-  .quick-stats {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .stat-card {
-    width: 100%;
-    max-width: 220px;
-    justify-content: center;
-  }
-  
   .steps-container {
     flex-direction: column;
   }
   
   .step {
     width: 100%;
+  }
+  
+  .step-arrow {
+    display: none;
   }
   
   .features-grid {
@@ -816,6 +1062,51 @@ body {
 }
 
 @media (max-width: 576px) {
+  .fullscreen-banner {
+    min-height: 450px;
+  }
+  
+  .banner-title {
+    font-size: 1.4rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .banner-cta {
+    padding: 8px 20px;
+    font-size: 0.75rem;
+  }
+  
+  .banner-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+  
+  .banner-dot {
+    width: 25px;
+  }
+  
+  .banner-dot.active {
+    width: 35px;
+  }
+  
+  /* Stats Section Mobile */
+  .stats-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .stat-divider {
+    display: none;
+  }
+  
+  .stat-item {
+    width: 100%;
+  }
+  
   .hero-section {
     min-height: 90vh;
   }
@@ -856,6 +1147,24 @@ body {
 }
 
 @media (max-width: 480px) {
+  .fullscreen-banner {
+    min-height: 400px;
+  }
+  
+  .banner-title {
+    font-size: 1.2rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.7rem;
+  }
+  
+  .banner-cta {
+    padding: 6px 16px;
+    font-size: 0.7rem;
+    gap: 6px;
+  }
+  
   .astrologer-avatars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -882,7 +1191,635 @@ body {
   .particle,
   .divine-symbol,
   .scroll-wheel,
-  .avatar-pulse {
+  .avatar-pulse,
+  .banner-progress {
     animation: none;
   }
+  
+  .banner-text-container {
+    animation: none;
+  }
+}
+
+/* ========================================
+   MOBILE BANNER SIZE FIX - ADD THIS AT THE END OF YOUR CSS FILE
+======================================== */
+
+/* For tablets and smaller devices - Reduce banner height */
+@media (max-width: 992px) {
+  .fullscreen-banner {
+    height: 50vh !important;
+    min-height: 350px !important;
+    max-height: 450px !important;
+  }
+  
+  .banner-content {
+    padding: 0 20px !important;
+  }
+  
+  .banner-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .banner-arrow {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1.3rem !important;
+  }
+}
+
+/* For mobile landscape */
+@media (max-width: 768px) {
+  .fullscreen-banner {
+    height: 40vh !important;
+    min-height: 280px !important;
+    max-height: 380px !important;
+  }
+  
+  .banner-title {
+    font-size: 1.4rem !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.8rem !important;
+    margin-bottom: 20px !important;
+    padding: 0 10px !important;
+  }
+  
+  .banner-cta {
+    padding: 8px 20px !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .banner-arrow {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1rem !important;
+  }
+  
+  .banner-arrow.prev {
+    left: 10px !important;
+  }
+  
+  .banner-arrow.next {
+    right: 10px !important;
+  }
+  
+  .banner-dots {
+    bottom: 12px !important;
+    gap: 8px !important;
+  }
+  
+  .banner-dot {
+    width: 25px !important;
+    height: 3px !important;
+  }
+  
+  .banner-dot.active {
+    width: 40px !important;
+  }
+  
+  .banner-progress {
+    height: 2px !important;
+  }
+}
+
+/* For mobile portrait */
+@media (max-width: 576px) {
+  .fullscreen-banner {
+    height: 35vh !important;
+    min-height: 220px !important;
+    max-height: 320px !important;
+  }
+  
+  .banner-text-container {
+    padding: 0 15px !important;
+  }
+  
+  .banner-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 6px !important;
+  }
+  
+  .banner-highlight {
+    display: inline !important;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.65rem !important;
+    margin-bottom: 12px !important;
+    line-height: 1.4 !important;
+  }
+  
+  .banner-cta {
+    padding: 6px 14px !important;
+    font-size: 0.65rem !important;
+    gap: 6px !important;
+  }
+  
+  .banner-arrow {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  .banner-dot {
+    width: 20px !important;
+    height: 2px !important;
+  }
+  
+  .banner-dot.active {
+    width: 30px !important;
+  }
+}
+
+/* For very small devices */
+@media (max-width: 480px) {
+  .fullscreen-banner {
+    height: 30vh !important;
+    min-height: 180px !important;
+    max-height: 250px !important;
+  }
+  
+  .banner-title {
+    font-size: 0.95rem !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.55rem !important;
+    margin-bottom: 8px !important;
+  }
+  
+  .banner-cta {
+    padding: 4px 12px !important;
+    font-size: 0.55rem !important;
+    gap: 4px !important;
+  }
+  
+  .banner-arrow {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .banner-arrow.prev {
+    left: 5px !important;
+  }
+  
+  .banner-arrow.next {
+    right: 5px !important;
+  }
+  
+  .banner-dots {
+    bottom: 8px !important;
+    gap: 6px !important;
+  }
+  
+  .banner-dot {
+    width: 15px !important;
+    height: 2px !important;
+  }
+  
+  .banner-dot.active {
+    width: 22px !important;
+  }
+}
+
+/* For iPhone SE and similar small devices */
+@media (max-width: 375px) {
+  .fullscreen-banner {
+    height: 28vh !important;
+    min-height: 160px !important;
+    max-height: 220px !important;
+  }
+  
+  .banner-title {
+    font-size: 0.85rem !important;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.5rem !important;
+  }
+  
+  .banner-cta {
+    padding: 3px 10px !important;
+    font-size: 0.5rem !important;
+  }
+}
+
+/* ========================================
+   COMPLETE MOBILE FIX - ADD THIS AT THE END OF YOUR CSS FILE
+======================================== */
+
+/* Force banner to be smaller on mobile */
+@media (max-width: 768px) {
+  .fullscreen-banner {
+    height: 35vh !important;
+    min-height: 250px !important;
+    max-height: 300px !important;
+  }
+  
+  .banner-content {
+    padding-top: 30px !important;
+  }
+  
+  .banner-text-container {
+    padding: 0 15px !important;
+  }
+  
+  .banner-title {
+    font-size: 1.2rem !important;
+    margin-bottom: 5px !important;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.7rem !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .banner-cta {
+    padding: 6px 16px !important;
+    font-size: 0.65rem !important;
+  }
+  
+  .banner-arrow {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .banner-dots {
+    bottom: 8px !important;
+  }
+  
+  .banner-dot {
+    width: 20px !important;
+    height: 2px !important;
+  }
+}
+
+/* Remove ALL gaps and margins */
+.fullscreen-banner {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.hero-section {
+  margin-top: -20px !important;
+  padding-top: 20px !important;
+  min-height: auto !important;
+  padding-bottom: 40px !important;
+}
+
+.hero-container {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.hero-content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Push hero content UP on mobile */
+@media (max-width: 768px) {
+  .hero-section {
+    margin-top: -30px !important;
+    padding-top: 10px !important;
+    min-height: auto !important;
+  }
+  
+  .hero-container {
+    padding: 0 16px !important;
+  }
+  
+  .hero-content {
+    margin-top: 0 !important;
+  }
+  
+  .sanskrit-text {
+    font-size: 0.65rem !important;
+    margin-bottom: 5px !important;
+  }
+  
+  .title-main {
+    font-size: 1.4rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.75rem !important;
+    margin-bottom: 20px !important;
+    padding: 0 10px !important;
+  }
+  
+  .hero-cta-group {
+    gap: 12px !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .cta-btn {
+    padding: 10px 20px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  /* Remove scroll indicator on mobile if exists */
+  .scroll-indicator {
+    display: none !important;
+  }
+  
+  /* Remove floating elements that cause spacing */
+  .cosmic-particles,
+  .floating-symbols {
+    display: none !important;
+  }
+  
+  .om-bg {
+    display: none !important;
+  }
+  
+  .mandala-bg {
+    opacity: 0.3 !important;
+  }
+}
+
+/* For very small devices */
+@media (max-width: 576px) {
+  .fullscreen-banner {
+    height: 30vh !important;
+    min-height: 200px !important;
+    max-height: 250px !important;
+  }
+  
+  .hero-section {
+    margin-top: -40px !important;
+    padding-top: 5px !important;
+  }
+  
+  .title-main {
+    font-size: 1.2rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.7rem !important;
+  }
+  
+  .cta-btn {
+    padding: 8px 16px !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+/* For iPhone SE and small phones */
+@media (max-width: 480px) {
+  .fullscreen-banner {
+    height: 28vh !important;
+    min-height: 180px !important;
+    max-height: 220px !important;
+  }
+  
+  .hero-section {
+    margin-top: -45px !important;
+    padding-top: 0 !important;
+  }
+  
+  .sanskrit-text {
+    font-size: 0.55rem !important;
+  }
+  
+  .title-main {
+    font-size: 1.1rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.65rem !important;
+    margin-bottom: 15px !important;
+  }
+}
+
+/* Remove any extra margins from elements */
+.our-astrologers-section {
+  margin-top: 0 !important;
+  padding-top: 40px !important;
+}
+
+.how-it-works {
+  margin-top: 0 !important;
+  padding-top: 40px !important;
+}
+
+/* Ensure banner overlay doesn't cause extra space */
+.banner-overlay-gradient {
+  pointer-events: none !important;
+}
+
+/* ========================================
+   PROFESSIONAL HERO SECTION ADDITIONS
+   PASTE THIS AT THE END OF YOUR CSS FILE
+======================================== */
+
+/* Trust Badge */
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.badge-icon {
+  font-size: 0.9rem;
+}
+
+/* Hero Features Grid */
+.hero-features {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
+  padding-top: 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(230, 126, 34, 0.15);
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature-icon {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.3));
+}
+
+.feature-text h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-offwhite);
+  margin-bottom: 2px;
+}
+
+.feature-text p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.feature-divider {
+  width: 1px;
+  height: 35px;
+  background: rgba(230, 126, 34, 0.2);
+}
+
+/* Scroll Indicator - Updated */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.scroll-mouse {
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(230, 126, 34, 0.5);
+  border-radius: 20px;
+  margin: 0 auto 8px;
+  position: relative;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--saffron-primary);
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 2s ease-in-out infinite;
+}
+
+@keyframes scrollWheel {
+  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80% { opacity: 0; transform: translateX(-50%) translateY(15px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.scroll-indicator p {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE FIXES FOR NEW CONTENT
+======================================== */
+
+@media (max-width: 768px) {
+  .trust-badge {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    margin-bottom: 16px;
+  }
+  
+  .hero-features {
+    margin-top: 30px;
+    gap: 15px;
+  }
+  
+  .feature-item {
+    gap: 8px;
+  }
+  
+  .feature-icon {
+    font-size: 1.3rem;
+  }
+  
+  .feature-text h4 {
+    font-size: 0.75rem;
+  }
+  
+  .feature-text p {
+    font-size: 0.6rem;
+  }
+  
+  .feature-divider {
+    height: 25px;
+  }
+  
+  .scroll-indicator {
+    bottom: 15px;
+  }
+  
+  .scroll-mouse {
+    width: 22px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-features {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .feature-divider {
+    display: none;
+  }
+  
+  .feature-item {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .trust-badge {
+    font-size: 0.65rem;
+  }
+  
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+/* Remove extra space from hero section */
+.hero-section {
+  padding: 60px 0 40px 0;
+  min-height: auto;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 30px 0 20px 0;
+  }
+}
+
+/* Smooth hover effects */
+.feature-item {
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+}
+
+.feature-icon {
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover .feature-icon {
+  transform: scale(1.1);
 }

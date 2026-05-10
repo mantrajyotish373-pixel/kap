@@ -27,6 +27,7 @@ import AstrologerDashboard from './pages/AstrologerDashboard';
 import UserProfile from './pages/UserProfile';
 import CompleteUserProfile from './components/CompleteUserProfile';
 import LandingPage from './pages/LandingPage';
+import AuthModal from './components/AuthModal';
 
 function App() {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
@@ -57,6 +58,8 @@ function App() {
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/user-profile" element={<UserProfile />} />
           <Route path ="/complete-UserProfile" element={<CompleteUserProfile/>} />
+          <Route path ="/sign-in" element={<AuthModal/>} />
+
 
         </Routes>
       </main>

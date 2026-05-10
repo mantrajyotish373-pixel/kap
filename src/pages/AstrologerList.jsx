@@ -1,4 +1,4 @@
-// src/pages/AstrologerList.jsx
+// src/pages/AstrologerList.jsx - COMPLETE FIX FOR USER ID DETECTION
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./AstrologerList.css";
@@ -12,11 +12,11 @@ import {
 import RealtimeChatModal from "../components/RealtimeChatModal";
 import AgoraCallModal from "../components/AgoraCallModal";
 
-// Professional Icon Components
+// Professional Icon Components (keep as is)
 const Icons = {
   Star: () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFD700" stroke="#FFD700" strokeWidth="1.5"/>
+      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#E67E22" stroke="#E67E22" strokeWidth="1.5"/>
     </svg>
   ),
   Chat: () => (
@@ -36,7 +36,7 @@ const Icons = {
   ),
   Rating: () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#FFD700"/>
+      <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z" fill="#E67E22"/>
     </svg>
   ),
   Review: () => (
@@ -54,14 +54,9 @@ const Icons = {
       <path d="M12.87 15.07L10.33 12.56L10.36 12.53C12.1 10.59 13.34 8.36 14.07 6H17V4H10V2H8V4H1V6H12.17C11.5 7.92 10.44 9.75 9 11.35C8.07 10.32 7.3 9.19 6.69 8H4.69C5.42 9.63 6.42 11.17 7.64 12.5L4 16.17L5.41 17.58L9 14L12.11 17.11L12.87 15.07Z" fill="currentColor"/>
     </svg>
   ),
-  Close: () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="currentColor"/>
-    </svg>
-  ),
   Check: () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#00ff88"/>
+      <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#22c55e"/>
     </svg>
   ),
   CloseX: () => (
@@ -212,7 +207,7 @@ const AstrologerProfileModal = ({ astro, onClose, onChat, onCall, onVideoCall })
               src={
                 astro.profilePhoto ||
                 astro.user_profile ||
-                `https://ui-avatars.com/api/?name=${encodeURIComponent(astro.name)}&background=6b21e5&color=ffd700&bold=true`
+                `https://ui-avatars.com/api/?name=${encodeURIComponent(astro.name)}&background=E67E22&color=fff&bold=true`
               }
               alt={astro.name}
             />
@@ -339,20 +334,111 @@ const AstrologerProfileModal = ({ astro, onClose, onChat, onCall, onVideoCall })
 };
 
 /* =====================================================
-   MAIN PAGE COMPONENT
+   MAIN PAGE COMPONENT - COMPLETE FIX
 ===================================================== */
 const AstrologerList = () => {
-  const ensureObjectId = (value) => /^[a-fA-F0-9]{24}$/.test(String(value || ""));
-  
   const [selectedAstro, setSelectedAstro] = useState(null);
   const [showBuyCreditsModal, setShowBuyCreditsModal] = useState(false);
   const [chatAstro, setChatAstro] = useState(null);
   const [callConfig, setCallConfig] = useState({ astrologer: null, type: "voice", channelName: "" });
+  const [paymentError, setPaymentError] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState("");
 
   const { data: astrologers = [], isLoading: loading } = useGetAstrologersQuery();
   const [createRechargeOrder, { isLoading: isCreatingOrder }] = useCreateRechargeOrderMutation();
   const [verifyRechargePayment, { isLoading: isVerifyingPayment }] = useVerifyRechargePaymentMutation();
 
+  // FIXED: Comprehensive user ID detection
+  const getCurrentUserInfo = () => {
+    let userId = null;
+    let userEmail = null;
+    let userName = null;
+    
+    try {
+      // Check multiple possible locations for user data
+      const userData = localStorage.getItem("user");
+      const token = localStorage.getItem("authToken");
+      const isLoggedInFlag = localStorage.getItem("isLoggedIn") === "true";
+      
+      console.log("=== DEBUG: Checking localStorage ===");
+      console.log("isLoggedIn flag:", isLoggedInFlag);
+      console.log("authToken exists:", !!token);
+      console.log("userData exists:", !!userData);
+      
+      if (userData && userData !== "undefined") {
+        const user = JSON.parse(userData);
+        console.log("User object from localStorage:", user);
+        
+        // Try all possible ID fields
+        userId = user?._id || 
+                 user?.id || 
+                 user?.userId || 
+                 user?.backendUserId ||
+                 user?.uid ||
+                 user?.firebaseUid;
+        
+        userEmail = user?.email || user?.Email;
+        userName = user?.name || user?.displayName || user?.Name;
+        
+        console.log("Extracted userId:", userId);
+        console.log("Extracted email:", userEmail);
+        console.log("Extracted name:", userName);
+      }
+      
+      // If still no userId, try direct storage keys
+      if (!userId) {
+        userId = localStorage.getItem("userId") || 
+                 localStorage.getItem("backendUserId") || 
+                 localStorage.getItem("authUserId") ||
+                 localStorage.getItem("firebaseUid") ||
+                 localStorage.getItem("uid");
+        console.log("UserId from direct keys:", userId);
+      }
+      
+      // For Google login, also check if we have a valid session
+      const isValidSession = (isLoggedInFlag && token) || (userId && userId.length > 0);
+      
+      console.log("=== Final Decision ===");
+      console.log("Determined userId:", userId);
+      console.log("Valid session:", isValidSession);
+      
+      return { 
+        userId: userId || "", 
+        isLoggedIn: isValidSession,
+        userEmail,
+        userName
+      };
+    } catch (error) {
+      console.error("Error getting user info:", error);
+      return { userId: "", isLoggedIn: false };
+    }
+  };
+
+  // Update user info on component mount and when storage changes
+  useEffect(() => {
+    const updateUserInfo = () => {
+      const { userId, isLoggedIn: loggedIn, userEmail, userName } = getCurrentUserInfo();
+      console.log("Updating user info - userId:", userId, "isLoggedIn:", loggedIn);
+      setCurrentUserId(userId);
+      setIsLoggedIn(loggedIn);
+    };
+    
+    updateUserInfo();
+    
+    // Listen for storage events (login/logout in other tabs)
+    window.addEventListener('storage', updateUserInfo);
+    
+    // Also check periodically for changes
+    const interval = setInterval(updateUserInfo, 1000);
+    
+    return () => {
+      window.removeEventListener('storage', updateUserInfo);
+      clearInterval(interval);
+    };
+  }, []);
+
+  // Get user name for display
   let storedUser = {};
   try {
     const data = localStorage.getItem("user");
@@ -361,84 +447,178 @@ const AstrologerList = () => {
     storedUser = {};
   }
 
-  const callerName = storedUser?.name || "Guest User";
-  const candidateUserId = storedUser?._id || storedUser?.id || storedUser?.user?._id || storedUser?.user?.id || localStorage.getItem("userId") || localStorage.getItem("backendUserId") || "";
-  const dbUserId = ensureObjectId(candidateUserId) ? candidateUserId : "";
+  const callerName = storedUser?.name || storedUser?.displayName || storedUser?.Name || "Guest User";
   
-  const { data: walletSummary, refetch: refetchWallet } = useGetWalletSummaryQuery(dbUserId, {
-    skip: !dbUserId,
+  // Fetch wallet summary only if user is logged in and has valid ID
+  const { data: walletSummary, refetch: refetchWallet } = useGetWalletSummaryQuery(currentUserId, {
+    skip: !currentUserId || !isLoggedIn,
   });
 
-  const loadRazorpay = () =>
-    new Promise((resolve) => {
-      if (window.Razorpay) return resolve(true);
+  // Log for debugging
+  useEffect(() => {
+    console.log("=== Current State ===");
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("currentUserId:", currentUserId);
+    console.log("walletSummary:", walletSummary);
+    console.log("callerName:", callerName);
+  }, [isLoggedIn, currentUserId, walletSummary, callerName]);
+
+  // Load Razorpay script
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      if (window.Razorpay) {
+        console.log("Razorpay already loaded");
+        resolve(true);
+        return;
+      }
+      
       const script = document.createElement("script");
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
+      script.onload = () => {
+        console.log("Razorpay script loaded");
+        resolve(true);
+      };
+      script.onerror = () => {
+        console.error("Failed to load Razorpay script");
+        resolve(false);
+      };
       document.body.appendChild(script);
     });
+  };
 
   useEffect(() => {
-    loadRazorpay();
+    loadRazorpayScript();
   }, []);
 
+  // Check if user has access
   const hasAccessForType = useCallback((astro, type) => {
-    if (!dbUserId) return false;
+    console.log("Checking access for:", type, "userId:", currentUserId, "isLoggedIn:", isLoggedIn);
+    
+    if (!currentUserId || !isLoggedIn) {
+      console.log("Access denied - User not logged in");
+      return false;
+    }
+    
     const freeMinutes = Number(walletSummary?.freeMinutesRemaining || 0);
-    if (freeMinutes > 0) return true;
+    if (freeMinutes > 0) {
+      console.log("Access granted - Free minutes available:", freeMinutes);
+      return true;
+    }
+    
     const wallet = Number(walletSummary?.walletBalance || 0);
     const price = type === "video"
       ? Number(astro?.videoFee || astro?.perMinuteRate || 25)
       : type === "voice"
       ? Number(astro?.callFee || astro?.perMinuteRate || 20)
       : Number(astro?.chatFee || astro?.perMinuteRate || 15);
-    return wallet >= price;
-  }, [dbUserId, walletSummary]);
+    
+    const hasAccess = wallet >= price;
+    console.log(`Access check for ${type}: wallet=${wallet}, price=${price}, hasAccess=${hasAccess}`);
+    return hasAccess;
+  }, [currentUserId, isLoggedIn, walletSummary]);
 
+  // Handle Recharge
   const handleRecharge = async (amount) => {
-    if (!dbUserId) return;
-    const sdkLoaded = await loadRazorpay();
-    if (!sdkLoaded) {
-      alert("Unable to load payment gateway. Please try again.");
+    console.log("handleRecharge called with amount:", amount);
+    console.log("currentUserId:", currentUserId);
+    console.log("isLoggedIn:", isLoggedIn);
+    
+    if (!currentUserId || !isLoggedIn) {
+      alert("Please login to recharge your wallet");
+      setShowBuyCreditsModal(false);
       return;
     }
 
+    setPaymentError(null);
+
     try {
-      const orderResp = await createRechargeOrder({ userId: dbUserId, amount }).unwrap();
+      const scriptLoaded = await loadRazorpayScript();
+      if (!scriptLoaded) {
+        alert("Unable to load payment gateway. Please check your internet connection and try again.");
+        return;
+      }
+
+      console.log("Creating order for amount:", amount);
+      const orderResp = await createRechargeOrder({ userId: currentUserId, amount }).unwrap();
+      console.log("Order response:", orderResp);
+      
       const order = orderResp?.data;
-      const rz = new window.Razorpay({
-        key: order?.keyId,
+      
+      if (!order || !order.orderId) {
+        throw new Error("Invalid order response from server");
+      }
+
+      const razorpayKeyId = order.keyId || "rzp_test_YourKeyId";
+      
+      const options = {
+        key: razorpayKeyId,
         amount: Math.round(Number(amount) * 100),
-        currency: order?.currency || "INR",
-        name: "KalpJyotish",
+        currency: order.currency || "INR",
+        name: "MantraJyotish",
         description: "Wallet Recharge",
-        order_id: order?.orderId,
+        order_id: order.orderId,
         prefill: {
-          name: order?.user?.name || callerName,
-          email: order?.user?.email || "",
-          contact: order?.user?.contact || "",
+          name: order.user?.name || callerName,
+          email: order.user?.email || "",
+          contact: order.user?.contact || "",
         },
-        handler: async (response) => {
-          await verifyRechargePayment({
-            userId: dbUserId,
-            amount,
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature,
-          }).unwrap();
-          await refetchWallet();
-          setShowBuyCreditsModal(false);
-          alert("Recharge successful! Your wallet has been updated.");
+        theme: {
+          color: "#E67E22"
         },
+        modal: {
+          ondismiss: function() {
+            console.log("Payment modal closed");
+            setPaymentError(null);
+          }
+        },
+        handler: async function(response) {
+          console.log("Payment success response:", response);
+          try {
+            await verifyRechargePayment({
+              userId: currentUserId,
+              amount: amount,
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            }).unwrap();
+            
+            await refetchWallet();
+            setShowBuyCreditsModal(false);
+            alert("Recharge successful! Your wallet has been updated.");
+          } catch (verifyErr) {
+            console.error("Verification error:", verifyErr);
+            alert("Payment was successful but verification failed. Please contact support.");
+          }
+        }
+      };
+
+      const razorpay = new window.Razorpay(options);
+      
+      razorpay.on('payment.failed', function(response) {
+        console.error("Payment failed:", response.error);
+        setPaymentError(response.error?.description || "Payment failed. Please try again.");
+        alert("Payment failed: " + (response.error?.description || "Please try again"));
       });
-      rz.open();
+      
+      razorpay.open();
+      
     } catch (err) {
-      alert(err?.data?.message || "Payment initialization failed");
+      console.error("Recharge error:", err);
+      const errorMessage = err?.data?.message || err?.message || "Payment initialization failed. Please try again.";
+      setPaymentError(errorMessage);
+      alert(errorMessage);
     }
   };
 
+  // Handle chat
   const handleChat = (astro) => {
+    console.log("handleChat called - currentUserId:", currentUserId, "isLoggedIn:", isLoggedIn);
+    
+    if (!currentUserId || !isLoggedIn) {
+      alert("Please login to chat with astrologers");
+      return;
+    }
+    
     if (!hasAccessForType(astro, "chat")) {
       setShowBuyCreditsModal(true);
       return;
@@ -446,7 +626,15 @@ const AstrologerList = () => {
     setChatAstro(astro);
   };
 
+  // Handle call
   const handleCall = (astro, type = "voice") => {
+    console.log("handleCall called - currentUserId:", currentUserId, "isLoggedIn:", isLoggedIn);
+    
+    if (!currentUserId || !isLoggedIn) {
+      alert("Please login to call astrologers");
+      return;
+    }
+    
     if (!hasAccessForType(astro, type)) {
       setShowBuyCreditsModal(true);
       return;
@@ -454,11 +642,9 @@ const AstrologerList = () => {
     setCallConfig({
       astrologer: astro,
       type: type,
-      channelName: buildCallChannelName(type, astro?._id, dbUserId),
+      channelName: buildCallChannelName(type, astro?._id, currentUserId),
     });
   };
-
-  const currentUserId = dbUserId;
 
   if (loading) {
     return (
@@ -478,13 +664,11 @@ const AstrologerList = () => {
       <div className="astrologer-list-container">
         <div className="hero-banner">
           <h1 className="astro-heading">
-            <span className="heading-icon">🔮</span>
-            Our Celestial Guides
-            <span className="heading-icon">✨</span>
+           
           </h1>
-          <p className="heading-subtitle">
-            Connect with India's most trusted astrologers for personalized guidance
-          </p>
+         
+          
+          
         </div>
 
         <div className="astro-grid">
@@ -510,7 +694,7 @@ const AstrologerList = () => {
                     src={
                       astro.user_profile ||
                       astro.profilePhoto ||
-                      `https://ui-avatars.com/api/?name=${encodeURIComponent(astro.name)}&background=6b21e5&color=ffd700&bold=true`
+                      `https://ui-avatars.com/api/?name=${encodeURIComponent(astro.name)}&background=E67E22&color=fff&bold=true`
                     }
                     alt={astro.name}
                   />

@@ -137,7 +137,7 @@ const UserProfile = () => {
             <FiUser className={styles.loginIcon} />
             <h3>Please Login First</h3>
             <p>You need to be logged in to access your profile.</p>
-            <button onClick={() => navigate('/')} className={styles.loginBtn}>Go to Home</button>
+            <button onClick={() => navigate('/sign-in')} className={styles.loginBtn}>Go to Home</button>
           </div>
         </div>
       </div>
