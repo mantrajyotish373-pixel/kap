@@ -1,4 +1,5 @@
-/* src/pages/HomePage.css - Complete Updated CSS */
+/* src/pages/HomePage.css - COMPLETE FIXED CSS */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 :root {
@@ -26,6 +27,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background: #1A1108;
   color: var(--text-offwhite);
+  overflow-x: hidden;
 }
 
 /* ========================================
@@ -35,9 +37,9 @@ body {
 .fullscreen-banner {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 900px;
+  height: 85vh;
+  min-height: 500px;
+  max-height: 800px;
   overflow: hidden;
 }
 
@@ -70,7 +72,6 @@ body {
   z-index: 3;
 }
 
-/* Banner Content */
 .banner-content {
   position: relative;
   z-index: 10;
@@ -83,7 +84,8 @@ body {
 }
 
 .banner-text-container {
-  max-width: 900px;
+  max-width: 800px;
+  width: 100%;
   animation: fadeInUp 0.8s ease-out;
 }
 
@@ -99,12 +101,13 @@ body {
 }
 
 .banner-title {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
   font-weight: 700;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   line-height: 1.2;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  word-wrap: break-word;
 }
 
 .banner-highlight {
@@ -113,27 +116,29 @@ body {
 }
 
 .banner-subtitle {
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
   color: rgba(255,255,255,0.9);
-  margin-bottom: 30px;
-  line-height: 1.6;
-  max-width: 700px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  word-wrap: break-word;
+  padding: 0 16px;
 }
 
 .banner-cta {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   background: var(--gradient-saffron);
   border: none;
-  padding: 14px 36px;
+  padding: 12px 32px;
   border-radius: 50px;
   color: #1A1108;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2vw, 1rem);
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
@@ -144,7 +149,6 @@ body {
   box-shadow: 0 8px 25px rgba(230, 126, 34, 0.5);
 }
 
-/* Navigation Arrows */
 .banner-arrow {
   position: absolute;
   top: 50%;
@@ -153,9 +157,9 @@ body {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.3);
   color: white;
-  font-size: 2rem;
-  width: 55px;
-  height: 55px;
+  font-size: 1.8rem;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   cursor: pointer;
   z-index: 20;
@@ -171,26 +175,25 @@ body {
 }
 
 .banner-arrow.prev {
-  left: 30px;
+  left: 20px;
 }
 
 .banner-arrow.next {
-  right: 30px;
+  right: 20px;
 }
 
-/* Dots */
 .banner-dots {
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 15px;
+  gap: 12px;
   z-index: 20;
 }
 
 .banner-dot {
-  width: 45px;
+  width: 40px;
   height: 4px;
   border-radius: 2px;
   background: rgba(255,255,255,0.4);
@@ -201,10 +204,9 @@ body {
 
 .banner-dot.active {
   background: var(--saffron-primary);
-  width: 70px;
+  width: 60px;
 }
 
-/* Progress Bar */
 .banner-progress {
   position: absolute;
   bottom: 0;
@@ -216,46 +218,48 @@ body {
 }
 
 /* ========================================
-   STATS SECTION - Below Banner
+   STATS SECTION
 ======================================== */
 
 .stats-section {
   background: linear-gradient(135deg, #1A1108 0%, #2C2416 100%);
-  padding: 40px 20px;
+  padding: 30px 20px;
   border-bottom: 1px solid rgba(230, 126, 34, 0.2);
 }
 
 .stats-container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 .stat-item {
   text-align: center;
   flex: 1;
+  min-width: 100px;
 }
 
 .stat-value {
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-size: clamp(1.3rem, 4vw, 2rem);
   font-weight: 800;
   color: var(--saffron-primary);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .stat-label {
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
   color: var(--text-muted);
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .stat-divider {
   width: 1px;
-  height: 50px;
+  height: 40px;
   background: rgba(230, 126, 34, 0.3);
 }
 
@@ -265,12 +269,13 @@ body {
 
 .hero-section {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   background: var(--gradient-temple);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 60px 0 80px 0;
 }
 
 .divine-background {
@@ -291,7 +296,7 @@ body {
   transform: translate(-50%, -50%);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.08' d='M50,5 L95,50 L50,95 L5,50 Z M50,15 L85,50 L50,85 L15,50 Z M50,25 L75,50 L50,75 L25,50 Z M50,35 L65,50 L50,65 L35,50 Z'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.06'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 120px;
+  background-size: 100px;
   animation: mandalaRotate 60s linear infinite;
 }
 
@@ -304,7 +309,7 @@ body {
   position: absolute;
   bottom: 10%;
   right: 5%;
-  font-size: 15rem;
+  font-size: 12rem;
   opacity: 0.03;
   font-family: serif;
   pointer-events: none;
@@ -348,7 +353,7 @@ body {
 
 .divine-symbol {
   position: absolute;
-  font-size: 1.1rem;
+  font-size: 1rem;
   opacity: 0.06;
   animation: symbolDrift linear infinite;
 }
@@ -385,88 +390,67 @@ body {
   margin: 0 auto;
 }
 
-.hero-banner {
+.trust-badge {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 2rem;
-  padding: 8px 24px 8px 20px;
-  background: rgba(230, 126, 34, 0.08);
-  border: 1px solid rgba(230, 126, 34, 0.25);
-  border-radius: 80px;
-  backdrop-filter: blur(8px);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
+  border: 1px solid rgba(230, 126, 34, 0.3);
 }
 
-.banner-logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--saffron-primary);
-}
-
-.banner-text span {
-  display: block;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--saffron-primary);
-  letter-spacing: 1px;
-}
-
-.banner-text p {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  margin-top: 2px;
+.badge-icon {
+  font-size: 0.9rem;
 }
 
 .hero-title {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
-.sanskrit-text {
+.hero-title-main {
   display: block;
-  font-size: 0.9rem;
-  font-family: serif;
-  color: var(--gold-sacred);
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-  opacity: 0.85;
-}
-
-.title-main {
-  display: block;
-  font-size: clamp(2rem, 6vw, 3.8rem);
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
   font-weight: 800;
   color: var(--text-offwhite);
-  line-height: 1.25;
+  line-height: 1.2;
+  word-wrap: break-word;
+}
+
+.hero-title-highlight {
+  color: var(--saffron-primary);
 }
 
 .hero-subtitle {
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-  line-height: 1.6;
+  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+  line-height: 1.5;
   color: var(--text-muted);
   max-width: 650px;
-  margin: 0 auto 35px;
+  margin: 0 auto 30px;
+  padding: 0 16px;
+  word-wrap: break-word;
 }
 
 .hero-cta-group {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 32px;
+  gap: 10px;
+  padding: 12px 28px;
   border-radius: 60px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
   transition: all 0.3s ease;
   cursor: pointer;
   border: none;
@@ -496,9 +480,56 @@ body {
   border-color: var(--saffron-primary);
 }
 
+.hero-features {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+  padding-top: 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(230, 126, 34, 0.15);
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature-icon {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.3));
+  flex-shrink: 0;
+}
+
+.feature-text {
+  text-align: left;
+}
+
+.feature-text h4 {
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+  font-weight: 600;
+  color: var(--text-offwhite);
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.feature-text p {
+  font-size: clamp(0.65rem, 1.8vw, 0.75rem);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.feature-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(230, 126, 34, 0.2);
+}
+
 .scroll-indicator {
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -511,7 +542,7 @@ body {
   height: 42px;
   border: 2px solid rgba(230, 126, 34, 0.5);
   border-radius: 20px;
-  margin: 0 auto 10px;
+  margin: 0 auto 8px;
   position: relative;
 }
 
@@ -534,8 +565,9 @@ body {
 }
 
 .scroll-indicator p {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
+  letter-spacing: 1px;
 }
 
 /* ========================================
@@ -543,13 +575,13 @@ body {
 ======================================== */
 
 .our-astrologers-section {
-  padding: 5rem 2rem;
+  padding: 60px 20px;
   background: var(--gradient-palm);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 40px;
 }
 
 .header-badge {
@@ -559,15 +591,16 @@ body {
   background: rgba(230, 126, 34, 0.12);
   padding: 6px 16px;
   border-radius: 40px;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   font-size: 0.8rem;
   color: var(--saffron-primary);
 }
 
 .section-header h2 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 16px;
+  word-wrap: break-word;
 }
 
 .title-highlight {
@@ -576,18 +609,21 @@ body {
   padding-bottom: 3px;
 }
 
-.section-header p {
+.section-description {
   color: var(--text-muted);
-  font-size: 0.9rem;
-  max-width: 600px;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  max-width: 650px;
   margin: 0 auto;
+  line-height: 1.5;
+  padding: 0 16px;
+  word-wrap: break-word;
 }
 
 .astrologer-avatars-grid {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 25px;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -598,14 +634,14 @@ body {
   align-items: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 0.5rem;
+  padding: 8px;
 }
 
 .avatar-frame {
   position: relative;
-  width: 85px;
-  height: 85px;
-  margin-bottom: 0.8rem;
+  width: clamp(60px, 10vw, 85px);
+  height: clamp(60px, 10vw, 85px);
+  margin-bottom: 10px;
 }
 
 .astro-mini-avatar {
@@ -643,15 +679,17 @@ body {
 }
 
 .astro-mini-name {
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
   font-weight: 500;
   color: var(--text-offwhite);
   text-align: center;
+  word-wrap: break-word;
+  max-width: 100px;
 }
 
 .view-all-container {
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 40px;
 }
 
 .view-all-btn {
@@ -664,7 +702,7 @@ body {
   border-radius: 60px;
   color: var(--saffron-primary);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   cursor: pointer;
   transition: all 0.3s ease;
   background: rgba(230, 126, 34, 0.05);
@@ -682,7 +720,7 @@ body {
 ======================================== */
 
 .how-it-works {
-  padding: 5rem 2rem;
+  padding: 60px 20px;
   background: var(--temple-bg);
 }
 
@@ -691,7 +729,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 20px;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -699,7 +737,7 @@ body {
 .step {
   flex: 1;
   min-width: 200px;
-  padding: 2rem 1.5rem;
+  padding: 28px 20px;
   background: rgba(44, 36, 22, 0.6);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(230, 126, 34, 0.15);
@@ -716,7 +754,7 @@ body {
 .step-number {
   width: 50px;
   height: 50px;
-  margin: 0 auto 1rem;
+  margin: 0 auto 12px;
   background: var(--gradient-saffron);
   border-radius: 50%;
   display: flex;
@@ -728,15 +766,18 @@ body {
 }
 
 .step h3 {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   font-weight: 700;
   color: var(--text-offwhite);
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
+  word-wrap: break-word;
 }
 
 .step p {
-  font-size: 0.75rem;
+  font-size: clamp(0.7rem, 2vw, 0.75rem);
   color: var(--text-muted);
+  line-height: 1.4;
+  word-wrap: break-word;
 }
 
 .step-arrow {
@@ -750,7 +791,7 @@ body {
 ======================================== */
 
 .ancient-wisdom {
-  padding: 5rem 2rem;
+  padding: 60px 20px;
   background: linear-gradient(135deg, #2C2416 0%, #1A1108 100%);
 }
 
@@ -759,33 +800,36 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 40px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
 .wisdom-content {
   flex: 2;
-  min-width: 280px;
+  min-width: 250px;
 }
 
 .wisdom-content h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.3rem, 4vw, 2rem);
   font-weight: 700;
   color: var(--saffron-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
+  word-wrap: break-word;
 }
 
 .wisdom-content p {
   color: var(--text-muted);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  word-wrap: break-word;
 }
 
 .wisdom-features {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 12px;
 }
 
 .wisdom-item {
@@ -795,29 +839,32 @@ body {
   background: rgba(230, 126, 34, 0.1);
   padding: 8px 16px;
   border-radius: 40px;
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  word-wrap: break-word;
 }
 
 .wisdom-item svg {
   color: var(--saffron-primary);
+  flex-shrink: 0;
 }
 
 .wisdom-symbol {
   flex: 1;
   text-align: center;
-  min-width: 200px;
+  min-width: 180px;
 }
 
 .rudraksha {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  margin-bottom: 12px;
 }
 
 .shlok {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   font-family: serif;
   color: var(--gold-sacred);
   font-style: italic;
+  word-wrap: break-word;
 }
 
 /* ========================================
@@ -825,14 +872,14 @@ body {
 ======================================== */
 
 .why-choose-us {
-  padding: 5rem 2rem;
+  padding: 60px 20px;
   background: var(--palm-bg);
 }
 
 .features-grid {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 30px;
   flex-wrap: wrap;
   max-width: 1100px;
   margin: 0 auto;
@@ -842,7 +889,7 @@ body {
   flex: 1;
   min-width: 220px;
   text-align: center;
-  padding: 2rem 1.5rem;
+  padding: 32px 24px;
   background: rgba(44, 36, 22, 0.5);
   border: 1px solid rgba(230, 126, 34, 0.1);
   border-radius: 20px;
@@ -857,19 +904,22 @@ body {
 .feature svg {
   font-size: 2rem;
   color: var(--saffron-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 12px;
 }
 
 .feature h3 {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   font-weight: 700;
   color: var(--text-offwhite);
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
+  word-wrap: break-word;
 }
 
 .feature p {
-  font-size: 0.75rem;
+  font-size: clamp(0.7rem, 2vw, 0.75rem);
   color: var(--text-muted);
+  line-height: 1.4;
+  word-wrap: break-word;
 }
 
 /* ========================================
@@ -880,7 +930,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
+  padding: 40px;
 }
 
 .divine-loader {
@@ -890,7 +940,7 @@ body {
 .loader-om {
   font-size: 2rem;
   animation: omPulse 1.5s ease-in-out infinite;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 
 @keyframes omPulse {
@@ -898,79 +948,73 @@ body {
   50% { opacity: 1; transform: scale(1.1); }
 }
 
+.divine-loader p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
 /* ========================================
    RESPONSIVE DESIGN
 ======================================== */
 
-@media (max-width: 1200px) {
-  .banner-arrow {
-    width: 45px;
-    height: 45px;
-    font-size: 1.5rem;
-  }
-  
-  .banner-arrow.prev { left: 20px; }
-  .banner-arrow.next { right: 20px; }
-}
-
 @media (max-width: 992px) {
   .fullscreen-banner {
-    min-height: 550px;
+    height: 60vh;
+    min-height: 400px;
   }
   
-  .banner-title {
-    font-size: 2.5rem;
+  .banner-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
   }
   
-  .banner-subtitle {
-    font-size: 1rem;
+  .banner-arrow.prev { left: 15px; }
+  .banner-arrow.next { right: 15px; }
+  
+  .hero-section {
+    padding: 50px 0 60px 0;
   }
   
-  .banner-cta {
-    padding: 12px 28px;
-    font-size: 0.9rem;
+  .hero-features {
+    gap: 20px;
   }
   
-  .banner-dot {
-    width: 35px;
+  .steps-container {
+    gap: 15px;
   }
   
-  .banner-dot.active {
-    width: 55px;
+  .step {
+    min-width: 180px;
+    padding: 22px 16px;
   }
 }
 
 @media (max-width: 768px) {
   .fullscreen-banner {
-    min-height: 500px;
+    height: 50vh;
+    min-height: 350px;
   }
   
   .banner-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
   
   .banner-subtitle {
-    font-size: 0.85rem;
-    padding: 0 15px;
+    font-size: 0.75rem;
+    margin-bottom: 16px;
   }
   
   .banner-cta {
     padding: 10px 24px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   
   .banner-arrow {
-    width: 38px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
     font-size: 1.2rem;
-  }
-  
-  .banner-arrow.prev { left: 12px; }
-  .banner-arrow.next { right: 12px; }
-  
-  .banner-dots {
-    bottom: 20px;
-    gap: 10px;
   }
   
   .banner-dot {
@@ -979,36 +1023,88 @@ body {
   }
   
   .banner-dot.active {
-    width: 45px;
+    width: 50px;
   }
   
-  /* Stats Section */
+  .stats-section {
+    padding: 20px 16px;
+  }
+  
   .stats-container {
-    gap: 20px;
+    gap: 15px;
   }
   
   .stat-divider {
-    height: 40px;
-  }
-  
-  .stat-value {
-    font-size: 1.3rem;
+    height: 30px;
   }
   
   .stat-label {
+    white-space: normal;
+  }
+  
+  .hero-section {
+    padding: 40px 0 50px 0;
+  }
+  
+  .trust-badge {
+    margin-bottom: 16px;
+    padding: 4px 12px;
     font-size: 0.7rem;
   }
   
-  /* Hero Section */
+  .hero-title-main {
+    font-size: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 24px;
+  }
+  
   .hero-cta-group {
-    flex-direction: column;
-    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
   }
   
   .cta-btn {
+    padding: 10px 22px;
+    font-size: 0.8rem;
+  }
+  
+  .hero-features {
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 30px;
+  }
+  
+  .feature-divider {
+    display: none;
+  }
+  
+  .feature-item {
     width: 100%;
-    max-width: 260px;
     justify-content: center;
+  }
+  
+  .feature-text h4,
+  .feature-text p {
+    white-space: normal;
+  }
+  
+  .scroll-indicator {
+    display: none;
+  }
+  
+  .our-astrologers-section {
+    padding: 40px 16px;
+  }
+  
+  .astrologer-avatars-grid {
+    gap: 16px;
+  }
+  
+  .step-arrow {
+    display: none;
   }
   
   .steps-container {
@@ -1017,20 +1113,7 @@ body {
   
   .step {
     width: 100%;
-  }
-  
-  .step-arrow {
-    display: none;
-  }
-  
-  .features-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .feature {
-    width: 100%;
-    max-width: 320px;
+    max-width: 300px;
   }
   
   .wisdom-container {
@@ -1042,61 +1125,64 @@ body {
     justify-content: center;
   }
   
-  .hero-banner {
-    padding: 6px 18px;
+  .features-grid {
+    gap: 20px;
   }
   
-  .banner-logo {
-    width: 38px;
-    height: 38px;
-  }
-  
-  .banner-text span {
-    font-size: 1rem;
-  }
-  
-  .avatar-frame {
-    width: 70px;
-    height: 70px;
+  .feature {
+    min-width: 100%;
+    padding: 24px 20px;
   }
 }
 
 @media (max-width: 576px) {
   .fullscreen-banner {
-    min-height: 450px;
+    height: 45vh;
+    min-height: 300px;
   }
   
   .banner-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
   }
   
   .banner-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
+    margin-bottom: 12px;
   }
   
   .banner-cta {
-    padding: 8px 20px;
-    font-size: 0.75rem;
+    padding: 8px 18px;
+    font-size: 0.65rem;
+    gap: 6px;
   }
   
   .banner-arrow {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     font-size: 1rem;
+  }
+  
+  .banner-arrow.prev { left: 10px; }
+  .banner-arrow.next { right: 10px; }
+  
+  .banner-dots {
+    bottom: 12px;
+    gap: 8px;
   }
   
   .banner-dot {
     width: 25px;
+    height: 2px;
   }
   
   .banner-dot.active {
-    width: 35px;
+    width: 40px;
   }
   
-  /* Stats Section Mobile */
   .stats-container {
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
   }
   
   .stat-divider {
@@ -1108,81 +1194,197 @@ body {
   }
   
   .hero-section {
-    min-height: 90vh;
+    padding: 30px 0 40px 0;
   }
   
-  .title-main {
-    font-size: 1.6rem;
-  }
-  
-  .sanskrit-text {
-    font-size: 0.7rem;
+  .hero-title-main {
+    font-size: 1.3rem;
   }
   
   .hero-subtitle {
-    font-size: 0.85rem;
-  }
-  
-  .astrologer-avatars-grid {
-    gap: 1.2rem;
-  }
-  
-  .avatar-frame {
-    width: 60px;
-    height: 60px;
-  }
-  
-  .astro-mini-name {
     font-size: 0.7rem;
+    margin-bottom: 20px;
   }
   
-  .scroll-indicator {
-    bottom: 15px;
-  }
-  
-  .scroll-mouse {
-    width: 22px;
-    height: 36px;
-  }
-}
-
-@media (max-width: 480px) {
-  .fullscreen-banner {
-    min-height: 400px;
-  }
-  
-  .banner-title {
-    font-size: 1.2rem;
-  }
-  
-  .banner-subtitle {
+  .cta-btn {
+    padding: 8px 18px;
     font-size: 0.7rem;
-  }
-  
-  .banner-cta {
-    padding: 6px 16px;
-    font-size: 0.7rem;
-    gap: 6px;
   }
   
   .astrologer-avatars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-  
-  .avatar-frame {
-    width: 55px;
-    height: 55px;
-  }
-  
-  .our-astrologers-section {
-    padding: 3rem 1rem;
+    gap: 12px;
   }
   
   .view-all-btn {
     padding: 10px 24px;
     font-size: 0.8rem;
+  }
+  
+  .section-header {
+    margin-bottom: 30px;
+  }
+  
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .section-description {
+    font-size: 0.75rem;
+  }
+  
+  .how-it-works {
+    padding: 40px 16px;
+  }
+  
+  .ancient-wisdom {
+    padding: 40px 16px;
+  }
+  
+  .why-choose-us {
+    padding: 40px 16px;
+  }
+  
+  .wisdom-content h2 {
+    font-size: 1.3rem;
+  }
+  
+  .wisdom-item {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
+  
+  .rudraksha {
+    font-size: 2.5rem;
+  }
+  
+  .shlok {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fullscreen-banner {
+    height: 40vh;
+    min-height: 250px;
+  }
+  
+  .banner-title {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.55rem;
+    margin-bottom: 10px;
+  }
+  
+  .banner-cta {
+    padding: 6px 14px;
+    font-size: 0.55rem;
+    gap: 5px;
+  }
+  
+  .banner-arrow {
+    width: 25px;
+    height: 25px;
+    font-size: 0.85rem;
+  }
+  
+  .hero-title-main {
+    font-size: 1.1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.65rem;
+  }
+  
+  .cta-btn {
+    padding: 7px 14px;
+    font-size: 0.65rem;
+    gap: 6px;
+  }
+  
+  .trust-badge {
+    padding: 3px 10px;
+    font-size: 0.6rem;
+  }
+  
+  .astrologer-avatars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .step {
+    padding: 20px 16px;
+  }
+  
+  .step-number {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
+  
+  .step h3 {
+    font-size: 0.85rem;
+  }
+  
+  .step p {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .fullscreen-banner {
+    height: 38vh;
+    min-height: 220px;
+  }
+  
+  .banner-title {
+    font-size: 0.9rem;
+  }
+  
+  .banner-subtitle {
+    font-size: 0.5rem;
+  }
+  
+  .banner-cta {
+    padding: 5px 12px;
+    font-size: 0.5rem;
+  }
+  
+  .hero-title-main {
+    font-size: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.6rem;
+  }
+  
+  .cta-btn {
+    padding: 6px 12px;
+    font-size: 0.6rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.1rem;
+  }
+  
+  .feature-text h4 {
+    font-size: 0.7rem;
+  }
+  
+  .feature-text p {
+    font-size: 0.55rem;
+  }
+  
+  .astro-mini-name {
+    font-size: 0.6rem;
+  }
+  
+  .section-header h2 {
+    font-size: 1.3rem;
   }
 }
 
@@ -1192,634 +1394,24 @@ body {
   .divine-symbol,
   .scroll-wheel,
   .avatar-pulse,
-  .banner-progress {
+  .banner-progress,
+  .banner-bg {
+    animation: none;
+    transition: none;
+  }
+  
+  .banner-text-container {
     animation: none;
   }
   
-  .banner-text-container {
-    animation: none;
+  .fullscreen-banner .banner-bg {
+    transition: opacity 0.3s ease;
   }
-}
-
-/* ========================================
-   MOBILE BANNER SIZE FIX - ADD THIS AT THE END OF YOUR CSS FILE
-======================================== */
-
-/* For tablets and smaller devices - Reduce banner height */
-@media (max-width: 992px) {
-  .fullscreen-banner {
-    height: 50vh !important;
-    min-height: 350px !important;
-    max-height: 450px !important;
-  }
-  
-  .banner-content {
-    padding: 0 20px !important;
-  }
-  
-  .banner-title {
-    font-size: 1.8rem !important;
-  }
-  
-  .banner-arrow {
-    width: 40px !important;
-    height: 40px !important;
-    font-size: 1.3rem !important;
-  }
-}
-
-/* For mobile landscape */
-@media (max-width: 768px) {
-  .fullscreen-banner {
-    height: 40vh !important;
-    min-height: 280px !important;
-    max-height: 380px !important;
-  }
-  
-  .banner-title {
-    font-size: 1.4rem !important;
-    margin-bottom: 10px !important;
-  }
-  
-  .banner-subtitle {
-    font-size: 0.8rem !important;
-    margin-bottom: 20px !important;
-    padding: 0 10px !important;
-  }
-  
-  .banner-cta {
-    padding: 8px 20px !important;
-    font-size: 0.75rem !important;
-  }
-  
-  .banner-arrow {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 1rem !important;
-  }
-  
-  .banner-arrow.prev {
-    left: 10px !important;
-  }
-  
-  .banner-arrow.next {
-    right: 10px !important;
-  }
-  
-  .banner-dots {
-    bottom: 12px !important;
-    gap: 8px !important;
-  }
-  
-  .banner-dot {
-    width: 25px !important;
-    height: 3px !important;
-  }
-  
-  .banner-dot.active {
-    width: 40px !important;
-  }
-  
-  .banner-progress {
-    height: 2px !important;
-  }
-}
-
-/* For mobile portrait */
-@media (max-width: 576px) {
-  .fullscreen-banner {
-    height: 35vh !important;
-    min-height: 220px !important;
-    max-height: 320px !important;
-  }
-  
-  .banner-text-container {
-    padding: 0 15px !important;
-  }
-  
-  .banner-title {
-    font-size: 1.1rem !important;
-    margin-bottom: 6px !important;
-  }
-  
-  .banner-highlight {
-    display: inline !important;
-  }
-  
-  .banner-subtitle {
-    font-size: 0.65rem !important;
-    margin-bottom: 12px !important;
-    line-height: 1.4 !important;
-  }
-  
-  .banner-cta {
-    padding: 6px 14px !important;
-    font-size: 0.65rem !important;
-    gap: 6px !important;
-  }
-  
-  .banner-arrow {
-    width: 26px !important;
-    height: 26px !important;
-    font-size: 0.8rem !important;
-  }
-  
-  .banner-dot {
-    width: 20px !important;
-    height: 2px !important;
-  }
-  
-  .banner-dot.active {
-    width: 30px !important;
-  }
-}
-
-/* For very small devices */
-@media (max-width: 480px) {
-  .fullscreen-banner {
-    height: 30vh !important;
-    min-height: 180px !important;
-    max-height: 250px !important;
-  }
-  
-  .banner-title {
-    font-size: 0.95rem !important;
-    margin-bottom: 4px !important;
-  }
-  
-  .banner-subtitle {
-    font-size: 0.55rem !important;
-    margin-bottom: 8px !important;
-  }
-  
-  .banner-cta {
-    padding: 4px 12px !important;
-    font-size: 0.55rem !important;
-    gap: 4px !important;
-  }
-  
-  .banner-arrow {
-    width: 22px !important;
-    height: 22px !important;
-    font-size: 0.7rem !important;
-  }
-  
-  .banner-arrow.prev {
-    left: 5px !important;
-  }
-  
-  .banner-arrow.next {
-    right: 5px !important;
-  }
-  
-  .banner-dots {
-    bottom: 8px !important;
-    gap: 6px !important;
-  }
-  
-  .banner-dot {
-    width: 15px !important;
-    height: 2px !important;
-  }
-  
-  .banner-dot.active {
-    width: 22px !important;
-  }
-}
-
-/* For iPhone SE and similar small devices */
-@media (max-width: 375px) {
-  .fullscreen-banner {
-    height: 28vh !important;
-    min-height: 160px !important;
-    max-height: 220px !important;
-  }
-  
-  .banner-title {
-    font-size: 0.85rem !important;
-  }
-  
-  .banner-subtitle {
-    font-size: 0.5rem !important;
-  }
-  
-  .banner-cta {
-    padding: 3px 10px !important;
-    font-size: 0.5rem !important;
-  }
-}
-
-/* ========================================
-   COMPLETE MOBILE FIX - ADD THIS AT THE END OF YOUR CSS FILE
-======================================== */
-
-/* Force banner to be smaller on mobile */
-@media (max-width: 768px) {
-  .fullscreen-banner {
-    height: 35vh !important;
-    min-height: 250px !important;
-    max-height: 300px !important;
-  }
-  
-  .banner-content {
-    padding-top: 30px !important;
-  }
-  
-  .banner-text-container {
-    padding: 0 15px !important;
-  }
-  
-  .banner-title {
-    font-size: 1.2rem !important;
-    margin-bottom: 5px !important;
-  }
-  
-  .banner-subtitle {
-    font-size: 0.7rem !important;
-    margin-bottom: 10px !important;
-  }
-  
-  .banner-cta {
-    padding: 6px 16px !important;
-    font-size: 0.65rem !important;
-  }
-  
-  .banner-arrow {
-    width: 28px !important;
-    height: 28px !important;
-    font-size: 0.9rem !important;
-  }
-  
-  .banner-dots {
-    bottom: 8px !important;
-  }
-  
-  .banner-dot {
-    width: 20px !important;
-    height: 2px !important;
-  }
-}
-
-/* Remove ALL gaps and margins */
-.fullscreen-banner {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.hero-section {
-  margin-top: -20px !important;
-  padding-top: 20px !important;
-  min-height: auto !important;
-  padding-bottom: 40px !important;
-}
-
-.hero-container {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
-}
-
-.hero-content {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* Push hero content UP on mobile */
-@media (max-width: 768px) {
-  .hero-section {
-    margin-top: -30px !important;
-    padding-top: 10px !important;
-    min-height: auto !important;
-  }
-  
-  .hero-container {
-    padding: 0 16px !important;
-  }
-  
-  .hero-content {
-    margin-top: 0 !important;
-  }
-  
-  .sanskrit-text {
-    font-size: 0.65rem !important;
-    margin-bottom: 5px !important;
-  }
-  
-  .title-main {
-    font-size: 1.4rem !important;
-    line-height: 1.3 !important;
-    margin-bottom: 10px !important;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.75rem !important;
-    margin-bottom: 20px !important;
-    padding: 0 10px !important;
-  }
-  
-  .hero-cta-group {
-    gap: 12px !important;
-    margin-bottom: 0 !important;
-  }
-  
-  .cta-btn {
-    padding: 10px 20px !important;
-    font-size: 0.8rem !important;
-  }
-  
-  /* Remove scroll indicator on mobile if exists */
-  .scroll-indicator {
-    display: none !important;
-  }
-  
-  /* Remove floating elements that cause spacing */
-  .cosmic-particles,
-  .floating-symbols {
-    display: none !important;
-  }
-  
-  .om-bg {
-    display: none !important;
-  }
-  
-  .mandala-bg {
-    opacity: 0.3 !important;
-  }
-}
-
-/* For very small devices */
-@media (max-width: 576px) {
-  .fullscreen-banner {
-    height: 30vh !important;
-    min-height: 200px !important;
-    max-height: 250px !important;
-  }
-  
-  .hero-section {
-    margin-top: -40px !important;
-    padding-top: 5px !important;
-  }
-  
-  .title-main {
-    font-size: 1.2rem !important;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.7rem !important;
-  }
-  
-  .cta-btn {
-    padding: 8px 16px !important;
-    font-size: 0.7rem !important;
-  }
-}
-
-/* For iPhone SE and small phones */
-@media (max-width: 480px) {
-  .fullscreen-banner {
-    height: 28vh !important;
-    min-height: 180px !important;
-    max-height: 220px !important;
-  }
-  
-  .hero-section {
-    margin-top: -45px !important;
-    padding-top: 0 !important;
-  }
-  
-  .sanskrit-text {
-    font-size: 0.55rem !important;
-  }
-  
-  .title-main {
-    font-size: 1.1rem !important;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.65rem !important;
-    margin-bottom: 15px !important;
-  }
-}
-
-/* Remove any extra margins from elements */
-.our-astrologers-section {
-  margin-top: 0 !important;
-  padding-top: 40px !important;
-}
-
-.how-it-works {
-  margin-top: 0 !important;
-  padding-top: 40px !important;
-}
-
-/* Ensure banner overlay doesn't cause extra space */
-.banner-overlay-gradient {
-  pointer-events: none !important;
-}
-
-/* ========================================
-   PROFESSIONAL HERO SECTION ADDITIONS
-   PASTE THIS AT THE END OF YOUR CSS FILE
-======================================== */
-
-/* Trust Badge */
-.trust-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  padding: 6px 16px;
-  border-radius: 50px;
-  margin-bottom: 24px;
-  font-size: 0.85rem;
-  border: 1px solid rgba(230, 126, 34, 0.3);
-}
-
-.badge-icon {
-  font-size: 0.9rem;
-}
-
-/* Hero Features Grid */
-.hero-features {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  margin-top: 50px;
-  padding-top: 20px;
-  flex-wrap: wrap;
-  border-top: 1px solid rgba(230, 126, 34, 0.15);
-}
-
-.feature-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.feature-icon {
-  font-size: 1.8rem;
-  filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.3));
-}
-
-.feature-text h4 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-offwhite);
-  margin-bottom: 2px;
-}
-
-.feature-text p {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
-
-.feature-divider {
-  width: 1px;
-  height: 35px;
-  background: rgba(230, 126, 34, 0.2);
-}
-
-/* Scroll Indicator - Updated */
-.scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.scroll-mouse {
-  width: 26px;
-  height: 42px;
-  border: 2px solid rgba(230, 126, 34, 0.5);
-  border-radius: 20px;
-  margin: 0 auto 8px;
-  position: relative;
-}
-
-.scroll-wheel {
-  width: 4px;
-  height: 8px;
-  background: var(--saffron-primary);
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scrollWheel 2s ease-in-out infinite;
-}
-
-@keyframes scrollWheel {
-  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  80% { opacity: 0; transform: translateX(-50%) translateY(15px); }
-  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
-.scroll-indicator p {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-}
-
-/* ========================================
-   MOBILE RESPONSIVE FIXES FOR NEW CONTENT
-======================================== */
-
-@media (max-width: 768px) {
-  .trust-badge {
-    font-size: 0.7rem;
-    padding: 4px 12px;
-    margin-bottom: 16px;
-  }
-  
-  .hero-features {
-    margin-top: 30px;
-    gap: 15px;
-  }
-  
-  .feature-item {
-    gap: 8px;
-  }
   
-  .feature-icon {
-    font-size: 1.3rem;
-  }
-  
-  .feature-text h4 {
-    font-size: 0.75rem;
-  }
-  
-  .feature-text p {
-    font-size: 0.6rem;
-  }
-  
-  .feature-divider {
-    height: 25px;
-  }
-  
-  .scroll-indicator {
-    bottom: 15px;
-  }
-  
-  .scroll-mouse {
-    width: 22px;
-    height: 36px;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-features {
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
-  }
-  
-  .feature-divider {
-    display: none;
-  }
-  
-  .feature-item {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .trust-badge {
-    font-size: 0.65rem;
-  }
-  
-  .scroll-indicator {
-    display: none;
-  }
-}
-
-/* Remove extra space from hero section */
-.hero-section {
-  padding: 60px 0 40px 0;
-  min-height: auto;
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 30px 0 20px 0;
+  .service-card:hover,
+  .feature:hover,
+  .step:hover,
+  .astro-avatar-card:hover {
+    transform: none;
   }
-}
-
-/* Smooth hover effects */
-.feature-item {
-  transition: transform 0.3s ease;
-}
-
-.feature-item:hover {
-  transform: translateY(-3px);
-}
-
-.feature-icon {
-  transition: transform 0.3s ease;
-}
-
-.feature-item:hover .feature-icon {
-  transform: scale(1.1);
 }

@@ -82,9 +82,7 @@ const ServicesSection = () => {
             <h2 className="service-container-title">
               Our Premium <span className="title-highlight">Services</span>
             </h2>
-            <p className="service-subtitle">
-              Personalized astrological consultations with our expert panel
-            </p>
+            
           </div>
 
           <motion.div className="services-grid premium-grid">
@@ -139,9 +137,7 @@ const ServicesSection = () => {
             <h2 className="service-container-title">
               Complimentary <span className="title-highlight">Astrology Services</span>
             </h2>
-            <p className="service-subtitle">
-              Free tools and resources to explore the cosmic wisdom
-            </p>
+            
           </div>
 
           <motion.div className="services-grid complimentary-grid">

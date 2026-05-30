@@ -1,4 +1,4 @@
-/* src/pages/HomePage.jsx */
+// src/pages/HomePage.jsx
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -18,7 +18,12 @@ import {
   FiUsers,
   FiCheckCircle,
   FiTrendingUp,
-  FiChevronRight
+  FiChevronRight,
+  FiCalendar,
+  FiClock,
+  FiPhone,
+  FiVideo,
+  FiMapPin
 } from 'react-icons/fi';
 
 // Import components
@@ -32,15 +37,15 @@ import Footer from '../components/Footer';
 
 import './HomePage.css';
 
-// Banner Images with their own text content
+// Banner Images
 const bannerSlides = [
   {
     id: 1,
     image: "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    title: "Connect with Vedas &",
+    title: "Connect with",
     highlight: "Trusted Astrologers",
-    subtitle: "आचार्यों से करें संवाद · प्रेम, करियर, धन और जीवन के हर प्रश्न का समाधान",
-    ctaText: "विद्वानों से संपर्क करें",
+    subtitle: "Get answers to love, career, wealth, and life's every question",
+    ctaText: "Contact Experts",
     ctaLink: "/astro-connect"
   },
   {
@@ -48,8 +53,8 @@ const bannerSlides = [
     image: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920",
     title: "Ancient Vedic",
     highlight: "Astrology Experts",
-    subtitle: "जानें अपने भविष्य के बारे में · करियर, स्वास्थ्य, धन और सफलता के मार्ग",
-    ctaText: "मुफ्त कुंडली बनाएं",
+    subtitle: "Discover your future - Career, Health, Wealth, and Success",
+    ctaText: "Create Free Kundli",
     ctaLink: "/horoscope"
   },
   {
@@ -57,17 +62,17 @@ const bannerSlides = [
     image: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920",
     title: "24/7 Spiritual",
     highlight: "Guidance Available",
-    subtitle: "किसी भी समय करें संपर्क · हर समस्या का समाधान हमारे आचार्यों के साथ",
-    ctaText: "अभी बात करें",
+    subtitle: "Connect anytime - Solutions for every problem with our experts",
+    ctaText: "Talk Now",
     ctaLink: "/astro-connect"
   }
 ];
 
-// Full Screen Banner Slider Component
 const FullScreenBanner = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const intervalRef = useRef(null);
+  const navigate = useNavigate();
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
@@ -99,7 +104,6 @@ const FullScreenBanner = () => {
     }, 6000);
   };
 
-  // Progress bar animation
   useEffect(() => {
     const startTime = Date.now();
     const duration = 6000;
@@ -124,6 +128,10 @@ const FullScreenBanner = () => {
 
   const currentSlide = bannerSlides[currentIndex];
 
+  const handleCtaClick = () => {
+    navigate(currentSlide.ctaLink);
+  };
+
   return (
     <div className="fullscreen-banner">
       {bannerSlides.map((slide, index) => (
@@ -135,30 +143,21 @@ const FullScreenBanner = () => {
       ))}
       <div className="banner-overlay-gradient"></div>
 
-      {/* Banner Content */}
       <div className="banner-content">
         <div className="banner-text-container">
           <h1 className="banner-title">
             {currentSlide.title} <span className="banner-highlight">{currentSlide.highlight}</span>
           </h1>
           <p className="banner-subtitle">{currentSlide.subtitle}</p>
-          <button 
-            onClick={() => {
-              const navigate = useNavigate();
-              navigate(currentSlide.ctaLink);
-            }} 
-            className="banner-cta"
-          >
+          <button onClick={handleCtaClick} className="banner-cta">
             {currentSlide.ctaText} <FiArrowRight />
           </button>
         </div>
       </div>
 
-      {/* Navigation Arrows */}
       <button className="banner-arrow prev" onClick={goToPrev}>‹</button>
       <button className="banner-arrow next" onClick={goToNext}>›</button>
 
-      {/* Dots Navigation */}
       <div className="banner-dots">
         {bannerSlides.map((_, index) => (
           <button
@@ -169,19 +168,36 @@ const FullScreenBanner = () => {
         ))}
       </div>
 
-      {/* Progress Bar */}
       <div className="banner-progress" style={{ width: `${progress}%` }} />
     </div>
   );
 };
 
-// Stats Section Component
 const StatsSection = () => {
-  
-   
+  const stats = [
+    { value: "50K+", label: "Happy Clients" },
+    { value: "100+", label: "Expert Astrologers" },
+    { value: "24/7", label: "Support Available" },
+    { value: "4.9", label: "Rating" }
+  ];
+
+  return (
+    <div className="stats-section">
+      <div className="stats-container">
+        {stats.map((stat, index) => (
+          <React.Fragment key={index}>
+            <div className="stat-item">
+              <div className="stat-value">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
+            </div>
+            {index < stats.length - 1 && <div className="stat-divider"></div>}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
+  );
 };
 
-// Floating Particles Component
 const CosmicParticles = () => {
   const particleCount = 40;
   const particles = Array.from({ length: particleCount }, (_, i) => ({
@@ -215,7 +231,6 @@ const CosmicParticles = () => {
   );
 };
 
-// Floating Divine Symbols
 const FloatingSymbols = () => {
   const symbols = ["🕉️", "🔱", "🪔", "🌙", "☀️", "🔔"];
 
@@ -239,7 +254,6 @@ const FloatingSymbols = () => {
   );
 };
 
-// Astrologer Avatar Card
 const AstrologerAvatarCard = ({ astrologer }) => {
   const navigate = useNavigate();
 
@@ -270,7 +284,6 @@ const AstrologerAvatarCard = ({ astrologer }) => {
   );
 };
 
-// Main HomePage Component
 const HomePage = () => {
   const navigate = useNavigate();
   const { data: astrologers = [], isLoading } = useGetAstrologersQuery();
@@ -280,132 +293,135 @@ const HomePage = () => {
     navigate('/astro-connect');
   };
 
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
-      {/* Full Screen Banner Slider */}
       <FullScreenBanner />
-
-      {/* Stats Section - Below Banner */}
       <StatsSection />
 
-      {/* Hero Section - Professional with More Content */}
-<section className="hero-section">
-  <div className="divine-background">
-    <div className="mandala-bg"></div>
-    <div className="om-bg"></div>
-  </div>
-
-  <CosmicParticles />
-  <FloatingSymbols />
-
-  <div className="hero-vignette"></div>
-
-  <div className="hero-container">
-    <motion.div 
-      className="hero-content"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.2 }}
-    >
-      {/* Trust Badge */}
-      <motion.div 
-        className="trust-badge"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-      >
-        <span className="badge-icon">⭐</span>
-        <span>Trusted by 50,000+ Devotees</span>
-      </motion.div>
-
-      <motion.h1 
-        className="hero-title"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-      >
-        <span className="sanskrit-text">ज्योतिषं परमं ज्ञानम्</span>
-        <span className="title-main">Connect with Vedas &<br />Trusted Astrologers</span>
-      </motion.h1>
-
-      <motion.p 
-        className="hero-subtitle"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.6 }}
-      >
-        आचार्यों से करें संवाद · प्रेम, करियर, धन और जीवन के हर प्रश्न का समाधान
-      </motion.p>
-
-      <motion.div 
-        className="hero-cta-group"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-      >
-        <button onClick={() => navigate('/astro-connect')} className="cta-btn primary">
-          <span>विद्वानों से संपर्क करें</span>
-          <FiArrowRight />
-        </button>
-        <Link to="/horoscope" className="cta-btn secondary">
-          <FiSun />
-          <span>मुफ्त कुंडली</span>
-        </Link>
-      </motion.div>
-
-      {/* Features Grid - New Professional Addition */}
-      <motion.div 
-        className="hero-features"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.6 }}
-      >
-        <div className="feature-item">
-          <div className="feature-icon">🔮</div>
-          <div className="feature-text">
-            <h4>Vedic Experts</h4>
-            <p>100+ Certified Astrologers</p>
-          </div>
+      <section className="hero-section">
+        <div className="divine-background">
+          <div className="mandala-bg"></div>
+          <div className="om-bg"></div>
         </div>
-        <div className="feature-divider"></div>
-        <div className="feature-item">
-          <div className="feature-icon">💬</div>
-          <div className="feature-text">
-            <h4>24/7 Support</h4>
-            <p>Anytime Consultation</p>
-          </div>
-        </div>
-        <div className="feature-divider"></div>
-        <div className="feature-item">
-          <div className="feature-icon">🔒</div>
-          <div className="feature-text">
-            <h4>100% Private</h4>
-            <p>Secure & Confidential</p>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  </div>
 
- 
-</section>
+        <CosmicParticles />
+        <FloatingSymbols />
 
-      {/* Our Astrologers Section */}
+        <div className="hero-vignette"></div>
+
+        <div className="hero-container">
+          <motion.div 
+            className="hero-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2 }}
+          >
+            <motion.div 
+              className="trust-badge"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              <span className="badge-icon">⭐</span>
+              <span>Trusted by 50,000+ Devotees</span>
+            </motion.div>
+
+            <motion.h1 
+              className="hero-title"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              <span className="hero-title-main">
+                Connect with <span className="hero-title-highlight">Vedic Experts</span>
+              </span>
+            </motion.h1>
+
+            <motion.p 
+              className="hero-subtitle"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
+              Talk to certified astrologers for answers to love, career, wealth, and all life's questions
+            </motion.p>
+
+            <motion.div 
+              className="hero-cta-group"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+            >
+              <button onClick={() => navigate('/astro-connect')} className="cta-btn primary">
+                <span>Connect with Experts</span>
+                <FiArrowRight />
+              </button>
+              <Link to="/horoscope" className="cta-btn secondary">
+                <FiSun />
+                <span>Free Kundli</span>
+              </Link>
+            </motion.div>
+
+            <motion.div 
+              className="hero-features"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.6 }}
+            >
+              <div className="feature-item">
+                <div className="feature-icon">🔮</div>
+                <div className="feature-text">
+                  <h4>Vedic Experts</h4>
+                  <p>100+ Certified Astrologers</p>
+                </div>
+              </div>
+              <div className="feature-divider"></div>
+              <div className="feature-item">
+                <div className="feature-icon">💬</div>
+                <div className="feature-text">
+                  <h4>24/7 Support</h4>
+                  <p>Anytime Consultation</p>
+                </div>
+              </div>
+              <div className="feature-divider"></div>
+              <div className="feature-item">
+                <div className="feature-icon">🔒</div>
+                <div className="feature-text">
+                  <h4>100% Private</h4>
+                  <p>Secure & Confidential</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        <div className="scroll-indicator" onClick={handleScrollToTop}>
+          <div className="scroll-mouse">
+            <div className="scroll-wheel"></div>
+          </div>
+          <p>SCROLL</p>
+        </div>
+      </section>
+
       <section className="our-astrologers-section">
         <div className="section-header">
           <div className="header-badge">
             <FiStar />
-            <span>हमारे विद्वान आचार्य</span>
+            <span>Our Experts</span>
           </div>
           <h2>Our <span className="title-highlight">Astrologers</span></h2>
-          <p>ज्योतिष के क्षेत्र में दशकों का अनुभव रखने वाले हमारे प्रमाणित आचार्यों से जुड़ें</p>
+          <p className="section-description">Connect with our certified experts having decades of experience in Vedic astrology</p>
         </div>
 
         {isLoading ? (
           <div className="loader-container">
             <div className="divine-loader">
               <div className="loader-om">🕉️</div>
-              <p>आचार्यों की सूची लोड हो रही है...</p>
+              <p>Loading astrologers...</p>
             </div>
           </div>
         ) : (
@@ -418,94 +434,90 @@ const HomePage = () => {
 
             <div className="view-all-container">
               <button onClick={handleViewAll} className="view-all-btn">
-                सभी आचार्यों को देखें <FiChevronRight />
+                View All Astrologers <FiChevronRight />
               </button>
             </div>
           </>
         )}
       </section>
 
-      {/* How It Works Section */}
       <section className="how-it-works">
         <div className="section-header">
-          <h2>परामर्श प्रक्रिया</h2>
-          <p>सरल, त्वरित और प्रभावी — तीन सरल चरणों में समाधान</p>
+          <h2>Consultation Process</h2>
+          <p>Simple, fast, and effective — solutions in three easy steps</p>
         </div>
         <div className="steps-container">
           <div className="step">
-            <div className="step-number">१</div>
-            <h3>आचार्य का चयन करें</h3>
-            <p>विशेषज्ञता और अनुभव के अनुसार आचार्य चुनें</p>
+            <div className="step-number">1</div>
+            <h3>Choose an Astrologer</h3>
+            <p>Select based on expertise and experience</p>
           </div>
           <div className="step-arrow">→</div>
           <div className="step">
-            <div className="step-number">२</div>
-            <h3>सेवा चुनें</h3>
-            <p>चैट, कॉल या वीडियो कॉल — जैसा आप चाहें</p>
+            <div className="step-number">2</div>
+            <h3>Select Service</h3>
+            <p>Chat, Call, or Video Call - as you prefer</p>
           </div>
           <div className="step-arrow">→</div>
           <div className="step">
-            <div className="step-number">३</div>
-            <h3>प्रश्न पूछें और समाधान पाएं</h3>
-            <p>तुरंत संवाद करें और मार्गदर्शन प्राप्त करें</p>
+            <div className="step-number">3</div>
+            <h3>Ask & Get Solutions</h3>
+            <p>Connect instantly and receive guidance</p>
           </div>
         </div>
       </section>
 
-      {/* Ancient Wisdom Section */}
       <section className="ancient-wisdom">
         <div className="wisdom-container">
           <div className="wisdom-content">
-            <h2>वैदिक ज्योतिष की प्राचीन परंपरा</h2>
-            <p>मंत्र ज्योतिष पर, हम प्राचीन वैदिक ग्रंथों और भारतीय ज्योतिष की समृद्ध परंपराओं का पालन करते हैं। हमारे आचार्य पीढ़ियों से चली आ रही ज्योतिष विद्या में निपुण हैं।</p>
+            <h2>Ancient Tradition of Vedic Astrology</h2>
+            <p>At Mantra Jyotish, we follow ancient Vedic texts and rich traditions of Indian astrology. Our astrologers are proficient in astrology knowledge passed down through generations.</p>
             <div className="wisdom-features">
               <div className="wisdom-item">
                 <FiCheckCircle />
-                <span>प्रामाणिक ज्योतिष गणना</span>
+                <span>Authentic Astrology Calculations</span>
               </div>
               <div className="wisdom-item">
                 <FiCheckCircle />
-                <span>पंचांग और मुहूर्त विचार</span>
+                <span>Panchang & Muhurta Considerations</span>
               </div>
               <div className="wisdom-item">
                 <FiCheckCircle />
-                <span>जन्म कुंडली विश्लेषण</span>
+                <span>Birth Chart Analysis</span>
               </div>
             </div>
           </div>
           <div className="wisdom-symbol">
             <div className="rudraksha">🔱</div>
-            <div className="shlok">"यथा पिण्डे तथा ब्रह्माण्डे"</div>
+            <div className="shlok">"As is the atom, so is the universe"</div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
       <section className="why-choose-us">
         <div className="section-header">
-          <h2>क्यों चुनें मंत्र ज्योतिष?</h2>
-          <p>हम ज्योतिष को सरल, सुलभ और प्रभावी बनाते हैं</p>
+          <h2>Why Choose Mantra Jyotish?</h2>
+          <p>We make astrology simple, accessible, and effective</p>
         </div>
         <div className="features-grid">
           <div className="feature">
             <FiShield />
-            <h3>१००% गोपनीय</h3>
-            <p>आपके संवाद पूर्णतः सुरक्षित और गुप्त</p>
+            <h3>100% Confidential</h3>
+            <p>Your conversations are completely secure and private</p>
           </div>
           <div className="feature">
             <FiAward />
-            <h3>प्रमाणित विद्वान</h3>
-            <p>सभी आचार्य ज्योतिष विषय में प्रमाणित</p>
+            <h3>Certified Experts</h3>
+            <p>All astrologers are certified in astrology</p>
           </div>
           <div className="feature">
             <FiTrendingUp />
-            <h3>सस्ती सेवाएं</h3>
-            <p>मात्र ₹१५ प्रति मिनट से शुरू</p>
+            <h3>Affordable Services</h3>
+            <p>Starting from just ₹15 per minute</p>
           </div>
         </div>
       </section>
 
-      {/* Other Sections */}
       <ServicesSection />
       <DailyInsights />
       <ConsultationTopics />

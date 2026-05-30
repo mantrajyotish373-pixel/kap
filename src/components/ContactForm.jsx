@@ -1,4 +1,4 @@
-// src/components/ContactForm.jsx
+// src/components/ContactForm.jsx - FIXED AND RESPONSIVE
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -63,6 +63,7 @@ const ContactForm = ({ isOpen, onClose }) => {
         place_of_birth: formData.city,
         query: formData.message,
       }).unwrap();
+      
       setResponseMsg("✨ Message sent successfully! Our astrologer will contact you soon.");
       setResponseType("success");
       setFormData({
@@ -74,19 +75,17 @@ const ContactForm = ({ isOpen, onClose }) => {
         message: "",
       });
       
-      // Auto close after 3 seconds on success
       setTimeout(() => {
         if (onClose) onClose();
       }, 3000);
     } catch (error) {
-      setResponseMsg(error?.data?.message || "⚠️ Unable to send message. Please try again later.");
+      setResponseMsg(error?.data?.message || "⚠️ Unable to send message. Please try again.");
       setResponseType("error");
     } finally {
       setLoading(false);
     }
   };
 
-  // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -110,14 +109,14 @@ const ContactForm = ({ isOpen, onClose }) => {
         >
           <motion.div
             className="contact-modal-content"
-            initial={{ scale: 0.85, opacity: 0, y: 50 }}
+            initial={{ scale: 0.9, opacity: 0, y: 30 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.85, opacity: 0, y: 50 }}
+            exit={{ scale: 0.9, opacity: 0, y: 30 }}
             transition={{ 
               type: "spring", 
-              damping: 20, 
+              damping: 25, 
               stiffness: 300,
-              duration: 0.4
+              duration: 0.3
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -125,7 +124,6 @@ const ContactForm = ({ isOpen, onClose }) => {
             <div className="modal-cosmic-bg">
               <div className="cosmic-ring cosmic-ring-1"></div>
               <div className="cosmic-ring cosmic-ring-2"></div>
-              <div className="cosmic-ring cosmic-ring-3"></div>
               <div className="floating-star star-1">✦</div>
               <div className="floating-star star-2">✧</div>
               <div className="floating-star star-3">✦</div>
@@ -149,7 +147,6 @@ const ContactForm = ({ isOpen, onClose }) => {
             {/* Body */}
             <div className="contact-modal-body">
               <form onSubmit={handleSubmit}>
-                {/* Name Field */}
                 <div className={`input-group ${focusedField === 'name' ? 'focused' : ''}`}>
                   <div className="input-icon">
                     <FiUser />
@@ -168,7 +165,6 @@ const ContactForm = ({ isOpen, onClose }) => {
                   <div className="input-border"></div>
                 </div>
 
-                {/* Email Field */}
                 <div className={`input-group ${focusedField === 'email' ? 'focused' : ''}`}>
                   <div className="input-icon">
                     <FiMail />
@@ -187,7 +183,6 @@ const ContactForm = ({ isOpen, onClose }) => {
                   <div className="input-border"></div>
                 </div>
 
-                {/* Mobile Field */}
                 <div className={`input-group ${focusedField === 'mobile' ? 'focused' : ''}`}>
                   <div className="input-icon">
                     <FiPhone />
@@ -206,7 +201,6 @@ const ContactForm = ({ isOpen, onClose }) => {
                   <div className="input-border"></div>
                 </div>
 
-                {/* City Field */}
                 <div className={`input-group ${focusedField === 'city' ? 'focused' : ''}`}>
                   <div className="input-icon">
                     <FiMapPin />
@@ -225,7 +219,6 @@ const ContactForm = ({ isOpen, onClose }) => {
                   <div className="input-border"></div>
                 </div>
 
-                {/* Purpose Dropdown */}
                 <div className="select-group">
                   <div className="input-icon">
                     <FiStar />
@@ -244,7 +237,6 @@ const ContactForm = ({ isOpen, onClose }) => {
                   <div className="select-border"></div>
                 </div>
 
-                {/* Message Field */}
                 <div className={`input-group textarea-group ${focusedField === 'message' ? 'focused' : ''}`}>
                   <div className="input-icon">
                     <FiMessageSquare />
@@ -263,7 +255,6 @@ const ContactForm = ({ isOpen, onClose }) => {
                   <div className="input-border"></div>
                 </div>
 
-                {/* Response Message */}
                 <AnimatePresence>
                   {responseMsg && (
                     <motion.div 
@@ -277,7 +268,6 @@ const ContactForm = ({ isOpen, onClose }) => {
                   )}
                 </AnimatePresence>
 
-                {/* Submit Button */}
                 <motion.button 
                   type="submit" 
                   className="submit-button"
@@ -288,19 +278,17 @@ const ContactForm = ({ isOpen, onClose }) => {
                   {loading ? (
                     <div className="button-loader">
                       <div className="loader-spinner"></div>
-                      <span>Sending Message...</span>
+                      <span>Sending...</span>
                     </div>
                   ) : (
                     <>
                       <FiSend className="button-icon" />
                       <span>Send Message</span>
-                      <div className="button-glow"></div>
                     </>
                   )}
                 </motion.button>
               </form>
 
-              {/* Footer Note */}
               <div className="modal-footer-note">
                 <FiMoon />
                 <span>Our astrologers will respond within 24 hours</span>

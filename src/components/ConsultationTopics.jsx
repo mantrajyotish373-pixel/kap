@@ -56,9 +56,7 @@ const ConsultationTopics = () => {
           <h2 className="consultation-main-title">
             Consult The Right <span className="title-highlight">Astrologer</span> For You
           </h2>
-          <p className="consultation-subtitle">
-            Choose from a wide range of specialized topics and get personalized guidance from our expert astrologers
-          </p>
+          
         </div>
 
         <motion.div 

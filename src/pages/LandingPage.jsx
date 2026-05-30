@@ -265,9 +265,7 @@ const LandingPage = () => {
               Connect With Our 
               <span className="title-highlight"> Celestial Guides</span>
             </h2>
-            <p className="section-subtitle">
-              Fill in your details and our expert astrologers will reach out to you with cosmic insights
-            </p>
+            
           </motion.div>
 
           <div className="contact-grid">

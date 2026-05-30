@@ -117,9 +117,7 @@ const DailyInsights = () => {
           <h2 className="section-main-title">
             Today's <span className="title-highlight">Astrology Prediction</span>
           </h2>
-          <p className="section-subtitle">
-            Discover what the stars have in store for you today based on your zodiac sign
-          </p>
+          
         </div>
 
         <motion.div 
