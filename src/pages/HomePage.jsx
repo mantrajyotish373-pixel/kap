@@ -4,26 +4,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useGetAstrologersQuery } from '../services/backendApi';
 
-// Import your images
-import logo from '../assets/logo.jpeg';
-
 // Import icons
 import { 
   FiArrowRight, 
   FiStar, 
   FiSun, 
-  FiMessageCircle,
   FiShield,
   FiAward,
-  FiUsers,
   FiCheckCircle,
   FiTrendingUp,
   FiChevronRight,
-  FiCalendar,
-  FiClock,
-  FiPhone,
-  FiVideo,
-  FiMapPin
+  FiGlobe,
+  FiX
 } from 'react-icons/fi';
 
 // Import components
@@ -198,6 +190,224 @@ const StatsSection = () => {
   );
 };
 
+// Simple Language Selector Component
+const LanguageSelector = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState("en");
+
+  const languages = [
+    { code: "en", name: "English", native: "English", flag: "🇬🇧" },
+    { code: "hi", name: "Hindi", native: "हिन्दी", flag: "🇮🇳" },
+    { code: "te", name: "Telugu", native: "తెలుగు", flag: "🇮🇳" },
+    { code: "ta", name: "Tamil", native: "தமிழ்", flag: "🇮🇳" },
+    { code: "ml", name: "Malayalam", native: "മലയാളം", flag: "🇮🇳" },
+    { code: "kn", name: "Kannada", native: "ಕನ್ನಡ", flag: "🇮🇳" },
+    { code: "bn", name: "Bengali", native: "বাংলা", flag: "🇮🇳" },
+    { code: "gu", name: "Gujarati", native: "ગુજરાતી", flag: "🇮🇳" },
+    { code: "mr", name: "Marathi", native: "मराठी", flag: "🇮🇳" },
+  ];
+
+  const translations = {
+    en: {
+      trustBadge: "Trusted by 50,000+ Devotees",
+      heroTitle: "Connect with",
+      heroHighlight: "Vedic Experts",
+      heroSubtitle: "Talk to certified astrologers for answers to love, career, wealth, and all life's questions",
+      connectBtn: "Connect with Experts",
+      freeKundli: "Free Kundli",
+      vedicExperts: "Vedic Experts",
+      certified: "100+ Certified Astrologers",
+      support: "24/7 Support",
+      supportText: "Anytime Consultation",
+      private: "100% Private",
+      privateText: "Secure & Confidential",
+      ourExperts: "Our Experts",
+      ourExpertsDesc: "Connect with our certified experts having decades of experience in Vedic astrology",
+      viewAll: "View All Astrologers",
+      consultation: "Consultation Process",
+      consultationDesc: "Simple, fast, and effective — solutions in three easy steps",
+      chooseAstrologer: "Choose an Astrologer",
+      chooseDesc: "Select based on expertise and experience",
+      selectService: "Select Service",
+      selectDesc: "Chat, Call, or Video Call - as you prefer",
+      askSolutions: "Ask & Get Solutions",
+      askDesc: "Connect instantly and receive guidance",
+      ancientTitle: "Ancient Tradition of Vedic Astrology",
+      ancientDesc: "At Mantra Jyotish, we follow ancient Vedic texts and rich traditions of Indian astrology. Our astrologers are proficient in astrology knowledge passed down through generations.",
+      authentic: "Authentic Astrology Calculations",
+      panchang: "Panchang & Muhurta Considerations",
+      birthChart: "Birth Chart Analysis",
+      whyChoose: "Why Choose Mantra Jyotish?",
+      whyDesc: "We make astrology simple, accessible, and effective",
+      confidential: "100% Confidential",
+      confidentialDesc: "Your conversations are completely secure and private",
+      certifiedExperts: "Certified Experts",
+      certifiedDesc: "All astrologers are certified in astrology",
+      affordable: "Affordable Services",
+      affordableDesc: "Starting from just ₹15 per minute",
+      chooseLanguage: "Choose Your Preferred Language",
+      languageDesc: "Select a language to view the website in your preferred language"
+    },
+    hi: {
+      trustBadge: "50,000+ भक्तों द्वारा विश्वसनीय",
+      heroTitle: "जुड़ें",
+      heroHighlight: "वैदिक विशेषज्ञों से",
+      heroSubtitle: "प्रेम, करियर, धन और जीवन के हर सवाल के जवाब के लिए प्रमाणित ज्योतिषियों से बात करें",
+      connectBtn: "विशेषज्ञों से जुड़ें",
+      freeKundli: "मुफ्त कुंडली",
+      vedicExperts: "वैदिक विशेषज्ञ",
+      certified: "100+ प्रमाणित ज्योतिषी",
+      support: "24x7 सहायता",
+      supportText: "कभी भी परामर्श",
+      private: "100% निजी",
+      privateText: "सुरक्षित और गोपनीय",
+      ourExperts: "हमारे विशेषज्ञ",
+      ourExpertsDesc: "वैदिक ज्योतिष में दशकों के अनुभव वाले हमारे प्रमाणित विशेषज्ञों से जुड़ें",
+      viewAll: "सभी ज्योतिषी देखें",
+      consultation: "परामर्श प्रक्रिया",
+      consultationDesc: "सरल, तेज़ और प्रभावी — तीन आसान चरणों में समाधान",
+      chooseAstrologer: "ज्योतिषी चुनें",
+      chooseDesc: "विशेषज्ञता और अनुभव के आधार पर चयन करें",
+      selectService: "सेवा चुनें",
+      selectDesc: "चैट, कॉल या वीडियो कॉल - जैसा आप चाहें",
+      askSolutions: "पूछें और समाधान पाएं",
+      askDesc: "तुरंत जुड़ें और मार्गदर्शन प्राप्त करें",
+      ancientTitle: "वैदिक ज्योतिष की प्राचीन परंपरा",
+      ancientDesc: "मंत्र ज्योतिष में, हम प्राचीन वैदिक ग्रंथों और भारतीय ज्योतिष की समृद्ध परंपराओं का पालन करते हैं। हमारे ज्योतिषी पीढ़ियों से हस्तांतरित ज्योतिष ज्ञान में निपुण हैं।",
+      authentic: "प्रामाणिक ज्योतिष गणना",
+      panchang: "पंचांग और मुहूर्त संबंधी विचार",
+      birthChart: "जन्म कुंडली विश्लेषण",
+      whyChoose: "मंत्र ज्योतिष क्यों चुनें?",
+      whyDesc: "हम ज्योतिष को सरल, सुलभ और प्रभावी बनाते हैं",
+      confidential: "100% गोपनीय",
+      confidentialDesc: "आपकी बातचीत पूरी तरह से सुरक्षित और निजी है",
+      certifiedExperts: "प्रमाणित विशेषज्ञ",
+      certifiedDesc: "सभी ज्योतिषी ज्योतिष में प्रमाणित हैं",
+      affordable: "किफायती सेवाएं",
+      affordableDesc: "सिर्फ ₹15 प्रति मिनट से शुरू",
+      chooseLanguage: "अपनी पसंदीदा भाषा चुनें",
+      languageDesc: "अपनी पसंदीदा भाषा में वेबसाइट देखने के लिए भाषा चुनें"
+    },
+    te: {
+      trustBadge: "50,000+ భక్తులచే నమ్మకం",
+      heroTitle: "కనెక్ట్ అవ్వండి",
+      heroHighlight: "వేద నిపుణులతో",
+      heroSubtitle: "ప్రేమ, కెరీర్, సంపద మరియు జీవితంలోని ప్రతి ప్రశ్నకు సమాధానాల కోసం సర్టిఫైడ్ జ్యోతిష్కులతో మాట్లాడండి",
+      connectBtn: "నిపుణులతో కనెక్ట్ అవ్వండి",
+      freeKundli: "ఉచిత కుండలి",
+      vedicExperts: "వేద నిపుణులు",
+      certified: "100+ సర్టిఫైడ్ జ్యోతిష్కులు",
+      support: "24/7 మద్దతు",
+      supportText: "ఎప్పుడైనా సంప్రదింపులు",
+      private: "100% ప్రైవేట్",
+      privateText: "సురక్షితం మరియు గోప్యం",
+      ourExperts: "మా నిపుణులు",
+      ourExpertsDesc: "వేద జ్యోతిషంలో దశాబ్దాల అనుభవం ఉన్న మా సర్టిఫైడ్ నిపుణులతో కనెక్ట్ అవ్వండి",
+      viewAll: "అందరి జ్యోతిష్కులను చూడండి",
+      consultation: "సంప్రదింపుల ప్రక్రియ",
+      consultationDesc: "సులభం, వేగవంతం మరియు ప్రభావవంతం — మూడు సులభ దశల్లో పరిష్కారాలు",
+      chooseAstrologer: "జ్యోతిష్కుని ఎంచుకోండి",
+      chooseDesc: "నైపుణ్యం మరియు అనుభవం ఆధారంగా ఎంచుకోండి",
+      selectService: "సేవను ఎంచుకోండి",
+      selectDesc: "చాట్, కాల్ లేదా వీడియో కాల్ - మీ ప్రాధాన్యత ప్రకారం",
+      askSolutions: "అడగండి & పరిష్కారాలు పొందండి",
+      askDesc: "తక్షణమే కనెక్ట్ అవ్వండి మరియు మార్గదర్శకత్వం పొందండి",
+      ancientTitle: "వేద జ్యోతిషం యొక్క ప్రాచీన సంప్రదాయం",
+      ancientDesc: "మంత్ర జ్యోతిష్లో, మేము ప్రాచీన వేద గ్రంథాలను మరియు భారతీయ జ్యోతిషం యొక్క సంపన్న సంప్రదాయాలను అనుసరిస్తాము. మా జ్యోతిష్కులు తరాలుగా బదిలీ చేయబడిన జ్యోతిష జ్ఞానంలో ప్రావీణ్యం కలిగి ఉంటారు.",
+      authentic: "ప్రామాణిక జ్యోతిష గణనలు",
+      panchang: "పంచాంగం & ముహూర్త పరిగణనలు",
+      birthChart: "జన్మ కుండలి విశ్లేషణ",
+      whyChoose: "మంత్ర జ్యోతిష్ ఎందుకు ఎంచుకోవాలి?",
+      whyDesc: "మేము జ్యోతిషాన్ని సరళంగా, అందుబాటులో మరియు ప్రభావవంతంగా చేస్తాము",
+      confidential: "100% గోప్యమైన",
+      confidentialDesc: "మీ సంభాషణలు పూర్తిగా సురక్షితం మరియు ప్రైవేట్",
+      certifiedExperts: "సర్టిఫైడ్ నిపుణులు",
+      certifiedDesc: "అందరు జ్యోతిష్కులు జ్యోతిషంలో సర్టిఫైడ్",
+      affordable: "సరసమైన సేవలు",
+      affordableDesc: "కేవలం ₹15 ప్రతి నిమిషం నుండి ప్రారంభం",
+      chooseLanguage: "మీ ప్రాధాన్య భాషను ఎంచుకోండి",
+      languageDesc: "మీ ప్రాధాన్య భాషలో వెబ్సైట్ను చూడటానికి భాషను ఎంచుకోండి"
+    }
+  };
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem("preferred_language");
+    if (savedLang && savedLang !== "en") {
+      setCurrentLang(savedLang);
+      applyTranslation(savedLang);
+    }
+  }, []);
+
+  const applyTranslation = (langCode) => {
+    const t = translations[langCode];
+    if (!t) return;
+    
+    // Update all elements with data-translate attribute
+    document.querySelectorAll("[data-translate]").forEach((el) => {
+      const key = el.getAttribute("data-translate");
+      if (t[key]) {
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+          el.placeholder = t[key];
+        } else {
+          el.innerHTML = t[key];
+        }
+      }
+    });
+  };
+
+  const handleLanguageSelect = (langCode) => {
+    setCurrentLang(langCode);
+    localStorage.setItem("preferred_language", langCode);
+    localStorage.setItem("has_seen_language_popup", "true");
+    
+    if (langCode === "en") {
+      window.location.reload();
+    } else {
+      applyTranslation(langCode);
+    }
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <button className="floating-lang-btn" onClick={() => setIsOpen(true)}>
+        <FiGlobe /> {currentLang.toUpperCase()}
+      </button>
+
+      {isOpen && (
+        <div className="lang-modal-overlay" onClick={() => setIsOpen(false)}>
+          <div className="lang-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="lang-modal-close" onClick={() => setIsOpen(false)}>
+              <FiX />
+            </button>
+            <div className="lang-modal-header">
+              <span className="lang-modal-icon">🌐</span>
+              <h3 data-translate="chooseLanguage">Choose Your Preferred Language</h3>
+              <p data-translate="languageDesc">Select a language to view the website in your preferred language</p>
+            </div>
+            <div className="lang-grid">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  className={`lang-option ${currentLang === lang.code ? "active" : ""}`}
+                  onClick={() => handleLanguageSelect(lang.code)}
+                >
+                  <span className="lang-flag">{lang.flag}</span>
+                  <div className="lang-text">
+                    <span className="lang-name">{lang.name}</span>
+                    <span className="lang-native">{lang.native}</span>
+                  </div>
+                  {currentLang === lang.code && <span className="lang-check">✓</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const CosmicParticles = () => {
   const particleCount = 40;
   const particles = Array.from({ length: particleCount }, (_, i) => ({
@@ -299,6 +509,8 @@ const HomePage = () => {
 
   return (
     <>
+      <LanguageSelector />
+      
       <FullScreenBanner />
       <StatsSection />
 
@@ -327,7 +539,7 @@ const HomePage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               <span className="badge-icon">⭐</span>
-              <span>Trusted by 50,000+ Devotees</span>
+              <span data-translate="trustBadge">Trusted by 50,000+ Devotees</span>
             </motion.div>
 
             <motion.h1 
@@ -337,7 +549,8 @@ const HomePage = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
             >
               <span className="hero-title-main">
-                Connect with <span className="hero-title-highlight">Vedic Experts</span>
+                <span data-translate="heroTitle">Connect with</span>{' '}
+                <span className="hero-title-highlight" data-translate="heroHighlight">Vedic Experts</span>
               </span>
             </motion.h1>
 
@@ -346,6 +559,7 @@ const HomePage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
+              data-translate="heroSubtitle"
             >
               Talk to certified astrologers for answers to love, career, wealth, and all life's questions
             </motion.p>
@@ -357,12 +571,12 @@ const HomePage = () => {
               transition={{ delay: 0.8, duration: 0.5 }}
             >
               <button onClick={() => navigate('/astro-connect')} className="cta-btn primary">
-                <span>Connect with Experts</span>
+                <span data-translate="connectBtn">Connect with Experts</span>
                 <FiArrowRight />
               </button>
               <Link to="/horoscope" className="cta-btn secondary">
                 <FiSun />
-                <span>Free Kundli</span>
+                <span data-translate="freeKundli">Free Kundli</span>
               </Link>
             </motion.div>
 
@@ -375,24 +589,24 @@ const HomePage = () => {
               <div className="feature-item">
                 <div className="feature-icon">🔮</div>
                 <div className="feature-text">
-                  <h4>Vedic Experts</h4>
-                  <p>100+ Certified Astrologers</p>
+                  <h4 data-translate="vedicExperts">Vedic Experts</h4>
+                  <p data-translate="certified">100+ Certified Astrologers</p>
                 </div>
               </div>
               <div className="feature-divider"></div>
               <div className="feature-item">
                 <div className="feature-icon">💬</div>
                 <div className="feature-text">
-                  <h4>24/7 Support</h4>
-                  <p>Anytime Consultation</p>
+                  <h4 data-translate="support">24/7 Support</h4>
+                  <p data-translate="supportText">Anytime Consultation</p>
                 </div>
               </div>
               <div className="feature-divider"></div>
               <div className="feature-item">
                 <div className="feature-icon">🔒</div>
                 <div className="feature-text">
-                  <h4>100% Private</h4>
-                  <p>Secure & Confidential</p>
+                  <h4 data-translate="private">100% Private</h4>
+                  <p data-translate="privateText">Secure & Confidential</p>
                 </div>
               </div>
             </motion.div>
@@ -411,10 +625,12 @@ const HomePage = () => {
         <div className="section-header">
           <div className="header-badge">
             <FiStar />
-            <span>Our Experts</span>
+            <span data-translate="ourExperts">Our Experts</span>
           </div>
-          <h2>Our <span className="title-highlight">Astrologers</span></h2>
-          <p className="section-description">Connect with our certified experts having decades of experience in Vedic astrology</p>
+          <h2><span data-translate="ourExperts">Our</span> <span className="title-highlight" data-translate="ourExperts">Astrologers</span></h2>
+          <p className="section-description" data-translate="ourExpertsDesc">
+            Connect with our certified experts having decades of experience in Vedic astrology
+          </p>
         </div>
 
         {isLoading ? (
@@ -434,7 +650,7 @@ const HomePage = () => {
 
             <div className="view-all-container">
               <button onClick={handleViewAll} className="view-all-btn">
-                View All Astrologers <FiChevronRight />
+                <span data-translate="viewAll">View All Astrologers</span> <FiChevronRight />
               </button>
             </div>
           </>
@@ -443,26 +659,26 @@ const HomePage = () => {
 
       <section className="how-it-works">
         <div className="section-header">
-          <h2>Consultation Process</h2>
-          <p>Simple, fast, and effective — solutions in three easy steps</p>
+          <h2 data-translate="consultation">Consultation Process</h2>
+          <p data-translate="consultationDesc">Simple, fast, and effective — solutions in three easy steps</p>
         </div>
         <div className="steps-container">
           <div className="step">
             <div className="step-number">1</div>
-            <h3>Choose an Astrologer</h3>
-            <p>Select based on expertise and experience</p>
+            <h3 data-translate="chooseAstrologer">Choose an Astrologer</h3>
+            <p data-translate="chooseDesc">Select based on expertise and experience</p>
           </div>
           <div className="step-arrow">→</div>
           <div className="step">
             <div className="step-number">2</div>
-            <h3>Select Service</h3>
-            <p>Chat, Call, or Video Call - as you prefer</p>
+            <h3 data-translate="selectService">Select Service</h3>
+            <p data-translate="selectDesc">Chat, Call, or Video Call - as you prefer</p>
           </div>
           <div className="step-arrow">→</div>
           <div className="step">
             <div className="step-number">3</div>
-            <h3>Ask & Get Solutions</h3>
-            <p>Connect instantly and receive guidance</p>
+            <h3 data-translate="askSolutions">Ask & Get Solutions</h3>
+            <p data-translate="askDesc">Connect instantly and receive guidance</p>
           </div>
         </div>
       </section>
@@ -470,20 +686,20 @@ const HomePage = () => {
       <section className="ancient-wisdom">
         <div className="wisdom-container">
           <div className="wisdom-content">
-            <h2>Ancient Tradition of Vedic Astrology</h2>
-            <p>At Mantra Jyotish, we follow ancient Vedic texts and rich traditions of Indian astrology. Our astrologers are proficient in astrology knowledge passed down through generations.</p>
+            <h2 data-translate="ancientTitle">Ancient Tradition of Vedic Astrology</h2>
+            <p data-translate="ancientDesc">At Mantra Jyotish, we follow ancient Vedic texts and rich traditions of Indian astrology. Our astrologers are proficient in astrology knowledge passed down through generations.</p>
             <div className="wisdom-features">
               <div className="wisdom-item">
                 <FiCheckCircle />
-                <span>Authentic Astrology Calculations</span>
+                <span data-translate="authentic">Authentic Astrology Calculations</span>
               </div>
               <div className="wisdom-item">
                 <FiCheckCircle />
-                <span>Panchang & Muhurta Considerations</span>
+                <span data-translate="panchang">Panchang & Muhurta Considerations</span>
               </div>
               <div className="wisdom-item">
                 <FiCheckCircle />
-                <span>Birth Chart Analysis</span>
+                <span data-translate="birthChart">Birth Chart Analysis</span>
               </div>
             </div>
           </div>
@@ -496,24 +712,24 @@ const HomePage = () => {
 
       <section className="why-choose-us">
         <div className="section-header">
-          <h2>Why Choose Mantra Jyotish?</h2>
-          <p>We make astrology simple, accessible, and effective</p>
+          <h2 data-translate="whyChoose">Why Choose Mantra Jyotish?</h2>
+          <p data-translate="whyDesc">We make astrology simple, accessible, and effective</p>
         </div>
         <div className="features-grid">
           <div className="feature">
             <FiShield />
-            <h3>100% Confidential</h3>
-            <p>Your conversations are completely secure and private</p>
+            <h3 data-translate="confidential">100% Confidential</h3>
+            <p data-translate="confidentialDesc">Your conversations are completely secure and private</p>
           </div>
           <div className="feature">
             <FiAward />
-            <h3>Certified Experts</h3>
-            <p>All astrologers are certified in astrology</p>
+            <h3 data-translate="certifiedExperts">Certified Experts</h3>
+            <p data-translate="certifiedDesc">All astrologers are certified in astrology</p>
           </div>
           <div className="feature">
             <FiTrendingUp />
-            <h3>Affordable Services</h3>
-            <p>Starting from just ₹15 per minute</p>
+            <h3 data-translate="affordable">Affordable Services</h3>
+            <p data-translate="affordableDesc">Starting from just ₹15 per minute</p>
           </div>
         </div>
       </section>
@@ -524,6 +740,7 @@ const HomePage = () => {
       <NakshatrasSection />
       <Testimonials />
       <BlogSection />
+      
       <Footer />
     </>
   );
