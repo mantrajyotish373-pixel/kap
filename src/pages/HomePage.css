@@ -1,4 +1,4 @@
-/* src/pages/HomePage.css - COMPLETE FIXED CSS */
+/* src/pages/HomePage.css - UPDATED WITH SERVICE CARDS */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -37,8 +37,8 @@ body {
 .fullscreen-banner {
   position: relative;
   width: 100%;
-  height: 85vh;
-  min-height: 500px;
+  height: 100vh;
+  min-height: 600px;
   max-height: 800px;
   overflow: hidden;
 }
@@ -101,10 +101,10 @@ body {
 }
 
 .banner-title {
-  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  font-size: clamp(1.8rem, 5vw, 3.8rem);
   font-weight: 700;
   color: white;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   line-height: 1.2;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
   word-wrap: break-word;
@@ -116,9 +116,9 @@ body {
 }
 
 .banner-subtitle {
-  font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: rgba(255,255,255,0.9);
-  margin-bottom: 24px;
+  margin-bottom: 30px;
   line-height: 1.5;
   max-width: 600px;
   margin-left: auto;
@@ -134,11 +134,11 @@ body {
   gap: 10px;
   background: var(--gradient-saffron);
   border: none;
-  padding: 12px 32px;
+  padding: 14px 36px;
   border-radius: 50px;
   color: #1A1108;
   font-weight: 600;
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(0.9rem, 2vw, 1rem);
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
@@ -218,370 +218,17 @@ body {
 }
 
 /* ========================================
-   STATS SECTION
-======================================== */
-
-.stats-section {
-  background: linear-gradient(135deg, #1A1108 0%, #2C2416 100%);
-  padding: 30px 20px;
-  border-bottom: 1px solid rgba(230, 126, 34, 0.2);
-}
-
-.stats-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  text-align: center;
-  flex: 1;
-  min-width: 100px;
-}
-
-.stat-value {
-  font-size: clamp(1.3rem, 4vw, 2rem);
-  font-weight: 800;
-  color: var(--saffron-primary);
-  margin-bottom: 6px;
-}
-
-.stat-label {
-  font-size: clamp(0.7rem, 2vw, 0.85rem);
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: rgba(230, 126, 34, 0.3);
-}
-
-/* ========================================
-   HERO SECTION
-======================================== */
-
-.hero-section {
-  position: relative;
-  min-height: auto;
-  background: var(--gradient-temple);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 60px 0 80px 0;
-}
-
-.divine-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.mandala-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  transform: translate(-50%, -50%);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.08' d='M50,5 L95,50 L50,95 L5,50 Z M50,15 L85,50 L50,85 L15,50 Z M50,25 L75,50 L50,75 L25,50 Z M50,35 L65,50 L50,65 L35,50 Z'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.06'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%23E67E22' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 100px;
-  animation: mandalaRotate 60s linear infinite;
-}
-
-@keyframes mandalaRotate {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.om-bg {
-  position: absolute;
-  bottom: 10%;
-  right: 5%;
-  font-size: 12rem;
-  opacity: 0.03;
-  font-family: serif;
-  pointer-events: none;
-}
-
-.om-bg::after {
-  content: "🕉️";
-}
-
-.cosmic-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  background: radial-gradient(circle, var(--saffron-primary), transparent);
-  border-radius: 50%;
-  animation: particleFloat linear infinite;
-}
-
-@keyframes particleFloat {
-  0% { transform: translateY(0) translateX(0); opacity: 0; }
-  10% { opacity: 0.4; }
-  90% { opacity: 0.4; }
-  100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
-}
-
-.floating-symbols {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.divine-symbol {
-  position: absolute;
-  font-size: 1rem;
-  opacity: 0.06;
-  animation: symbolDrift linear infinite;
-}
-
-@keyframes symbolDrift {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.06; }
-  90% { opacity: 0.06; }
-  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-}
-
-.hero-vignette {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.5) 100%);
-  pointer-events: none;
-}
-
-.hero-container {
-  position: relative;
-  z-index: 10;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.hero-content {
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.trust-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  padding: 6px 16px;
-  border-radius: 50px;
-  margin-bottom: 24px;
-  font-size: clamp(0.7rem, 2vw, 0.85rem);
-  border: 1px solid rgba(230, 126, 34, 0.3);
-}
-
-.badge-icon {
-  font-size: 0.9rem;
-}
-
-.hero-title {
-  margin-bottom: 20px;
-}
-
-.hero-title-main {
-  display: block;
-  font-size: clamp(1.5rem, 5vw, 3.5rem);
-  font-weight: 800;
-  color: var(--text-offwhite);
-  line-height: 1.2;
-  word-wrap: break-word;
-}
-
-.hero-title-highlight {
-  color: var(--saffron-primary);
-}
-
-.hero-subtitle {
-  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-  line-height: 1.5;
-  color: var(--text-muted);
-  max-width: 650px;
-  margin: 0 auto 30px;
-  padding: 0 16px;
-  word-wrap: break-word;
-}
-
-.hero-cta-group {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-}
-
-.cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 28px;
-  border-radius: 60px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: clamp(0.8rem, 2vw, 0.95rem);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
-}
-
-.cta-btn.primary {
-  background: var(--gradient-saffron);
-  color: #1A1108;
-  box-shadow: 0 4px 20px rgba(230, 126, 34, 0.35);
-}
-
-.cta-btn.primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(230, 126, 34, 0.5);
-}
-
-.cta-btn.secondary {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(230, 126, 34, 0.4);
-  color: var(--text-offwhite);
-}
-
-.cta-btn.secondary:hover {
-  background: rgba(230, 126, 34, 0.1);
-  transform: translateY(-3px);
-  border-color: var(--saffron-primary);
-}
-
-.hero-features {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  margin-top: 40px;
-  padding-top: 20px;
-  flex-wrap: wrap;
-  border-top: 1px solid rgba(230, 126, 34, 0.15);
-}
-
-.feature-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.feature-icon {
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-  filter: drop-shadow(0 0 5px rgba(230, 126, 34, 0.3));
-  flex-shrink: 0;
-}
-
-.feature-text {
-  text-align: left;
-}
-
-.feature-text h4 {
-  font-size: clamp(0.8rem, 2vw, 0.95rem);
-  font-weight: 600;
-  color: var(--text-offwhite);
-  margin-bottom: 2px;
-  white-space: nowrap;
-}
-
-.feature-text p {
-  font-size: clamp(0.65rem, 1.8vw, 0.75rem);
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-
-.feature-divider {
-  width: 1px;
-  height: 40px;
-  background: rgba(230, 126, 34, 0.2);
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  cursor: pointer;
-  z-index: 10;
-}
-
-.scroll-mouse {
-  width: 26px;
-  height: 42px;
-  border: 2px solid rgba(230, 126, 34, 0.5);
-  border-radius: 20px;
-  margin: 0 auto 8px;
-  position: relative;
-}
-
-.scroll-wheel {
-  width: 4px;
-  height: 8px;
-  background: var(--saffron-primary);
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scrollWheel 2s ease-in-out infinite;
-}
-
-@keyframes scrollWheel {
-  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  80% { opacity: 0; transform: translateX(-50%) translateY(15px); }
-  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
-.scroll-indicator p {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-}
-
-/* ========================================
-   OUR ASTROLOGERS SECTION
+   OUR ASTROLOGERS SECTION - PROFILE CARDS
 ======================================== */
 
 .our-astrologers-section {
-  padding: 60px 20px;
-  background: var(--gradient-palm);
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #1A1108 0%, #2C2416 100%);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 .header-badge {
@@ -589,107 +236,254 @@ body {
   align-items: center;
   gap: 8px;
   background: rgba(230, 126, 34, 0.12);
-  padding: 6px 16px;
+  padding: 8px 20px;
   border-radius: 40px;
-  margin-bottom: 16px;
-  font-size: 0.8rem;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
   color: var(--saffron-primary);
 }
 
 .section-header h2 {
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   word-wrap: break-word;
 }
 
 .title-highlight {
   color: var(--saffron-primary);
-  border-bottom: 2px solid var(--saffron-primary);
-  padding-bottom: 3px;
+  border-bottom: 3px solid var(--saffron-primary);
+  padding-bottom: 5px;
 }
 
 .section-description {
   color: var(--text-muted);
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
-  max-width: 650px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  max-width: 700px;
   margin: 0 auto;
-  line-height: 1.5;
+  line-height: 1.6;
   padding: 0 16px;
   word-wrap: break-word;
 }
 
-.astrologer-avatars-grid {
+/* Profile Cards Grid */
+.astrologer-profiles-grid {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 25px;
-  max-width: 1000px;
+  gap: 30px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-.astro-avatar-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Profile Card Styles */
+.astro-profile-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 340px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 8px;
 }
 
-.avatar-frame {
+.profile-card-inner {
+  background: rgba(44, 36, 22, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(230, 126, 34, 0.2);
+  transition: all 0.4s ease;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.astro-profile-card:hover .profile-card-inner {
+  border-color: var(--saffron-primary);
+  box-shadow: 0 15px 40px rgba(230, 126, 34, 0.2);
+  background: rgba(44, 36, 22, 0.9);
+}
+
+/* Avatar Section */
+.profile-avatar-section {
+  margin-bottom: 20px;
+}
+
+.profile-avatar-frame {
   position: relative;
-  width: clamp(60px, 10vw, 85px);
-  height: clamp(60px, 10vw, 85px);
-  margin-bottom: 10px;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 12px;
 }
 
-.astro-mini-avatar {
+.profile-avatar {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--gold-sacred);
+  border: 3px solid var(--gold-sacred);
   background: #3A2A1A;
   transition: all 0.3s ease;
 }
 
-.astro-avatar-card:hover .astro-mini-avatar {
-  transform: scale(1.05);
+.astro-profile-card:hover .profile-avatar {
+  transform: scale(1.02);
   border-color: var(--saffron-primary);
-  box-shadow: 0 0 15px rgba(230, 126, 34, 0.3);
 }
 
-.avatar-pulse {
+.avatar-status-badge {
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
+  bottom: 5px;
+  right: 5px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: transparent;
-  border: 1px solid rgba(230, 126, 34, 0.4);
-  animation: pulseRing 2s ease-out infinite;
+  border: 2px solid #2C2416;
 }
 
-@keyframes pulseRing {
-  0% { transform: scale(0.9); opacity: 0.8; }
-  70% { transform: scale(1.15); opacity: 0; }
-  100% { transform: scale(0.9); opacity: 0; }
+.avatar-status-badge.online {
+  background: #2ecc71;
+  box-shadow: 0 0 5px #2ecc71;
 }
 
-.astro-mini-name {
-  font-size: clamp(0.7rem, 2vw, 0.85rem);
-  font-weight: 500;
-  color: var(--text-offwhite);
+.profile-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(230, 126, 34, 0.15);
+  padding: 4px 12px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  color: var(--gold-sacred);
+}
+
+.star-icon {
+  color: #F4D03F;
+  font-size: 0.7rem;
+}
+
+/* Info Section */
+.profile-info-section {
   text-align: center;
-  word-wrap: break-word;
-  max-width: 100px;
 }
 
+.profile-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-offwhite);
+  margin-bottom: 5px;
+}
+
+.profile-expertise {
+  font-size: 0.75rem;
+  color: var(--saffron-primary);
+  margin-bottom: 15px;
+  letter-spacing: 0.3px;
+}
+
+/* Stats */
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 8px 0;
+  border-top: 1px solid rgba(230, 126, 34, 0.15);
+  border-bottom: 1px solid rgba(230, 126, 34, 0.15);
+}
+
+.profile-stat {
+  text-align: center;
+}
+
+.profile-stat .stat-value {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-offwhite);
+}
+
+.profile-stat .stat-label {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.profile-stat-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(230, 126, 34, 0.3);
+}
+
+/* Price */
+.profile-price {
+  margin-bottom: 18px;
+  font-size: 1rem;
+}
+
+.price-currency {
+  font-size: 0.8rem;
+  color: var(--saffron-primary);
+  font-weight: 600;
+}
+
+.price-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--saffron-primary);
+}
+
+.price-period {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Action Buttons */
+.profile-action-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.action-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: inherit;
+}
+
+.chat-btn {
+  background: rgba(230, 126, 34, 0.15);
+  color: var(--text-offwhite);
+  border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.chat-btn:hover {
+  background: rgba(230, 126, 34, 0.3);
+  transform: translateY(-2px);
+}
+
+.call-btn {
+  background: var(--gradient-saffron);
+  color: #1A1108;
+  box-shadow: 0 2px 10px rgba(230, 126, 34, 0.3);
+}
+
+.call-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(230, 126, 34, 0.4);
+}
+
+/* View All Button */
 .view-all-container {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .view-all-btn {
@@ -716,74 +510,132 @@ body {
 }
 
 /* ========================================
-   HOW IT WORKS SECTION
+   SERVICE CARDS SECTION (New)
 ======================================== */
 
-.how-it-works {
-  padding: 60px 20px;
-  background: var(--temple-bg);
+.service-cards-section {
+  padding: 80px 20px;
+  background: var(--gradient-palm);
 }
 
-.steps-container {
+.service-cards-grid {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
-  max-width: 1000px;
+  gap: 30px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
-.step {
+.service-card-new {
   flex: 1;
-  min-width: 200px;
-  padding: 28px 20px;
+  min-width: 280px;
+  max-width: 360px;
   background: rgba(44, 36, 22, 0.6);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(230, 126, 34, 0.15);
-  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  padding: 32px 24px;
   text-align: center;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(230, 126, 34, 0.2);
+  transition: all 0.4s ease;
+  cursor: pointer;
 }
 
-.step:hover {
+.service-card-new:hover {
   border-color: var(--saffron-primary);
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  background: rgba(44, 36, 22, 0.8);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.step-number {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 12px;
-  background: var(--gradient-saffron);
+.service-card-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: rgba(230, 126, 34, 0.15);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.service-card-new:hover .service-card-icon {
+  background: var(--gradient-saffron);
+  transform: scale(1.05);
+}
+
+.service-icon {
+  font-size: 2.5rem;
+  color: var(--saffron-primary);
+  transition: all 0.3s ease;
+}
+
+.service-card-new:hover .service-icon {
   color: #1A1108;
 }
 
-.step h3 {
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
+.service-card-title {
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-offwhite);
-  margin-bottom: 8px;
-  word-wrap: break-word;
+  margin-bottom: 12px;
 }
 
-.step p {
-  font-size: clamp(0.7rem, 2vw, 0.75rem);
+.service-card-description {
+  font-size: 0.85rem;
   color: var(--text-muted);
-  line-height: 1.4;
-  word-wrap: break-word;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
-.step-arrow {
-  font-size: 1.5rem;
+.service-card-features {
+  list-style: none;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.service-card-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 0.8rem;
+  color: var(--text-offwhite);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.service-card-features li:last-child {
+  border-bottom: none;
+}
+
+.feature-check {
   color: var(--saffron-primary);
-  opacity: 0.6;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.service-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #E67E22, #D35400);
+}
+
+.service-card-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* ========================================
@@ -791,7 +643,7 @@ body {
 ======================================== */
 
 .ancient-wisdom {
-  padding: 60px 20px;
+  padding: 80px 20px;
   background: linear-gradient(135deg, #2C2416 0%, #1A1108 100%);
 }
 
@@ -801,45 +653,45 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 40px;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .wisdom-content {
   flex: 2;
-  min-width: 250px;
+  min-width: 280px;
 }
 
 .wisdom-content h2 {
-  font-size: clamp(1.3rem, 4vw, 2rem);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
   font-weight: 700;
   color: var(--saffron-primary);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   word-wrap: break-word;
 }
 
 .wisdom-content p {
   color: var(--text-muted);
   line-height: 1.6;
-  margin-bottom: 20px;
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  margin-bottom: 25px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   word-wrap: break-word;
 }
 
 .wisdom-features {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 15px;
 }
 
 .wisdom-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   background: rgba(230, 126, 34, 0.1);
-  padding: 8px 16px;
+  padding: 10px 20px;
   border-radius: 40px;
-  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   word-wrap: break-word;
 }
 
@@ -851,16 +703,16 @@ body {
 .wisdom-symbol {
   flex: 1;
   text-align: center;
-  min-width: 180px;
+  min-width: 200px;
 }
 
 .rudraksha {
-  font-size: 3.5rem;
-  margin-bottom: 12px;
+  font-size: 4rem;
+  margin-bottom: 15px;
 }
 
 .shlok {
-  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  font-size: clamp(0.9rem, 2vw, 1rem);
   font-family: serif;
   color: var(--gold-sacred);
   font-style: italic;
@@ -872,7 +724,7 @@ body {
 ======================================== */
 
 .why-choose-us {
-  padding: 60px 20px;
+  padding: 80px 20px;
   background: var(--palm-bg);
 }
 
@@ -881,13 +733,13 @@ body {
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .feature {
   flex: 1;
-  min-width: 220px;
+  min-width: 250px;
   text-align: center;
   padding: 32px 24px;
   background: rgba(44, 36, 22, 0.5);
@@ -902,23 +754,23 @@ body {
 }
 
 .feature svg {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--saffron-primary);
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .feature h3 {
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-offwhite);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   word-wrap: break-word;
 }
 
 .feature p {
-  font-size: clamp(0.7rem, 2vw, 0.75rem);
+  font-size: 0.8rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.5;
   word-wrap: break-word;
 }
 
@@ -930,7 +782,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 60px;
 }
 
 .divine-loader {
@@ -938,9 +790,9 @@ body {
 }
 
 .loader-om {
-  font-size: 2rem;
+  font-size: 2.5rem;
   animation: omPulse 1.5s ease-in-out infinite;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 @keyframes omPulse {
@@ -949,7 +801,7 @@ body {
 }
 
 .divine-loader p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
 
@@ -957,10 +809,17 @@ body {
    RESPONSIVE DESIGN
 ======================================== */
 
+@media (max-width: 1200px) {
+  .fullscreen-banner {
+    height: 90vh;
+    min-height: 550px;
+  }
+}
+
 @media (max-width: 992px) {
   .fullscreen-banner {
-    height: 60vh;
-    min-height: 400px;
+    height: 80vh;
+    min-height: 500px;
   }
   
   .banner-arrow {
@@ -972,43 +831,42 @@ body {
   .banner-arrow.prev { left: 15px; }
   .banner-arrow.next { right: 15px; }
   
-  .hero-section {
-    padding: 50px 0 60px 0;
+  .our-astrologers-section {
+    padding: 60px 20px;
   }
   
-  .hero-features {
-    gap: 20px;
+  .service-cards-section {
+    padding: 60px 20px;
   }
   
-  .steps-container {
-    gap: 15px;
+  .service-cards-grid {
+    gap: 25px;
   }
   
-  .step {
-    min-width: 180px;
-    padding: 22px 16px;
+  .service-card-new {
+    min-width: 260px;
   }
 }
 
 @media (max-width: 768px) {
   .fullscreen-banner {
-    height: 50vh;
-    min-height: 350px;
+    height: 70vh;
+    min-height: 450px;
   }
   
   .banner-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
   }
   
   .banner-subtitle {
-    font-size: 0.75rem;
-    margin-bottom: 16px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
   }
   
   .banner-cta {
-    padding: 10px 24px;
-    font-size: 0.75rem;
+    padding: 12px 28px;
+    font-size: 0.85rem;
   }
   
   .banner-arrow {
@@ -1026,94 +884,22 @@ body {
     width: 50px;
   }
   
-  .stats-section {
-    padding: 20px 16px;
-  }
-  
-  .stats-container {
-    gap: 15px;
-  }
-  
-  .stat-divider {
-    height: 30px;
-  }
-  
-  .stat-label {
-    white-space: normal;
-  }
-  
-  .hero-section {
-    padding: 40px 0 50px 0;
-  }
-  
-  .trust-badge {
-    margin-bottom: 16px;
-    padding: 4px 12px;
-    font-size: 0.7rem;
-  }
-  
-  .hero-title-main {
-    font-size: 1.5rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.8rem;
-    margin-bottom: 24px;
-  }
-  
-  .hero-cta-group {
-    gap: 12px;
-    margin-bottom: 30px;
-  }
-  
-  .cta-btn {
-    padding: 10px 22px;
-    font-size: 0.8rem;
-  }
-  
-  .hero-features {
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 30px;
-  }
-  
-  .feature-divider {
-    display: none;
-  }
-  
-  .feature-item {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .feature-text h4,
-  .feature-text p {
-    white-space: normal;
-  }
-  
-  .scroll-indicator {
-    display: none;
-  }
-  
   .our-astrologers-section {
-    padding: 40px 16px;
+    padding: 50px 16px;
   }
   
-  .astrologer-avatars-grid {
-    gap: 16px;
+  .service-cards-section {
+    padding: 50px 16px;
   }
   
-  .step-arrow {
-    display: none;
-  }
-  
-  .steps-container {
+  .service-cards-grid {
     flex-direction: column;
+    align-items: center;
   }
   
-  .step {
-    width: 100%;
-    max-width: 300px;
+  .service-card-new {
+    min-width: 280px;
+    max-width: 100%;
   }
   
   .wisdom-container {
@@ -1131,30 +917,37 @@ body {
   
   .feature {
     min-width: 100%;
-    padding: 24px 20px;
+    padding: 28px 20px;
+  }
+  
+  .section-header {
+    margin-bottom: 40px;
+  }
+  
+  .section-header h2 {
+    font-size: 1.8rem;
   }
 }
 
 @media (max-width: 576px) {
   .fullscreen-banner {
-    height: 45vh;
-    min-height: 300px;
+    height: 65vh;
+    min-height: 400px;
   }
   
   .banner-title {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
   }
   
   .banner-subtitle {
-    font-size: 0.65rem;
-    margin-bottom: 12px;
+    font-size: 0.7rem;
+    margin-bottom: 16px;
   }
   
   .banner-cta {
-    padding: 8px 18px;
-    font-size: 0.65rem;
-    gap: 6px;
+    padding: 10px 22px;
+    font-size: 0.75rem;
   }
   
   .banner-arrow {
@@ -1167,7 +960,7 @@ body {
   .banner-arrow.next { right: 10px; }
   
   .banner-dots {
-    bottom: 12px;
+    bottom: 15px;
     gap: 8px;
   }
   
@@ -1180,50 +973,20 @@ body {
     width: 40px;
   }
   
-  .stats-container {
-    flex-direction: column;
-    gap: 16px;
+  .our-astrologers-section {
+    padding: 40px 16px;
   }
   
-  .stat-divider {
-    display: none;
+  .service-cards-section {
+    padding: 40px 16px;
   }
   
-  .stat-item {
-    width: 100%;
+  .ancient-wisdom {
+    padding: 50px 16px;
   }
   
-  .hero-section {
-    padding: 30px 0 40px 0;
-  }
-  
-  .hero-title-main {
-    font-size: 1.3rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.7rem;
-    margin-bottom: 20px;
-  }
-  
-  .cta-btn {
-    padding: 8px 18px;
-    font-size: 0.7rem;
-  }
-  
-  .astrologer-avatars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-  
-  .view-all-btn {
-    padding: 10px 24px;
-    font-size: 0.8rem;
-  }
-  
-  .section-header {
-    margin-bottom: 30px;
+  .why-choose-us {
+    padding: 50px 16px;
   }
   
   .section-header h2 {
@@ -1231,160 +994,92 @@ body {
   }
   
   .section-description {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
   
-  .how-it-works {
-    padding: 40px 16px;
+  .astrologer-profiles-grid {
+    gap: 20px;
   }
   
-  .ancient-wisdom {
-    padding: 40px 16px;
+  .astro-profile-card {
+    min-width: 100%;
+    max-width: 100%;
   }
   
-  .why-choose-us {
-    padding: 40px 16px;
+  .profile-card-inner {
+    padding: 20px 16px;
+  }
+  
+  .profile-avatar-frame {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .service-card-new {
+    padding: 24px 20px;
+  }
+  
+  .service-card-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .service-icon {
+    font-size: 2rem;
+  }
+  
+  .service-card-title {
+    font-size: 1.2rem;
   }
   
   .wisdom-content h2 {
-    font-size: 1.3rem;
-  }
-  
-  .wisdom-item {
-    font-size: 0.7rem;
-    padding: 6px 12px;
+    font-size: 1.5rem;
   }
   
   .rudraksha {
-    font-size: 2.5rem;
-  }
-  
-  .shlok {
-    font-size: 0.7rem;
+    font-size: 3rem;
   }
 }
 
 @media (max-width: 480px) {
   .fullscreen-banner {
-    height: 40vh;
-    min-height: 250px;
+    height: 60vh;
+    min-height: 350px;
   }
   
   .banner-title {
-    font-size: 1rem;
-    margin-bottom: 6px;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
   }
   
   .banner-subtitle {
-    font-size: 0.55rem;
-    margin-bottom: 10px;
+    font-size: 0.6rem;
+    margin-bottom: 14px;
   }
   
   .banner-cta {
-    padding: 6px 14px;
-    font-size: 0.55rem;
-    gap: 5px;
-  }
-  
-  .banner-arrow {
-    width: 25px;
-    height: 25px;
-    font-size: 0.85rem;
-  }
-  
-  .hero-title-main {
-    font-size: 1.1rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.65rem;
-  }
-  
-  .cta-btn {
-    padding: 7px 14px;
+    padding: 8px 18px;
     font-size: 0.65rem;
     gap: 6px;
   }
   
-  .trust-badge {
-    padding: 3px 10px;
-    font-size: 0.6rem;
-  }
-  
-  .astrologer-avatars-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  
-  .step {
-    padding: 20px 16px;
-  }
-  
-  .step-number {
-    width: 42px;
-    height: 42px;
-    font-size: 1.2rem;
-  }
-  
-  .step h3 {
-    font-size: 0.85rem;
-  }
-  
-  .step p {
-    font-size: 0.65rem;
-  }
-}
-
-@media (max-width: 375px) {
-  .fullscreen-banner {
-    height: 38vh;
-    min-height: 220px;
-  }
-  
-  .banner-title {
+  .banner-arrow {
+    width: 28px;
+    height: 28px;
     font-size: 0.9rem;
-  }
-  
-  .banner-subtitle {
-    font-size: 0.5rem;
-  }
-  
-  .banner-cta {
-    padding: 5px 12px;
-    font-size: 0.5rem;
-  }
-  
-  .hero-title-main {
-    font-size: 1rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.6rem;
-  }
-  
-  .cta-btn {
-    padding: 6px 12px;
-    font-size: 0.6rem;
-  }
-  
-  .feature-icon {
-    font-size: 1.1rem;
-  }
-  
-  .feature-text h4 {
-    font-size: 0.7rem;
-  }
-  
-  .feature-text p {
-    font-size: 0.55rem;
-  }
-  
-  .astro-mini-name {
-    font-size: 0.6rem;
   }
   
   .section-header h2 {
     font-size: 1.3rem;
+  }
+  
+  .service-card-features li {
+    font-size: 0.7rem;
+  }
+  
+  .service-card-btn {
+    padding: 10px 20px;
+    font-size: 0.8rem;
   }
 }
 
@@ -1393,7 +1088,6 @@ body {
   .particle,
   .divine-symbol,
   .scroll-wheel,
-  .avatar-pulse,
   .banner-progress,
   .banner-bg {
     animation: none;
@@ -1406,13 +1100,6 @@ body {
   
   .fullscreen-banner .banner-bg {
     transition: opacity 0.3s ease;
-  }
-  
-  .service-card:hover,
-  .feature:hover,
-  .step:hover,
-  .astro-avatar-card:hover {
-    transform: none;
   }
 }
 

@@ -15,7 +15,13 @@ import {
   FiTrendingUp,
   FiChevronRight,
   FiGlobe,
-  FiX
+  FiX,
+  FiMail,
+  FiPhoneCall,
+  FiVideo,
+  FiMapPin,
+  FiCalendar,
+  FiClock
 } from 'react-icons/fi';
 
 // Import components
@@ -165,28 +171,38 @@ const FullScreenBanner = () => {
   );
 };
 
-const StatsSection = () => {
-  const stats = [
-    { value: "50K+", label: "Happy Clients" },
-    { value: "100+", label: "Expert Astrologers" },
-    { value: "24/7", label: "Support Available" },
-    { value: "4.9", label: "Rating" }
-  ];
+// Service Card Component
+const ServiceCard = ({ icon, title, description, features, buttonText, buttonLink, buttonColor }) => {
+  const navigate = useNavigate();
 
   return (
-    <div className="stats-section">
-      <div className="stats-container">
-        {stats.map((stat, index) => (
-          <React.Fragment key={index}>
-            <div className="stat-item">
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-            {index < stats.length - 1 && <div className="stat-divider"></div>}
-          </React.Fragment>
+    <motion.div 
+      className="service-card-new"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ y: -8 }}
+    >
+      <div className="service-card-icon">{icon}</div>
+      <h3 className="service-card-title">{title}</h3>
+      <p className="service-card-description">{description}</p>
+      <ul className="service-card-features">
+        {features.map((feature, idx) => (
+          <li key={idx}>
+            <FiCheckCircle className="feature-check" />
+            <span>{feature}</span>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+      <button 
+        onClick={() => navigate(buttonLink)} 
+        className="service-card-btn"
+        style={{ background: buttonColor }}
+      >
+        {buttonText} <FiArrowRight />
+      </button>
+    </motion.div>
   );
 };
 
@@ -215,23 +231,21 @@ const LanguageSelector = () => {
       heroSubtitle: "Talk to certified astrologers for answers to love, career, wealth, and all life's questions",
       connectBtn: "Connect with Experts",
       freeKundli: "Free Kundli",
-      vedicExperts: "Vedic Experts",
-      certified: "100+ Certified Astrologers",
-      support: "24/7 Support",
-      supportText: "Anytime Consultation",
-      private: "100% Private",
-      privateText: "Secure & Confidential",
       ourExperts: "Our Experts",
       ourExpertsDesc: "Connect with our certified experts having decades of experience in Vedic astrology",
       viewAll: "View All Astrologers",
-      consultation: "Consultation Process",
-      consultationDesc: "Simple, fast, and effective — solutions in three easy steps",
-      chooseAstrologer: "Choose an Astrologer",
-      chooseDesc: "Select based on expertise and experience",
-      selectService: "Select Service",
-      selectDesc: "Chat, Call, or Video Call - as you prefer",
-      askSolutions: "Ask & Get Solutions",
-      askDesc: "Connect instantly and receive guidance",
+      chatTitle: "Chat with Astrologer",
+      chatDesc: "Get instant answers through private chat consultation",
+      chatFeatures: "Instant Response, Private Chat, 24/7 Available",
+      callTitle: "Call with Astrologer",
+      callDesc: "Speak directly with expert astrologers on call",
+      callFeatures: "Direct Conversation, Personalized Guidance, Recorded Sessions",
+      poojaTitle: "Book Pooja",
+      poojaDesc: "Book authentic Vedic poojas performed by expert priests",
+      poojaFeatures: "Vedic Rituals, Online Booking, Prasad Delivery",
+      chatBtn: "Start Chat",
+      callBtn: "Book Call",
+      poojaBtn: "Book Now",
       ancientTitle: "Ancient Tradition of Vedic Astrology",
       ancientDesc: "At Mantra Jyotish, we follow ancient Vedic texts and rich traditions of Indian astrology. Our astrologers are proficient in astrology knowledge passed down through generations.",
       authentic: "Authentic Astrology Calculations",
@@ -246,7 +260,11 @@ const LanguageSelector = () => {
       affordable: "Affordable Services",
       affordableDesc: "Starting from just ₹15 per minute",
       chooseLanguage: "Choose Your Preferred Language",
-      languageDesc: "Select a language to view the website in your preferred language"
+      languageDesc: "Select a language to view the website in your preferred language",
+      experience: "Years Exp",
+      languages: "Languages",
+      chat: "Chat",
+      call: "Call"
     },
     hi: {
       trustBadge: "50,000+ भक्तों द्वारा विश्वसनीय",
@@ -255,23 +273,21 @@ const LanguageSelector = () => {
       heroSubtitle: "प्रेम, करियर, धन और जीवन के हर सवाल के जवाब के लिए प्रमाणित ज्योतिषियों से बात करें",
       connectBtn: "विशेषज्ञों से जुड़ें",
       freeKundli: "मुफ्त कुंडली",
-      vedicExperts: "वैदिक विशेषज्ञ",
-      certified: "100+ प्रमाणित ज्योतिषी",
-      support: "24x7 सहायता",
-      supportText: "कभी भी परामर्श",
-      private: "100% निजी",
-      privateText: "सुरक्षित और गोपनीय",
       ourExperts: "हमारे विशेषज्ञ",
       ourExpertsDesc: "वैदिक ज्योतिष में दशकों के अनुभव वाले हमारे प्रमाणित विशेषज्ञों से जुड़ें",
       viewAll: "सभी ज्योतिषी देखें",
-      consultation: "परामर्श प्रक्रिया",
-      consultationDesc: "सरल, तेज़ और प्रभावी — तीन आसान चरणों में समाधान",
-      chooseAstrologer: "ज्योतिषी चुनें",
-      chooseDesc: "विशेषज्ञता और अनुभव के आधार पर चयन करें",
-      selectService: "सेवा चुनें",
-      selectDesc: "चैट, कॉल या वीडियो कॉल - जैसा आप चाहें",
-      askSolutions: "पूछें और समाधान पाएं",
-      askDesc: "तुरंत जुड़ें और मार्गदर्शन प्राप्त करें",
+      chatTitle: "ज्योतिषी से चैट करें",
+      chatDesc: "निजी चैट परामर्श के माध्यम से त्वरित उत्तर प्राप्त करें",
+      chatFeatures: "त्वरित प्रतिक्रिया, निजी चैट, 24/7 उपलब्ध",
+      callTitle: "ज्योतिषी से कॉल करें",
+      callDesc: "कॉल पर विशेषज्ञ ज्योतिषियों से सीधे बात करें",
+      callFeatures: "सीधी बातचीत, व्यक्तिगत मार्गदर्शन, रिकॉर्डेड सत्र",
+      poojaTitle: "पूजा बुक करें",
+      poojaDesc: "विशेषज्ञ पुजारियों द्वारा की जाने वाली प्रामाणिक वैदिक पूजाएं बुक करें",
+      poojaFeatures: "वैदिक अनुष्ठान, ऑनलाइन बुकिंग, प्रसाद डिलीवरी",
+      chatBtn: "चैट शुरू करें",
+      callBtn: "कॉल बुक करें",
+      poojaBtn: "अभी बुक करें",
       ancientTitle: "वैदिक ज्योतिष की प्राचीन परंपरा",
       ancientDesc: "मंत्र ज्योतिष में, हम प्राचीन वैदिक ग्रंथों और भारतीय ज्योतिष की समृद्ध परंपराओं का पालन करते हैं। हमारे ज्योतिषी पीढ़ियों से हस्तांतरित ज्योतिष ज्ञान में निपुण हैं।",
       authentic: "प्रामाणिक ज्योतिष गणना",
@@ -286,7 +302,11 @@ const LanguageSelector = () => {
       affordable: "किफायती सेवाएं",
       affordableDesc: "सिर्फ ₹15 प्रति मिनट से शुरू",
       chooseLanguage: "अपनी पसंदीदा भाषा चुनें",
-      languageDesc: "अपनी पसंदीदा भाषा में वेबसाइट देखने के लिए भाषा चुनें"
+      languageDesc: "अपनी पसंदीदा भाषा में वेबसाइट देखने के लिए भाषा चुनें",
+      experience: "वर्षों का अनुभव",
+      languages: "भाषाएँ",
+      chat: "चैट",
+      call: "कॉल"
     },
     te: {
       trustBadge: "50,000+ భక్తులచే నమ్మకం",
@@ -295,23 +315,21 @@ const LanguageSelector = () => {
       heroSubtitle: "ప్రేమ, కెరీర్, సంపద మరియు జీవితంలోని ప్రతి ప్రశ్నకు సమాధానాల కోసం సర్టిఫైడ్ జ్యోతిష్కులతో మాట్లాడండి",
       connectBtn: "నిపుణులతో కనెక్ట్ అవ్వండి",
       freeKundli: "ఉచిత కుండలి",
-      vedicExperts: "వేద నిపుణులు",
-      certified: "100+ సర్టిఫైడ్ జ్యోతిష్కులు",
-      support: "24/7 మద్దతు",
-      supportText: "ఎప్పుడైనా సంప్రదింపులు",
-      private: "100% ప్రైవేట్",
-      privateText: "సురక్షితం మరియు గోప్యం",
       ourExperts: "మా నిపుణులు",
       ourExpertsDesc: "వేద జ్యోతిషంలో దశాబ్దాల అనుభవం ఉన్న మా సర్టిఫైడ్ నిపుణులతో కనెక్ట్ అవ్వండి",
       viewAll: "అందరి జ్యోతిష్కులను చూడండి",
-      consultation: "సంప్రదింపుల ప్రక్రియ",
-      consultationDesc: "సులభం, వేగవంతం మరియు ప్రభావవంతం — మూడు సులభ దశల్లో పరిష్కారాలు",
-      chooseAstrologer: "జ్యోతిష్కుని ఎంచుకోండి",
-      chooseDesc: "నైపుణ్యం మరియు అనుభవం ఆధారంగా ఎంచుకోండి",
-      selectService: "సేవను ఎంచుకోండి",
-      selectDesc: "చాట్, కాల్ లేదా వీడియో కాల్ - మీ ప్రాధాన్యత ప్రకారం",
-      askSolutions: "అడగండి & పరిష్కారాలు పొందండి",
-      askDesc: "తక్షణమే కనెక్ట్ అవ్వండి మరియు మార్గదర్శకత్వం పొందండి",
+      chatTitle: "జ్యోతిష్కునితో చాట్ చేయండి",
+      chatDesc: "ప్రైవేట్ చాట్ కన్సల్టేషన్ ద్వారా తక్షణ సమాధానాలు పొందండి",
+      chatFeatures: "తక్షణ ప్రతిస్పందన, ప్రైవేట్ చాట్, 24/7 అందుబాటులో",
+      callTitle: "జ్యోతిష్కునితో కాల్ చేయండి",
+      callDesc: "కాల్లో నిపుణుల జ్యోతిష్కులతో నేరుగా మాట్లాడండి",
+      callFeatures: "నేరుగా సంభాషణ, వ్యక్తిగత మార్గదర్శకత్వం, రికార్డ్ చేసిన సెషన్లు",
+      poojaTitle: "పూజ బుక్ చేయండి",
+      poojaDesc: "నిపుణుల పూజారులచే నిర్వహించబడే ప్రామాణిక వేద పూజలను బుక్ చేయండి",
+      poojaFeatures: "వేద ఆచారాలు, ఆన్లైన్ బుకింగ్, ప్రసాద్ డెలివరీ",
+      chatBtn: "చాట్ ప్రారంభించండి",
+      callBtn: "కాల్ బుక్ చేయండి",
+      poojaBtn: "ఇప్పుడే బుక్ చేయండి",
       ancientTitle: "వేద జ్యోతిషం యొక్క ప్రాచీన సంప్రదాయం",
       ancientDesc: "మంత్ర జ్యోతిష్లో, మేము ప్రాచీన వేద గ్రంథాలను మరియు భారతీయ జ్యోతిషం యొక్క సంపన్న సంప్రదాయాలను అనుసరిస్తాము. మా జ్యోతిష్కులు తరాలుగా బదిలీ చేయబడిన జ్యోతిష జ్ఞానంలో ప్రావీణ్యం కలిగి ఉంటారు.",
       authentic: "ప్రామాణిక జ్యోతిష గణనలు",
@@ -326,7 +344,11 @@ const LanguageSelector = () => {
       affordable: "సరసమైన సేవలు",
       affordableDesc: "కేవలం ₹15 ప్రతి నిమిషం నుండి ప్రారంభం",
       chooseLanguage: "మీ ప్రాధాన్య భాషను ఎంచుకోండి",
-      languageDesc: "మీ ప్రాధాన్య భాషలో వెబ్సైట్ను చూడటానికి భాషను ఎంచుకోండి"
+      languageDesc: "మీ ప్రాధాన్య భాషలో వెబ్సైట్ను చూడటానికి భాషను ఎంచుకోండి",
+      experience: "సంవత్సరాల అనుభవం",
+      languages: "భాషలు",
+      chat: "చాట్",
+      call: "కాల్"
     }
   };
 
@@ -342,7 +364,6 @@ const LanguageSelector = () => {
     const t = translations[langCode];
     if (!t) return;
     
-    // Update all elements with data-translate attribute
     document.querySelectorAll("[data-translate]").forEach((el) => {
       const key = el.getAttribute("data-translate");
       if (t[key]) {
@@ -464,32 +485,76 @@ const FloatingSymbols = () => {
   );
 };
 
-const AstrologerAvatarCard = ({ astrologer }) => {
+const AstrologerProfileCard = ({ astrologer }) => {
   const navigate = useNavigate();
+  
+  const name = astrologer.name || "Astrologer";
+  const experience = astrologer.experience || Math.floor(Math.random() * 20) + 5;
+  const languages = astrologer.languages || ["Hindi", "English"];
+  const price = astrologer.price || "15";
+  const rating = astrologer.rating || "4.9";
+  const reviews = astrologer.reviews || Math.floor(Math.random() * 500) + 100;
 
-  const handleClick = () => {
-    navigate('/astro-connect');
+  const handleConnect = (type) => {
+    navigate('/astro-connect', { state: { selectedAstrologer: astrologer, connectType: type } });
   };
 
   return (
     <motion.div 
-      className="astro-avatar-card"
-      initial={{ opacity: 0, y: 20 }}
+      className="astro-profile-card"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
-      whileHover={{ y: -4 }}
-      onClick={handleClick}
+      transition={{ duration: 0.5 }}
+      whileHover={{ y: -8 }}
     >
-      <div className="avatar-frame">
-        <img 
-          src={astrologer.profilePhoto || astrologer.user_profile || `https://ui-avatars.com/api/?name=${encodeURIComponent(astrologer.name)}&background=E67E22&color=fff&bold=true&size=100`}
-          alt={astrologer.name}
-          className="astro-mini-avatar"
-        />
-        <div className="avatar-pulse"></div>
+      <div className="profile-card-inner">
+        <div className="profile-avatar-section">
+          <div className="profile-avatar-frame">
+            <img 
+              src={astrologer.profilePhoto || astrologer.user_profile || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=E67E22&color=fff&bold=true&size=120`}
+              alt={name}
+              className="profile-avatar"
+            />
+            <div className="avatar-status-badge online"></div>
+          </div>
+          <div className="profile-rating">
+            <FiStar className="star-icon" /> {rating} ({reviews}+ reviews)
+          </div>
+        </div>
+
+        <div className="profile-info-section">
+          <h3 className="profile-name">{name}</h3>
+          <p className="profile-expertise">{astrologer.specialization || "Vedic Astrology Expert"}</p>
+          
+          <div className="profile-stats">
+            <div className="profile-stat">
+              <span className="stat-value">{experience}+</span>
+              <span className="stat-label" data-translate="experience">Years Exp</span>
+            </div>
+            <div className="profile-stat-divider"></div>
+            <div className="profile-stat">
+              <span className="stat-value">{languages.slice(0, 2).join(", ")}</span>
+              <span className="stat-label" data-translate="languages">Languages</span>
+            </div>
+          </div>
+
+          <div className="profile-price">
+            <span className="price-currency">₹</span>
+            <span className="price-value">{price}</span>
+            <span className="price-period">/min</span>
+          </div>
+
+          <div className="profile-action-buttons">
+            <button onClick={() => handleConnect('chat')} className="action-btn chat-btn">
+              <FiMail /> <span data-translate="chat">Chat</span>
+            </button>
+            <button onClick={() => handleConnect('call')} className="action-btn call-btn">
+              <FiPhoneCall /> <span data-translate="call">Call</span>
+            </button>
+          </div>
+        </div>
       </div>
-      <h4 className="astro-mini-name">{astrologer.name.split(' ')[0]}</h4>
     </motion.div>
   );
 };
@@ -497,7 +562,7 @@ const AstrologerAvatarCard = ({ astrologer }) => {
 const HomePage = () => {
   const navigate = useNavigate();
   const { data: astrologers = [], isLoading } = useGetAstrologersQuery();
-  const featuredAstrologers = astrologers.slice(0, 8);
+  const featuredAstrologers = astrologers.slice(0, 6);
 
   const handleViewAll = () => {
     navigate('/astro-connect');
@@ -507,120 +572,44 @@ const HomePage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Service cards data
+  const serviceCards = [
+    {
+      icon: <FiMail className="service-icon" />,
+      title: "Chat with Astrologer",
+      description: "Get instant answers through private chat consultation with expert astrologers",
+      features: ["Instant Response", "Private & Secure Chat", "24/7 Availability", "Affordable Rates"],
+      buttonText: "Start Chat",
+      buttonLink: "/astro-connect",
+      buttonColor: "linear-gradient(135deg, #2196F3, #1976D2)"
+    },
+    {
+      icon: <FiPhoneCall className="service-icon" />,
+      title: "Call with Astrologer",
+      description: "Speak directly with expert astrologers on call for personalized guidance",
+      features: ["Direct Conversation", "Personalized Guidance", "Recorded Sessions", "Flexible Timing"],
+      buttonText: "Book Call",
+      buttonLink: "/astro-connect",
+      buttonColor: "linear-gradient(135deg, #4CAF50, #388E3C)"
+    },
+    {
+      icon: <FiCalendar className="service-icon" />,
+      title: "Book Pooja",
+      description: "Book authentic Vedic poojas performed by expert priests from the comfort of your home",
+      features: ["Vedic Rituals", "Online Booking", "Prasad Delivery", "Live Telecast Available"],
+      buttonText: "Book Now",
+      buttonLink: "/pooja",
+      buttonColor: "linear-gradient(135deg, #E67E22, #D35400)"
+    }
+  ];
+
   return (
     <>
       <LanguageSelector />
       
       <FullScreenBanner />
-      <StatsSection />
 
-      <section className="hero-section">
-        <div className="divine-background">
-          <div className="mandala-bg"></div>
-          <div className="om-bg"></div>
-        </div>
-
-        <CosmicParticles />
-        <FloatingSymbols />
-
-        <div className="hero-vignette"></div>
-
-        <div className="hero-container">
-          <motion.div 
-            className="hero-content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2 }}
-          >
-            <motion.div 
-              className="trust-badge"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              <span className="badge-icon">⭐</span>
-              <span data-translate="trustBadge">Trusted by 50,000+ Devotees</span>
-            </motion.div>
-
-            <motion.h1 
-              className="hero-title"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              <span className="hero-title-main">
-                <span data-translate="heroTitle">Connect with</span>{' '}
-                <span className="hero-title-highlight" data-translate="heroHighlight">Vedic Experts</span>
-              </span>
-            </motion.h1>
-
-            <motion.p 
-              className="hero-subtitle"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              data-translate="heroSubtitle"
-            >
-              Talk to certified astrologers for answers to love, career, wealth, and all life's questions
-            </motion.p>
-
-            <motion.div 
-              className="hero-cta-group"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 0.5 }}
-            >
-              <button onClick={() => navigate('/astro-connect')} className="cta-btn primary">
-                <span data-translate="connectBtn">Connect with Experts</span>
-                <FiArrowRight />
-              </button>
-              <Link to="/horoscope" className="cta-btn secondary">
-                <FiSun />
-                <span data-translate="freeKundli">Free Kundli</span>
-              </Link>
-            </motion.div>
-
-            <motion.div 
-              className="hero-features"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
-            >
-              <div className="feature-item">
-                <div className="feature-icon">🔮</div>
-                <div className="feature-text">
-                  <h4 data-translate="vedicExperts">Vedic Experts</h4>
-                  <p data-translate="certified">100+ Certified Astrologers</p>
-                </div>
-              </div>
-              <div className="feature-divider"></div>
-              <div className="feature-item">
-                <div className="feature-icon">💬</div>
-                <div className="feature-text">
-                  <h4 data-translate="support">24/7 Support</h4>
-                  <p data-translate="supportText">Anytime Consultation</p>
-                </div>
-              </div>
-              <div className="feature-divider"></div>
-              <div className="feature-item">
-                <div className="feature-icon">🔒</div>
-                <div className="feature-text">
-                  <h4 data-translate="private">100% Private</h4>
-                  <p data-translate="privateText">Secure & Confidential</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        <div className="scroll-indicator" onClick={handleScrollToTop}>
-          <div className="scroll-mouse">
-            <div className="scroll-wheel"></div>
-          </div>
-          <p>SCROLL</p>
-        </div>
-      </section>
-
+      {/* Our Astrologers Section - Directly Below Banner */}
       <section className="our-astrologers-section">
         <div className="section-header">
           <div className="header-badge">
@@ -642,9 +631,9 @@ const HomePage = () => {
           </div>
         ) : (
           <>
-            <div className="astrologer-avatars-grid">
+            <div className="astrologer-profiles-grid">
               {featuredAstrologers.map((astro) => (
-                <AstrologerAvatarCard key={astro._id} astrologer={astro} />
+                <AstrologerProfileCard key={astro._id} astrologer={astro} />
               ))}
             </div>
 
@@ -657,29 +646,23 @@ const HomePage = () => {
         )}
       </section>
 
-      <section className="how-it-works">
+      {/* New Service Cards Section - Replaces removed features and consultation process */}
+      <section className="service-cards-section">
         <div className="section-header">
-          <h2 data-translate="consultation">Consultation Process</h2>
-          <p data-translate="consultationDesc">Simple, fast, and effective — solutions in three easy steps</p>
+          <div className="header-badge">
+            <FiSun />
+            <span>Our Services</span>
+          </div>
+          <h2>Choose Your <span className="title-highlight">Preferred Service</span></h2>
+          <p className="section-description">
+            Get personalized solutions through chat, call, or book authentic Vedic poojas
+          </p>
         </div>
-        <div className="steps-container">
-          <div className="step">
-            <div className="step-number">1</div>
-            <h3 data-translate="chooseAstrologer">Choose an Astrologer</h3>
-            <p data-translate="chooseDesc">Select based on expertise and experience</p>
-          </div>
-          <div className="step-arrow">→</div>
-          <div className="step">
-            <div className="step-number">2</div>
-            <h3 data-translate="selectService">Select Service</h3>
-            <p data-translate="selectDesc">Chat, Call, or Video Call - as you prefer</p>
-          </div>
-          <div className="step-arrow">→</div>
-          <div className="step">
-            <div className="step-number">3</div>
-            <h3 data-translate="askSolutions">Ask & Get Solutions</h3>
-            <p data-translate="askDesc">Connect instantly and receive guidance</p>
-          </div>
+
+        <div className="service-cards-grid">
+          {serviceCards.map((card, index) => (
+            <ServiceCard key={index} {...card} />
+          ))}
         </div>
       </section>
 

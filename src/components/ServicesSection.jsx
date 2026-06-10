@@ -139,7 +139,7 @@ const ServicesSection = () => {
             </h2>
             
           </div>
-
+          
           <motion.div className="services-grid complimentary-grid">
             {complimentaryServicesData.map((service, index) => (
               <motion.div
@@ -171,13 +171,13 @@ const ServicesSection = () => {
                 </p>
                 
                 <div className="service-footer">
-                  <span className="learn-more">Explore Now</span>
+                  
                   <FiZap className="arrow-icon" />
                 </div>
               </motion.div>
             ))}
           </motion.div>
-        </motion.div>
+        </motion.div> 
       </div>
 
       {selectedService && <Modal service={selectedService} onClose={closeModal} language={language} />}
