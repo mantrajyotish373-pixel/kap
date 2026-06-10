@@ -735,9 +735,7 @@ const HomePage = () => {
       </section>
 
       <ServicesSection />
-      <DailyInsights />
-      <ConsultationTopics />
-      <NakshatrasSection />
+    
       <Testimonials />
       <BlogSection />
       
