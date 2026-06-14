@@ -136,7 +136,6 @@ const Navbar = () => {
 
   const navItems = [
     { to: "/", icon: <FaHome />, text: "Home" },
-    { to: "/horoscope", icon: <BsStars />, text: "Horoscope" },
     { to: "/astro-connect", icon: <BsChatDots />, text: "Astro Connect" },
     { to: "/pooja", icon: <FaHandsHelping />, text: "Pooja & Rituals" },
     { to: "/shop", icon: <FaShoppingCart />, text: "Astro Shop" },
@@ -193,27 +192,8 @@ const Navbar = () => {
 
           {/* Right Side */}
           <div className="nav-right">
-            {/* Quick Action Buttons */}
-            <div className="quick-actions">
-              <motion.button 
-                className="quick-action-btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => navigate('/astro-connect')}
-                title="Talk to Astrologer"
-              >
-                <BsChatDots />
-              </motion.button>
-              <motion.button 
-                className="quick-action-btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => navigate('/horoscope')}
-                title="Free Kundli"
-              >
-                <GiStarsStack />
-              </motion.button>
-            </div>
+            
+            
 
             {/* PROFILE BUTTON - Always redirects to /user-profile */}
             <motion.button 

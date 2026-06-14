@@ -21,7 +21,12 @@ import {
   FiVideo,
   FiMapPin,
   FiCalendar,
-  FiClock
+  FiClock,
+  FiUsers,
+  FiMessageCircle,
+  FiHeadphones,
+  FiBookOpen,
+  FiCompass
 } from 'react-icons/fi';
 
 // Import components
@@ -39,7 +44,7 @@ import './HomePage.css';
 const bannerSlides = [
   {
     id: 1,
-    image: "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    image: "/home/pranjal-maithani/Pranjal/kalpjyotish-frontend/src/data/banner1.png",
     title: "Connect with",
     highlight: "Trusted Astrologers",
     subtitle: "Get answers to love, career, wealth, and life's every question",
@@ -48,7 +53,7 @@ const bannerSlides = [
   },
   {
     id: 2,
-    image: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    image: "/home/pranjal-maithani/Pranjal/kalpjyotish-frontend/src/data/banner2.png",
     title: "Ancient Vedic",
     highlight: "Astrology Experts",
     subtitle: "Discover your future - Career, Health, Wealth, and Success",
@@ -66,11 +71,39 @@ const bannerSlides = [
   }
 ];
 
+// Updated FullScreenBanner component in HomePage.jsx
+
 const FullScreenBanner = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [imageErrors, setImageErrors] = useState({});
   const intervalRef = useRef(null);
   const navigate = useNavigate();
+
+  // Banner images from data folder
+  const bannerSlides = [
+    {
+      id: 1,
+      image: "/src/data/banner1.png",
+      fallbackImage: "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      title: "Connect with Trusted Astrologers",
+      ctaLink: "/astro-connect"
+    },
+    {
+      id: 2,
+      image: "/src/data/banner2.png",
+      fallbackImage: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      title: "Ancient Vedic Astrology Experts",
+      ctaLink: "/horoscope"
+    },
+    {
+      id: 3,
+      image: "/src/data/banner3.png",
+      fallbackImage: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      title: "24/7 Spiritual Guidance Available",
+      ctaLink: "/astro-connect"
+    }
+  ];
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
@@ -126,8 +159,19 @@ const FullScreenBanner = () => {
 
   const currentSlide = bannerSlides[currentIndex];
 
-  const handleCtaClick = () => {
+  const handleBannerClick = () => {
     navigate(currentSlide.ctaLink);
+  };
+
+  const getImageUrl = (slide) => {
+    if (imageErrors[slide.id]) {
+      return slide.fallbackImage;
+    }
+    return slide.image;
+  };
+
+  const handleImageError = (slideId) => {
+    setImageErrors(prev => ({ ...prev, [slideId]: true }));
   };
 
   return (
@@ -136,37 +180,53 @@ const FullScreenBanner = () => {
         <div
           key={slide.id}
           className={`banner-bg ${index === currentIndex ? 'active' : ''}`}
-          style={{ backgroundImage: `url(${slide.image})` }}
+          style={{ 
+            backgroundImage: `url(${getImageUrl(slide)})`,
+            backgroundColor: '#FFF5F0'
+          }}
+          onError={() => handleImageError(slide.id)}
         />
       ))}
-      <div className="banner-overlay-gradient"></div>
+      
+      <div className="banner-overlay-light"></div>
+      <div className="banner-clickable-area" onClick={handleBannerClick}></div>
 
-      <div className="banner-content">
-        <div className="banner-text-container">
-          <h1 className="banner-title">
-            {currentSlide.title} <span className="banner-highlight">{currentSlide.highlight}</span>
-          </h1>
-          <p className="banner-subtitle">{currentSlide.subtitle}</p>
-          <button onClick={handleCtaClick} className="banner-cta">
-            {currentSlide.ctaText} <FiArrowRight />
-          </button>
-        </div>
-      </div>
+      {/* Navigation Arrows */}
+      <button className="banner-arrow prev" onClick={(e) => { e.stopPropagation(); goToPrev(); }}>‹</button>
+      <button className="banner-arrow next" onClick={(e) => { e.stopPropagation(); goToNext(); }}>›</button>
 
-      <button className="banner-arrow prev" onClick={goToPrev}>‹</button>
-      <button className="banner-arrow next" onClick={goToNext}>›</button>
-
+      {/* Dots Navigation */}
       <div className="banner-dots">
         {bannerSlides.map((_, index) => (
           <button
             key={index}
             className={`banner-dot ${index === currentIndex ? 'active' : ''}`}
-            onClick={() => goToSlide(index)}
+            onClick={(e) => { e.stopPropagation(); goToSlide(index); }}
           />
         ))}
       </div>
 
       <div className="banner-progress" style={{ width: `${progress}%` }} />
+    </div>
+  );
+};
+
+// Professional Logo Component
+const Logo = () => {
+  return (
+    <div className="logo-container">
+      <div className="logo-icon">
+        <div className="logo-mandala">
+          <span className="logo-om">🕉️</span>
+          <div className="mandala-dots">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+      <div className="logo-text">
+        <span className="logo-name">Mantra<span className="logo-highlight">Jyotish</span></span>
+        <span className="logo-tagline">Vedic Astrology Center</span>
+      </div>
     </div>
   );
 };
@@ -184,7 +244,9 @@ const ServiceCard = ({ icon, title, description, features, buttonText, buttonLin
       transition={{ duration: 0.5 }}
       whileHover={{ y: -8 }}
     >
-      <div className="service-card-icon">{icon}</div>
+      <div className="service-card-icon" style={{ background: buttonColor }}>
+        {icon}
+      </div>
       <h3 className="service-card-title">{title}</h3>
       <p className="service-card-description">{description}</p>
       <ul className="service-card-features">
@@ -428,63 +490,7 @@ const LanguageSelector = () => {
     </>
   );
 };
-
-const CosmicParticles = () => {
-  const particleCount = 40;
-  const particles = Array.from({ length: particleCount }, (_, i) => ({
-    id: i,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    size: Math.random() * 2 + 1,
-    duration: Math.random() * 25 + 20,
-    delay: Math.random() * 8,
-    opacity: Math.random() * 0.25 + 0.05
-  }));
-
-  return (
-    <div className="cosmic-particles">
-      {particles.map((particle) => (
-        <div
-          key={particle.id}
-          className="particle"
-          style={{
-            left: `${particle.left}%`,
-            top: `${particle.top}%`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            animationDuration: `${particle.duration}s`,
-            animationDelay: `${particle.delay}s`,
-            opacity: particle.opacity
-          }}
-        />
-      ))}
-    </div>
-  );
-};
-
-const FloatingSymbols = () => {
-  const symbols = ["🕉️", "🔱", "🪔", "🌙", "☀️", "🔔"];
-
-  return (
-    <div className="floating-symbols">
-      {symbols.map((symbol, index) => (
-        <div
-          key={index}
-          className="divine-symbol"
-          style={{
-            animationDelay: `${index * 1.2}s`,
-            animationDuration: `${30 + index * 3}s`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`
-          }}
-        >
-          {symbol}
-        </div>
-      ))}
-    </div>
-  );
-};
-
+// Update the AstrologerProfileCard component in HomePage.jsx
 const AstrologerProfileCard = ({ astrologer }) => {
   const navigate = useNavigate();
   
@@ -507,12 +513,13 @@ const AstrologerProfileCard = ({ astrologer }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -8 }}
+      style={{ opacity: 1 }} // Force opacity
     >
       <div className="profile-card-inner">
         <div className="profile-avatar-section">
           <div className="profile-avatar-frame">
             <img 
-              src={astrologer.profilePhoto || astrologer.user_profile || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=E67E22&color=fff&bold=true&size=120`}
+              src={astrologer.profilePhoto || astrologer.user_profile || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=4361EE&color=fff&bold=true&size=120`}
               alt={name}
               className="profile-avatar"
             />
@@ -524,7 +531,10 @@ const AstrologerProfileCard = ({ astrologer }) => {
         </div>
 
         <div className="profile-info-section">
-          <h3 className="profile-name">{name}</h3>
+          {/* FORCE INLINE STYLE FOR NAME */}
+          <h3 className="profile-name" style={{ color: '#000000', opacity: 1, fontWeight: 800 }}>
+            {name}
+          </h3>
           <p className="profile-expertise">{astrologer.specialization || "Vedic Astrology Expert"}</p>
           
           <div className="profile-stats">
@@ -539,18 +549,23 @@ const AstrologerProfileCard = ({ astrologer }) => {
             </div>
           </div>
 
-          <div className="profile-price">
-            <span className="price-currency">₹</span>
-            <span className="price-value">{price}</span>
-            <span className="price-period">/min</span>
+          {/* FORCE INLINE STYLES FOR PRICE */}
+          <div className="profile-price" style={{ opacity: 1 }}>
+            <span className="price-currency" style={{ color: '#4361EE', fontWeight: 700 }}>₹</span>
+            <span className="price-value" style={{ color: '#000000', opacity: 1, fontWeight: 900, fontSize: '1.6rem' }}>
+              {price}
+            </span>
+            <span className="price-period" style={{ color: '#000000', opacity: 1, fontWeight: 700 }}>
+              /min
+            </span>
           </div>
 
           <div className="profile-action-buttons">
             <button onClick={() => handleConnect('chat')} className="action-btn chat-btn">
-              <FiMail /> <span data-translate="chat">Chat</span>
+              <FiMessageCircle /> <span data-translate="chat">Chat</span>
             </button>
             <button onClick={() => handleConnect('call')} className="action-btn call-btn">
-              <FiPhoneCall /> <span data-translate="call">Call</span>
+              <FiHeadphones /> <span data-translate="call">Call</span>
             </button>
           </div>
         </div>
@@ -558,7 +573,6 @@ const AstrologerProfileCard = ({ astrologer }) => {
     </motion.div>
   );
 };
-
 const HomePage = () => {
   const navigate = useNavigate();
   const { data: astrologers = [], isLoading } = useGetAstrologersQuery();
@@ -568,29 +582,25 @@ const HomePage = () => {
     navigate('/astro-connect');
   };
 
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   // Service cards data
   const serviceCards = [
     {
-      icon: <FiMail className="service-icon" />,
+      icon: <FiMessageCircle className="service-icon" />,
       title: "Chat with Astrologer",
       description: "Get instant answers through private chat consultation with expert astrologers",
       features: ["Instant Response", "Private & Secure Chat", "24/7 Availability", "Affordable Rates"],
       buttonText: "Start Chat",
       buttonLink: "/astro-connect",
-      buttonColor: "linear-gradient(135deg, #2196F3, #1976D2)"
+      buttonColor: "linear-gradient(135deg, #6366F1, #4F46E5)"
     },
     {
-      icon: <FiPhoneCall className="service-icon" />,
+      icon: <FiHeadphones className="service-icon" />,
       title: "Call with Astrologer",
       description: "Speak directly with expert astrologers on call for personalized guidance",
       features: ["Direct Conversation", "Personalized Guidance", "Recorded Sessions", "Flexible Timing"],
       buttonText: "Book Call",
       buttonLink: "/astro-connect",
-      buttonColor: "linear-gradient(135deg, #4CAF50, #388E3C)"
+      buttonColor: "linear-gradient(135deg, #10B981, #059669)"
     },
     {
       icon: <FiCalendar className="service-icon" />,
@@ -599,7 +609,7 @@ const HomePage = () => {
       features: ["Vedic Rituals", "Online Booking", "Prasad Delivery", "Live Telecast Available"],
       buttonText: "Book Now",
       buttonLink: "/pooja",
-      buttonColor: "linear-gradient(135deg, #E67E22, #D35400)"
+      buttonColor: "linear-gradient(135deg, #F59E0B, #D97706)"
     }
   ];
 
@@ -612,14 +622,9 @@ const HomePage = () => {
       {/* Our Astrologers Section - Directly Below Banner */}
       <section className="our-astrologers-section">
         <div className="section-header">
-          <div className="header-badge">
-            <FiStar />
-            <span data-translate="ourExperts">Our Experts</span>
-          </div>
+         
           <h2><span data-translate="ourExperts">Our</span> <span className="title-highlight" data-translate="ourExperts">Astrologers</span></h2>
-          <p className="section-description" data-translate="ourExpertsDesc">
-            Connect with our certified experts having decades of experience in Vedic astrology
-          </p>
+         
         </div>
 
         {isLoading ? (
@@ -646,17 +651,12 @@ const HomePage = () => {
         )}
       </section>
 
-      {/* New Service Cards Section - Replaces removed features and consultation process */}
+      {/* New Service Cards Section */}
       <section className="service-cards-section">
         <div className="section-header">
-          <div className="header-badge">
-            <FiSun />
-            <span>Our Services</span>
-          </div>
+         
           <h2>Choose Your <span className="title-highlight">Preferred Service</span></h2>
-          <p className="section-description">
-            Get personalized solutions through chat, call, or book authentic Vedic poojas
-          </p>
+          
         </div>
 
         <div className="service-cards-grid">
@@ -669,6 +669,7 @@ const HomePage = () => {
       <section className="ancient-wisdom">
         <div className="wisdom-container">
           <div className="wisdom-content">
+            <div className="wisdom-badge">Vedic Heritage</div>
             <h2 data-translate="ancientTitle">Ancient Tradition of Vedic Astrology</h2>
             <p data-translate="ancientDesc">At Mantra Jyotish, we follow ancient Vedic texts and rich traditions of Indian astrology. Our astrologers are proficient in astrology knowledge passed down through generations.</p>
             <div className="wisdom-features">
@@ -686,9 +687,19 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className="wisdom-symbol">
-            <div className="rudraksha">🔱</div>
-            <div className="shlok">"As is the atom, so is the universe"</div>
+          <div className="wisdom-stats">
+            <div className="stat-circle">
+              <span className="stat-number">5000+</span>
+              <span className="stat-label">Happy Clients</span>
+            </div>
+            <div className="stat-circle">
+              <span className="stat-number">100+</span>
+              <span className="stat-label">Expert Astrologers</span>
+            </div>
+            <div className="stat-circle">
+              <span className="stat-number">50K+</span>
+              <span className="stat-label">Consultations</span>
+            </div>
           </div>
         </div>
       </section>
@@ -700,19 +711,50 @@ const HomePage = () => {
         </div>
         <div className="features-grid">
           <div className="feature">
-            <FiShield />
+            <div className="feature-icon">
+              <FiShield />
+            </div>
             <h3 data-translate="confidential">100% Confidential</h3>
             <p data-translate="confidentialDesc">Your conversations are completely secure and private</p>
           </div>
           <div className="feature">
-            <FiAward />
+            <div className="feature-icon">
+              <FiAward />
+            </div>
             <h3 data-translate="certifiedExperts">Certified Experts</h3>
             <p data-translate="certifiedDesc">All astrologers are certified in astrology</p>
           </div>
           <div className="feature">
-            <FiTrendingUp />
+            <div className="feature-icon">
+              <FiTrendingUp />
+            </div>
             <h3 data-translate="affordable">Affordable Services</h3>
             <p data-translate="affordableDesc">Starting from just ₹15 per minute</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badge Section */}
+      <section className="trust-badge-section">
+        <div className="trust-badge-container">
+          <div className="trust-badge-content">
+            <div className="trust-icon">🕉️</div>
+            <h3>Trusted by <span className="highlight">50,000+</span> Devotees Worldwide</h3>
+            <p>Join our community of satisfied customers who have found answers and solutions through our expert astrologers</p>
+            <div className="trust-stats">
+              <div className="trust-stat">
+                <span className="trust-num">4.9</span>
+                <span className="trust-label">⭐ Rating</span>
+              </div>
+              <div className="trust-stat">
+                <span className="trust-num">24/7</span>
+                <span className="trust-label">Support</span>
+              </div>
+              <div className="trust-stat">
+                <span className="trust-num">100%</span>
+                <span className="trust-label">Secure</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

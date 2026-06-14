@@ -1,24 +1,27 @@
+/* src/pages/AstrologerList.css - PINK/CREAM PROFESSIONAL THEME - FIXED */
+
 /* ========================================
-   ROOT THEME - PROFESSIONAL ASTROLOGY
+   ROOT THEME - PINK/CREAM ASTROLOGY THEME
 ======================================== */
 
 :root {
   --astro-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --astro-card-bg: linear-gradient(145deg, #2a1644 0%, #1f1337 100%);
-  --astro-border-color: rgba(255, 204, 0, 0.2);
-  --astro-primary: #ffd700;
-  --astro-primary-dark: #f59e0b;
-  --astro-primary-light: #fef3c7;
-  --astro-secondary: #6b21e5;
-  --astro-secondary-dark: #4c1d95;
-  --astro-text-light: #ffffff;
-  --astro-text-medium: #c9b3e0;
-  --astro-text-dark: #1a0a2e;
-  --astro-success: #22c55e;
-  --astro-danger: #ef4444;
-  --astro-warning: #f59e0b;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 215, 0, 0.15);
+  --astro-pink: #FF6B6B;
+  --astro-pink-dark: #FF5252;
+  --astro-pink-light: #FF8E8E;
+  --astro-peach: #FFB347;
+  --astro-peach-dark: #FF9F2E;
+  --astro-cream: #FFF5F0;
+  --astro-cream-dark: #FFE8E0;
+  --astro-white: #FFFFFF;
+  --astro-dark: #4A3728;
+  --astro-dark-light: #6B5340;
+  --astro-gray: #8B7355;
+  --astro-gray-light: #B8A28A;
+  --astro-border: rgba(255, 107, 107, 0.15);
+  --astro-shadow: rgba(255, 107, 107, 0.1);
+  --astro-success: #10B981;
+  --astro-danger: #EF4444;
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -34,9 +37,9 @@
 
 body {
   font-family: var(--astro-font-family);
-  background: linear-gradient(135deg, #0f0c29 0%, #1a0b2e 50%, #24243e 100%);
+  background: var(--astro-cream);
   min-height: 100vh;
-  color: var(--astro-text-light);
+  color: var(--astro-dark);
 }
 
 /* ========================================
@@ -47,9 +50,69 @@ body {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 100px 24px 40px;
   min-height: 100vh;
   position: relative;
+  background: var(--astro-cream);
+}
+
+/* ========================================
+   LOADER - FIXED
+======================================== */
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background: var(--astro-cream);
+  width: 100%;
+}
+
+.cosmic-loader {
+  position: relative;
+  text-align: center;
+  background: transparent;
+}
+
+.loader-ring {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 3px solid transparent;
+  border-top-color: var(--astro-pink);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loader-ring:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  border-top-color: var(--astro-peach);
+  animation-duration: 1.2s;
+  top: 10px;
+  left: 10px;
+}
+
+.loader-ring:nth-child(3) {
+  width: 40px;
+  height: 40px;
+  border-top-color: var(--astro-pink-light);
+  animation-duration: 1.4s;
+  top: 20px;
+  left: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.cosmic-loader p {
+  margin-top: 100px;
+  color: var(--astro-gray);
+  font-size: 14px;
+  font-weight: 500;
+  background: transparent;
 }
 
 /* ========================================
@@ -58,14 +121,15 @@ body {
 
 .hero-banner {
   text-align: center;
-  padding: 80px 0 48px;
+  padding: 20px 0 40px;
   position: relative;
+  background: transparent;
 }
 
 .astro-heading {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  background: linear-gradient(135deg, #ffd700 0%, #f59e0b 50%, #ffd700 100%);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--astro-dark) 0%, var(--astro-pink) 50%, var(--astro-peach) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -88,66 +152,13 @@ body {
 }
 
 .heading-subtitle {
-  font-size: clamp(0.9rem, 3vw, 1.1rem);
-  color: var(--astro-text-medium);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: var(--astro-gray);
   margin-top: 16px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* ========================================
-   LOADER
-======================================== */
-
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 60vh;
-}
-
-.cosmic-loader {
-  position: relative;
-  text-align: center;
-}
-
-.loader-ring {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  border: 3px solid transparent;
-  border-top-color: var(--astro-primary);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.loader-ring:nth-child(2) {
-  width: 60px;
-  height: 60px;
-  border-top-color: var(--astro-secondary);
-  animation-duration: 1.2s;
-  top: 10px;
-  left: 10px;
-}
-
-.loader-ring:nth-child(3) {
-  width: 40px;
-  height: 40px;
-  border-top-color: #ec4899;
-  animation-duration: 1.4s;
-  top: 20px;
-  left: 20px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.cosmic-loader p {
-  margin-top: 100px;
-  color: var(--astro-text-medium);
-  font-size: 14px;
+  font-weight: 500;
 }
 
 /* ========================================
@@ -159,6 +170,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 28px;
   padding: 20px 0 60px;
+  background: transparent;
 }
 
 /* ========================================
@@ -167,20 +179,20 @@ body {
 
 .astro-card {
   position: relative;
-  background: var(--astro-card-bg);
-  border: 1px solid var(--astro-border-color);
+  background: var(--astro-white);
+  border: 1px solid var(--astro-border);
   border-radius: 28px;
   padding: 28px 24px;
   cursor: pointer;
   transition: var(--transition-smooth);
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .astro-card:hover {
   transform: translateY(-8px);
-  border-color: var(--astro-primary);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 215, 0, 0.2);
+  border-color: var(--astro-pink);
+  box-shadow: 0 25px 50px -12px var(--astro-shadow);
 }
 
 .card-glow {
@@ -189,7 +201,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 215, 0, 0.1), transparent 40%);
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 107, 107, 0.05), transparent 40%);
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
@@ -205,7 +217,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
   transform: translateX(-100%);
   transition: transform 0.6s;
   pointer-events: none;
@@ -221,7 +233,7 @@ body {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--astro-primary), var(--astro-secondary), var(--astro-primary));
+  background: linear-gradient(90deg, var(--astro-pink), var(--astro-peach), var(--astro-pink));
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
@@ -250,9 +262,9 @@ body {
   right: -4px;
   bottom: -4px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--astro-primary), var(--astro-secondary));
+  background: linear-gradient(135deg, var(--astro-pink), var(--astro-peach));
   animation: rotate 4s linear infinite;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 @keyframes rotate {
@@ -266,8 +278,9 @@ body {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--astro-text-dark);
-  background: var(--astro-text-dark);
+  border: 3px solid var(--astro-white);
+  background: var(--astro-cream-dark);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 
@@ -278,7 +291,7 @@ body {
   width: 16px;
   height: 16px;
   background: var(--astro-success);
-  border: 2px solid var(--astro-text-dark);
+  border: 2px solid var(--astro-white);
   border-radius: 50%;
   z-index: 2;
   animation: pulse 2s ease-in-out infinite;
@@ -291,9 +304,9 @@ body {
 
 .astro-name {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 6px;
-  color: var(--astro-text-light);
+  color: #000000;
 }
 
 .astro-speciality {
@@ -301,10 +314,15 @@ body {
   align-items: center;
   gap: 6px;
   font-size: 0.8rem;
-  color: var(--astro-text-medium);
-  background: rgba(255, 215, 0, 0.1);
+  color: var(--astro-gray);
+  background: rgba(255, 107, 107, 0.08);
   padding: 4px 12px;
   border-radius: 20px;
+  font-weight: 500;
+}
+
+.astro-speciality svg {
+  color: var(--astro-pink);
 }
 
 /* Info Grid */
@@ -313,7 +331,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   padding: 16px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 107, 107, 0.04);
   border-radius: 16px;
   margin-bottom: 20px;
 }
@@ -331,16 +349,17 @@ body {
 
 .info-value {
   font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--astro-primary);
+  font-weight: 800;
+  color: #000000;
   line-height: 1.2;
 }
 
 .info-label {
   font-size: 0.7rem;
-  color: var(--astro-text-medium);
+  color: var(--astro-gray);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 /* Footer */
@@ -350,35 +369,36 @@ body {
   justify-content: space-between;
   gap: 16px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 215, 0, 0.1);
+  border-top: 1px solid var(--astro-border);
 }
 
 .price-tag {
   display: flex;
   align-items: baseline;
   gap: 4px;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 107, 107, 0.03));
   padding: 8px 16px;
   border-radius: 40px;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  border: 1px solid var(--astro-border);
 }
 
 .currency {
   font-size: 0.9rem;
-  color: var(--astro-primary);
-  font-weight: 600;
+  color: var(--astro-pink);
+  font-weight: 700;
 }
 
 .amount {
   font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--astro-text-light);
+  font-weight: 900;
+  color: #000000;
   line-height: 1;
 }
 
 .per-min {
   font-size: 0.7rem;
-  color: var(--astro-text-medium);
+  color: var(--astro-gray);
+  font-weight: 500;
 }
 
 /* Action Buttons */
@@ -394,8 +414,8 @@ body {
   padding: 10px 14px;
   border: none;
   border-radius: 40px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   cursor: pointer;
   transition: var(--transition-smooth);
   text-transform: uppercase;
@@ -408,200 +428,62 @@ body {
 }
 
 .chat-btn {
-  background: linear-gradient(135deg, var(--astro-primary), var(--astro-primary-dark));
-  color: var(--astro-text-dark);
+  background: linear-gradient(135deg, var(--astro-pink), var(--astro-peach));
+  color: white;
 }
 
 .chat-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
 }
 
 .call-btn {
-  background: linear-gradient(135deg, var(--astro-secondary), var(--astro-secondary-dark));
-  color: white;
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--astro-pink);
+  border: 1px solid var(--astro-border);
 }
 
 .call-btn:hover {
+  background: rgba(255, 107, 107, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(107, 33, 229, 0.4);
 }
 
 .video-btn {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  color: white;
+  background: rgba(255, 107, 107, 0.05);
+  color: var(--astro-dark);
+  border: 1px solid var(--astro-border);
 }
 
 .video-btn:hover {
-  background: rgba(255, 215, 0, 0.2);
+  background: rgba(255, 107, 107, 0.15);
   transform: translateY(-2px);
 }
 
 /* ========================================
-   CREDITS MODAL
+   MESSAGE STATES
 ======================================== */
 
-.rt-chat-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
-}
-
-.credits-modal {
-  width: min(480px, 95vw);
-  background: linear-gradient(145deg, #2a1644, #1f1337);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  border-radius: 28px;
-  overflow: hidden;
-}
-
-.rt-chat-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 20px 24px;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
-  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-}
-
-.header-icon svg {
-  width: 32px;
-  height: 32px;
-  color: var(--astro-primary);
-}
-
-.rt-chat-header strong {
-  font-size: 1.2rem;
-  display: block;
-}
-
-.rt-chat-header p {
-  font-size: 0.8rem;
-  color: var(--astro-text-medium);
-  margin-top: 4px;
-}
-
-.rt-chat-close {
-  margin-left: auto;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-smooth);
-}
-
-.rt-chat-close:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: rotate(90deg);
-}
-
-.credits-content {
-  padding: 24px;
-}
-
-.wallet-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  margin-bottom: 24px;
-}
-
-.wallet-balance {
-  display: flex;
-  flex-direction: column;
-}
-
-.wallet-balance .label {
-  font-size: 0.75rem;
-  color: var(--astro-text-medium);
-}
-
-.wallet-balance .amount {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--astro-primary);
-}
-
-.free-minutes {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: var(--astro-success);
-}
-
-.amount-options h4 {
-  margin-bottom: 16px;
-  font-size: 0.9rem;
-}
-
-.options-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.amount-option {
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 215, 0, 0.2);
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: white;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.amount-option.active {
-  background: linear-gradient(135deg, var(--astro-primary), var(--astro-primary-dark));
-  color: var(--astro-text-dark);
-  border-color: transparent;
-}
-
-.recharge-button {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, var(--astro-primary), var(--astro-primary-dark));
-  border: none;
-  border-radius: 40px;
+.info-message,
+.error-message {
+  text-align: center;
+  padding: 4rem 2rem;
   font-size: 1rem;
-  font-weight: 700;
-  color: var(--astro-text-dark);
-  cursor: pointer;
-  transition: var(--transition-smooth);
+  border-radius: 24px;
+  background: var(--astro-white);
+  color: var(--astro-gray);
+  box-shadow: var(--astro-shadow-sm);
+  margin: 2rem auto;
+  max-width: 600px;
 }
 
-.recharge-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+.error-message {
+  color: var(--astro-danger);
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-.loading-spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--astro-text-dark);
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto;
+.full-width {
+  grid-column: 1 / -1;
 }
 
 /* ========================================
@@ -611,7 +493,7 @@ body {
 /* Tablet */
 @media (max-width: 1024px) {
   .astrologer-list-container {
-    padding: 0 20px;
+    padding: 90px 20px 40px;
   }
   
   .astro-grid {
@@ -622,7 +504,7 @@ body {
 /* Mobile Landscape */
 @media (max-width: 768px) {
   .hero-banner {
-    padding: 60px 0 32px;
+    padding: 10px 0 30px;
   }
   
   .astro-grid {
@@ -656,11 +538,11 @@ body {
 /* Mobile Portrait */
 @media (max-width: 576px) {
   .astrologer-list-container {
-    padding: 0 16px;
+    padding: 80px 16px 40px;
   }
   
   .hero-banner {
-    padding: 40px 0 24px;
+    padding: 0 0 20px;
   }
   
   .astro-actions {
@@ -689,17 +571,6 @@ body {
   .info-value {
     font-size: 1rem;
   }
-  
-  .options-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .modal-chat-btn,
-  .modal-call-btn,
-  .modal-video-btn {
-    font-size: 0.7rem;
-    padding: 10px;
-  }
 }
 
 /* Extra Small */
@@ -722,741 +593,6 @@ body {
   }
 }
 
-/* ========================================
-   PROFILE MODAL RESPONSIVE
-======================================== */
-
-@media (max-width: 640px) {
-  .astro-profile-modal {
-    border-radius: 20px;
-    max-height: 95vh;
-  }
-  
-  .profile-header {
-    padding: 40px 20px 20px;
-  }
-  
-  .profile-content {
-    padding: 20px;
-  }
-  
-  .profile-footer {
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-  }
-  
-  .languages-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .profile-name {
-    font-size: 1.3rem;
-  }
-  
-  .profile-img-container {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .profile-img {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-/* Add these styles to your AstrologerList.css file */
-
-/* ========================================
-   ASTROLOGER PROFILE MODAL - ENHANCED
-======================================== */
-
-/* Modal Overlay */
-.astro-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(12px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-  padding: 20px;
-}
-
-/* Modal Container */
-.astro-profile-modal {
-  position: relative;
-  background: linear-gradient(145deg, #2a1644 0%, #1f1337 100%);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  border-radius: 32px;
-  width: 100%;
-  max-width: 550px;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 215, 0, 0.1);
-  scrollbar-width: thin;
-  scrollbar-color: #ffd700 #1a0a2e;
-}
-
-.astro-profile-modal::-webkit-scrollbar {
-  width: 6px;
-}
-
-.astro-profile-modal::-webkit-scrollbar-track {
-  background: #1a0a2e;
-  border-radius: 10px;
-}
-
-.astro-profile-modal::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #ffd700, #f59e0b);
-  border-radius: 10px;
-}
-
-/* Decorative Elements */
-.modal-glow-orb {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.15;
-  pointer-events: none;
-  animation: floatOrb 8s ease-in-out infinite;
-}
-
-.modal-glow-1 {
-  background: #ffd700;
-  top: -100px;
-  left: -100px;
-}
-
-.modal-glow-2 {
-  background: #6b21e5;
-  bottom: -100px;
-  right: -100px;
-  animation-delay: 4s;
-}
-
-@keyframes floatOrb {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(20px, 20px) scale(1.1);
-  }
-}
-
-.modal-stars {
-  position: absolute;
-  color: #ffd700;
-  font-size: 20px;
-  opacity: 0.3;
-  animation: twinkle 3s ease-in-out infinite;
-}
-
-.modal-star-2 {
-  top: 50px;
-  right: 40px;
-  animation-delay: 1s;
-  font-size: 14px;
-}
-
-.modal-star-3 {
-  bottom: 80px;
-  left: 30px;
-  animation-delay: 2s;
-  font-size: 16px;
-}
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.2);
-  }
-}
-
-/* Close Button */
-.astro-modal-close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  background: rgba(26, 10, 46, 0.9);
-  color: #ffd700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-}
-
-.astro-modal-close-btn:hover {
-  background: #ffd700;
-  color: #1a0a2e;
-  transform: rotate(90deg) scale(1.1);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-}
-
-/* Profile Header */
-.profile-header {
-  text-align: center;
-  padding: 40px 32px 24px;
-  background: linear-gradient(180deg, rgba(255, 215, 0, 0.05), transparent);
-  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
-}
-
-.profile-img-container {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  margin: 0 auto 20px;
-}
-
-.profile-ring {
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffd700, #6b21e5);
-  animation: rotateRing 3s linear infinite;
-  opacity: 0.7;
-}
-
-.profile-ring-2 {
-  top: -12px;
-  left: -12px;
-  right: -12px;
-  bottom: -12px;
-  background: linear-gradient(225deg, #ec4899, #6b21e5);
-  animation-duration: 4s;
-  animation-direction: reverse;
-  opacity: 0.4;
-}
-
-@keyframes rotateRing {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.profile-img {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #1a0a2e;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  z-index: 1;
-  background: #1a0a2e;
-}
-
-.online-indicator {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 22px;
-  height: 22px;
-  background: #22c55e;
-  border: 3px solid #1a0a2e;
-  border-radius: 50%;
-  z-index: 2;
-  animation: pulseStatus 2s ease-in-out infinite;
-}
-
-@keyframes pulseStatus {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.8;
-  }
-}
-
-.profile-name {
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #ffffff, #ffd700);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
-}
-
-.profile-experience {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  color: #c9b3e0;
-  background: rgba(255, 215, 0, 0.1);
-  padding: 6px 16px;
-  border-radius: 30px;
-  margin-bottom: 16px;
-}
-
-.profile-experience svg {
-  width: 16px;
-  height: 16px;
-}
-
-.profile-rating {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.stars {
-  display: flex;
-  gap: 4px;
-}
-
-.stars svg {
-  width: 18px;
-  height: 18px;
-}
-
-.rating-text {
-  font-size: 0.85rem;
-  color: #c9b3e0;
-}
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 20px;
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.4);
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #22c55e;
-}
-
-.status-badge.offline {
-  background: rgba(239, 68, 68, 0.15);
-  border-color: rgba(239, 68, 68, 0.4);
-  color: #ef4444;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: currentColor;
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Profile Content */
-.profile-content {
-  padding: 24px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.profile-section {
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 215, 0, 0.1);
-  border-radius: 20px;
-  padding: 20px;
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.section-icon {
-  font-size: 1.3rem;
-}
-
-.section-header svg {
-  width: 22px;
-  height: 22px;
-  color: #ffd700;
-}
-
-.section-header h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin: 0;
-}
-
-/* Skills Tags */
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skill-tag {
-  position: relative;
-  display: inline-block;
-  padding: 8px 16px;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.06));
-  border: 1px solid rgba(255, 215, 0, 0.25);
-  border-radius: 30px;
-  color: #ffd700;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.tag-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s;
-}
-
-.skill-tag:hover {
-  background: rgba(255, 215, 0, 0.2);
-  border-color: #ffd700;
-  transform: translateY(-2px);
-}
-
-.skill-tag:hover .tag-shine {
-  left: 100%;
-}
-
-/* Languages */
-.languages-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.language-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  color: #e0d4ff;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-}
-
-.lang-bullet {
-  color: #ffd700;
-  font-size: 8px;
-}
-
-.language-item:hover {
-  background: rgba(255, 215, 0, 0.08);
-  transform: translateX(5px);
-}
-
-/* Availability Grid */
-.availability-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.availability-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 16px;
-  transition: all 0.3s ease;
-}
-
-.availability-item:hover {
-  background: rgba(255, 215, 0, 0.05);
-  border-color: rgba(255, 215, 0, 0.3);
-  transform: translateX(5px);
-}
-
-.avail-icon {
-  font-size: 1.5rem;
-}
-
-.availability-item div {
-  flex: 1;
-}
-
-.avail-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 4px;
-}
-
-.avail-price {
-  font-size: 0.75rem;
-  color: #ffd700;
-}
-
-.availability-item svg {
-  width: 20px;
-  height: 20px;
-  color: #22c55e;
-}
-
-/* Profile Footer */
-.profile-footer {
-  display: flex;
-  gap: 12px;
-  padding: 20px 28px 28px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), transparent);
-  border-top: 1px solid rgba(255, 215, 0, 0.1);
-}
-
-.modal-chat-btn,
-.modal-call-btn,
-.modal-video-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 40px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.5s ease, height 0.5s ease;
-}
-
-.modal-chat-btn:hover .btn-glow,
-.modal-call-btn:hover .btn-glow,
-.modal-video-btn:hover .btn-glow {
-  width: 200px;
-  height: 200px;
-}
-
-.modal-chat-btn svg,
-.modal-call-btn svg,
-.modal-video-btn svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.3s;
-}
-
-.modal-chat-btn:hover svg,
-.modal-call-btn:hover svg,
-.modal-video-btn:hover svg {
-  transform: scale(1.2);
-}
-
-.modal-chat-btn {
-  background: linear-gradient(135deg, #ffd700, #f59e0b);
-  color: #1a0a2e;
-}
-
-.modal-chat-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-}
-
-.modal-call-btn {
-  background: linear-gradient(135deg, #6b21e5, #4c1d95);
-  color: white;
-}
-
-.modal-call-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(107, 33, 229, 0.4);
-}
-
-.modal-video-btn {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  color: white;
-}
-
-.modal-video-btn:hover {
-  background: rgba(255, 215, 0, 0.15);
-  transform: translateY(-2px);
-}
-
-/* Responsive Design */
-@media (max-width: 640px) {
-  .astro-profile-modal {
-    max-width: 95%;
-    border-radius: 24px;
-  }
-  
-  .profile-header {
-    padding: 30px 20px 20px;
-  }
-  
-  .profile-img-container {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .profile-img {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .profile-name {
-    font-size: 1.4rem;
-  }
-  
-  .profile-content {
-    padding: 20px;
-  }
-  
-  .profile-footer {
-    flex-direction: column;
-    gap: 10px;
-    padding: 16px 20px 24px;
-  }
-  
-  .languages-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .tag-list {
-    gap: 8px;
-  }
-  
-  .skill-tag {
-    padding: 6px 12px;
-    font-size: 0.75rem;
-  }
-  
-  .availability-item {
-    padding: 12px;
-  }
-  
-  .modal-chat-btn,
-  .modal-call-btn,
-  .modal-video-btn {
-    padding: 12px 16px;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .profile-header {
-    padding: 25px 16px 16px;
-  }
-  
-  .profile-img-container {
-    width: 85px;
-    height: 85px;
-  }
-  
-  .profile-img {
-    width: 85px;
-    height: 85px;
-  }
-  
-  .profile-name {
-    font-size: 1.2rem;
-  }
-  
-  .profile-experience {
-    font-size: 0.75rem;
-  }
-  
-  .stars svg {
-    width: 14px;
-    height: 14px;
-  }
-  
-  .rating-text {
-    font-size: 0.75rem;
-  }
-  
-  .profile-content {
-    padding: 16px;
-    gap: 16px;
-  }
-  
-  .profile-section {
-    padding: 14px;
-  }
-  
-  .section-header h4 {
-    font-size: 0.9rem;
-  }
-  
-  .avail-icon {
-    font-size: 1.2rem;
-  }
-  
-  .avail-title {
-    font-size: 0.8rem;
-  }
-  
-  .avail-price {
-    font-size: 0.7rem;
-  }
-}
-
-/* Animation for modal entrance */
-@keyframes modalEnter {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.astro-profile-modal {
-  animation: modalEnter 0.4s ease-out;
-}
-
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .modal-glow-orb,
@@ -1472,7 +608,7 @@ body {
     transition: none;
   }
   
-  .astro-profile-modal {
-    animation: none;
+  .astro-card:hover {
+    transform: none;
   }
 }

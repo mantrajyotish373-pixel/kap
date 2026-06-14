@@ -1,18 +1,25 @@
-/* src/components/BlogSection.css */
+/* src/components/BlogSection.css - PINK/CREAM PROFESSIONAL THEME */
 
 /* ========================================
-   BLOG SECTION - PROFESSIONAL ASTROLOGY THEME
+   BLOG SECTION - PINK/CREAM PROFESSIONAL THEME
 ======================================== */
 
 :root {
-  --blog-gold: #ffd700;
-  --blog-gold-dark: #f59e0b;
-  --blog-purple: #6b21e5;
-  --blog-bg: #000000;
-  --blog-card-bg: rgba(26, 11, 46, 0.8);
-  --blog-text: #ffffff;
-  --blog-text-muted: #c9b3e0;
-  --blog-border: rgba(255, 215, 0, 0.15);
+  --blog-pink: #FF6B6B;
+  --blog-pink-dark: #FF5252;
+  --blog-pink-light: #FF8E8E;
+  --blog-peach: #FFB347;
+  --blog-peach-dark: #FF9F2E;
+  --blog-cream: #FFF5F0;
+  --blog-cream-dark: #FFE8E0;
+  --blog-white: #FFFFFF;
+  --blog-dark: #4A3728;
+  --blog-dark-light: #6B5340;
+  --blog-gray: #8B7355;
+  --blog-gray-light: #B8A28A;
+  --blog-gray-lighter: #E8DCD0;
+  --blog-shadow: rgba(255, 107, 107, 0.15);
+  --blog-glow: rgba(255, 107, 107, 0.2);
 }
 
 /* ========================================
@@ -22,11 +29,11 @@
 .blog-section {
   position: relative;
   padding: 5rem 2rem;
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a0b2e 100%);
+  background: var(--blog-cream);
   overflow: hidden;
 }
 
-/* Cosmic Background */
+/* Decorative Background */
 .blog-cosmic-bg {
   position: absolute;
   top: 0;
@@ -41,10 +48,10 @@
   position: absolute;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, var(--blog-purple), transparent);
+  background: radial-gradient(circle, var(--blog-pink-light), transparent);
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.15;
+  filter: blur(100px);
+  opacity: 0.08;
   bottom: -100px;
   left: -100px;
   animation: floatNebula 20s ease-in-out infinite;
@@ -69,12 +76,12 @@
 
 .blog-stars .star {
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
+  width: 3px;
+  height: 3px;
+  background: var(--blog-pink);
   border-radius: 50%;
   opacity: 0;
-  animation: starTwinkle 3s ease-in-out infinite;
+  animation: starTwinkle 4s ease-in-out infinite;
 }
 
 @keyframes starTwinkle {
@@ -83,7 +90,7 @@
     transform: scale(1);
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.4;
     transform: scale(1.5);
   }
 }
@@ -107,34 +114,34 @@
   align-items: center;
   gap: 8px;
   padding: 6px 16px;
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid var(--blog-border);
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.2);
   border-radius: 50px;
   margin-bottom: 1rem;
 }
 
 .header-badge svg {
-  color: var(--blog-gold);
+  color: var(--blog-pink);
   width: 14px;
   height: 14px;
 }
 
 .header-badge span {
   font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--blog-gold);
+  font-weight: 600;
+  color: var(--blog-pink);
   letter-spacing: 1px;
 }
 
 .blog-section-title {
   font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 1rem;
-  color: var(--blog-text);
+  color: var(--blog-dark);
 }
 
 .title-highlight {
-  background: linear-gradient(135deg, var(--blog-gold), var(--blog-gold-dark));
+  background: linear-gradient(135deg, var(--blog-pink), var(--blog-peach));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -142,9 +149,10 @@
 
 .blog-subtitle {
   font-size: 1rem;
-  color: var(--blog-text-muted);
+  color: var(--blog-gray);
   max-width: 600px;
   margin: 0 auto;
+  font-weight: 500;
 }
 
 /* ========================================
@@ -155,31 +163,34 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid var(--blog-border);
-  color: var(--blog-gold);
+  background: var(--blog-white);
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  color: var(--blog-pink);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   z-index: 20;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .scroll-arrow:hover {
-  background: rgba(255, 215, 0, 0.2);
+  background: var(--blog-pink);
+  color: white;
   transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 15px var(--blog-shadow);
 }
 
 .scroll-arrow.left {
-  left: 20px;
+  left: -20px;
 }
 
 .scroll-arrow.right {
-  right: 20px;
+  right: -20px;
 }
 
 /* ========================================
@@ -199,18 +210,18 @@
 
 .blog-card {
   position: relative;
-  background: var(--blog-card-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--blog-border);
+  background: var(--blog-white);
+  border: 1px solid var(--blog-gray-lighter);
   border-radius: 24px;
   overflow: hidden;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .blog-card:hover {
   transform: translateY(-8px);
-  border-color: var(--blog-gold);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: var(--blog-pink);
+  box-shadow: 0 20px 40px rgba(255, 107, 107, 0.1);
 }
 
 /* Card Glow Effect */
@@ -220,14 +231,31 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--blog-gold), transparent);
+  height: 4px;
+  background: linear-gradient(90deg, var(--blog-pink), var(--blog-peach));
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
 
 .blog-card:hover::before {
   transform: scaleX(1);
+}
+
+.blog-card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 107, 107, 0.05), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.blog-card:hover .blog-card-glow {
+  opacity: 1;
 }
 
 /* Image Slider Container */
@@ -238,8 +266,11 @@
 }
 
 .blog-slide {
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   transition: transform 0.5s ease;
 }
 
@@ -254,14 +285,15 @@
   left: 1rem;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
-  color: var(--blog-gold);
+  color: var(--blog-peach);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   z-index: 10;
-  border: 1px solid var(--blog-border);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  text-transform: uppercase;
 }
 
 /* Content */
@@ -270,56 +302,69 @@
 }
 
 .blog-card-title {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .blog-card-title a {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--blog-text);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #000000 !important;
   text-decoration: none;
   line-height: 1.3;
   transition: color 0.3s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .blog-card-title a:hover {
-  color: var(--blog-gold);
+  color: var(--blog-pink) !important;
 }
 
 /* Meta Info */
 .blog-card-meta {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
   font-size: 0.75rem;
-  color: var(--blog-text-muted);
+  color: var(--blog-gray);
   padding: 0.75rem 0;
   margin: 0.75rem 0;
-  border-top: 1px solid var(--blog-border);
-  border-bottom: 1px solid var(--blog-border);
+  border-top: 1px solid var(--blog-gray-lighter);
+  border-bottom: 1px solid var(--blog-gray-lighter);
 }
 
-.meta-date, .meta-read-time {
+.meta-author,
+.meta-date,
+.meta-read-time {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  font-weight: 500;
 }
 
-.meta-date svg, .meta-read-time svg {
+.meta-author svg,
+.meta-date svg,
+.meta-read-time svg {
   font-size: 0.7rem;
+  color: var(--blog-pink);
 }
 
 /* Excerpt */
 .blog-card-excerpt {
   font-size: 0.9rem;
   line-height: 1.6;
-  color: var(--blog-text-muted);
-  margin-bottom: 1.5rem;
+  color: var(--blog-gray);
+  margin-bottom: 1.25rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-weight: 500;
 }
 
 /* Read More Button */
@@ -327,10 +372,14 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 600;
-  color: var(--blog-gold);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--blog-pink) !important;
   text-decoration: none;
   transition: all 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .read-more-btn svg {
@@ -339,41 +388,55 @@
 
 .read-more-btn:hover {
   gap: 0.75rem;
+  color: var(--blog-pink-dark) !important;
 }
 
 .read-more-btn:hover svg {
   transform: translateX(5px);
 }
 
-/* Swiper Navigation */
-.blog-card .swiper-button-next,
-.blog-card .swiper-button-prev {
+/* Swiper Styles */
+.blog-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.blog-swiper .swiper-button-next,
+.blog-swiper .swiper-button-prev {
   width: 32px;
   height: 32px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(5px);
   border-radius: 50%;
   transition: all 0.3s ease;
 }
 
-.blog-card .swiper-button-next:hover,
-.blog-card .swiper-button-prev:hover {
-  background: var(--blog-gold);
-}
-
-.blog-card .swiper-button-next::after,
-.blog-card .swiper-button-prev::after {
+.blog-swiper .swiper-button-next::after,
+.blog-swiper .swiper-button-prev::after {
   font-size: 12px;
   font-weight: bold;
   color: white;
 }
 
-.blog-card .swiper-pagination-progressbar {
-  background: rgba(255, 255, 255, 0.2);
+.blog-swiper .swiper-button-next:hover,
+.blog-swiper .swiper-button-prev:hover {
+  background: var(--blog-pink);
 }
 
-.blog-card .swiper-pagination-progressbar-fill {
-  background: var(--blog-gold);
+.blog-swiper .swiper-button-next:hover::after,
+.blog-swiper .swiper-button-prev:hover::after {
+  color: white;
+}
+
+.blog-swiper .swiper-pagination-progressbar {
+  background: rgba(255, 107, 107, 0.2);
+  top: auto;
+  bottom: 0;
+  height: 2px;
+}
+
+.blog-swiper .swiper-pagination-progressbar-fill {
+  background: var(--blog-pink);
 }
 
 /* ========================================
@@ -443,6 +506,11 @@
     line-clamp: 2;
   }
 
+  .blog-card-meta {
+    gap: 0.75rem;
+    font-size: 0.65rem;
+  }
+
   /* Scroll Indicators */
   .scroll-indicators {
     display: flex;
@@ -456,10 +524,11 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 107, 107, 0.1);
     border-radius: 50px;
     font-size: 0.7rem;
-    color: var(--blog-text-muted);
+    font-weight: 500;
+    color: var(--blog-pink);
     animation: pulse 2s ease-in-out infinite;
   }
 
@@ -493,11 +562,17 @@
   }
 
   .blog-card-meta {
-    font-size: 0.65rem;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .read-more-btn {
     font-size: 0.8rem;
+  }
+
+  .blog-card-category {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.6rem;
   }
 }
 
@@ -506,6 +581,36 @@
   .blog-card {
     flex: 0 0 92%;
   }
+}
+
+/* ========================================
+   FORCE BOLD COLORS
+======================================== */
+
+/* Force black on titles */
+.blog-card-title a,
+.blog-section-title {
+  color: #000000 !important;
+}
+
+/* Force dark on descriptions */
+.blog-card-excerpt,
+.blog-subtitle {
+  color: #6B5340 !important;
+}
+
+/* Force pink on accents */
+.read-more-btn,
+.header-badge span,
+.meta-author svg,
+.meta-date svg,
+.meta-read-time svg {
+  color: var(--blog-pink) !important;
+}
+
+/* Force white backgrounds */
+.blog-card {
+  background: var(--blog-white) !important;
 }
 
 /* ========================================
@@ -522,16 +627,20 @@
     animation: none;
     transition: none;
   }
+  
+  .blog-card:hover {
+    transform: none;
+  }
 }
 
 /* High Contrast Mode */
 @media (prefers-contrast: high) {
   .blog-card {
-    border: 2px solid var(--blog-gold);
+    border: 2px solid var(--blog-pink);
   }
   
   .read-more-btn {
-    color: var(--blog-gold);
+    color: var(--blog-pink);
   }
 }
 
@@ -551,241 +660,5 @@
 }
 
 .blog-card {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-
-/* Add to BlogSection.css - Enhanced Blog Card Styles */
-
-/* Blog Card Glow Effect */
-.blog-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.blog-card-glow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 215, 0, 0.08), transparent 40%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.blog-card:hover .blog-card-glow {
-  opacity: 1;
-}
-
-/* Enhanced Meta Section */
-.blog-card-meta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 1rem;
-  font-size: 0.75rem;
-  color: var(--blog-text-muted, #c9b3e0);
-  padding: 0.75rem 0;
-  margin: 0.75rem 0;
-  border-top: 1px solid var(--blog-border, rgba(255, 215, 0, 0.15));
-  border-bottom: 1px solid var(--blog-border, rgba(255, 215, 0, 0.15));
-}
-
-.meta-author,
-.meta-date,
-.meta-read-time {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.meta-author svg,
-.meta-date svg,
-.meta-read-time svg {
-  font-size: 0.7rem;
-  color: var(--blog-gold, #ffd700);
-}
-
-/* Enhanced Swiper Styles */
-.blog-swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.blog-swiper .swiper-button-next,
-.blog-swiper .swiper-button-prev {
-  width: 32px;
-  height: 32px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.blog-swiper .swiper-button-next::after,
-.blog-swiper .swiper-button-prev::after {
-  font-size: 12px;
-  font-weight: bold;
-  color: white;
-}
-
-.blog-swiper .swiper-button-next:hover,
-.blog-swiper .swiper-button-prev:hover {
-  background: var(--blog-gold, #ffd700);
-}
-
-.blog-swiper .swiper-button-next:hover::after,
-.blog-swiper .swiper-button-prev:hover::after {
-  color: #1a0a2e;
-}
-
-.blog-swiper .swiper-pagination-progressbar {
-  background: rgba(255, 255, 255, 0.2);
-  top: auto;
-  bottom: 0;
-  height: 2px;
-}
-
-.blog-swiper .swiper-pagination-progressbar-fill {
-  background: var(--blog-gold, #ffd700);
-}
-
-/* Slide styling */
-.blog-slide {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: transform 0.5s ease;
-}
-
-.blog-card:hover .blog-slide {
-  transform: scale(1.05);
-}
-
-/* Category Badge Enhancement */
-.blog-card-category {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  color: var(--blog-gold, #ffd700);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  z-index: 10;
-  border: 1px solid var(--blog-border, rgba(255, 215, 0, 0.3));
-  text-transform: uppercase;
-}
-
-/* Title Enhancement */
-.blog-card-title {
-  margin-bottom: 0.5rem;
-}
-
-.blog-card-title a {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--blog-text, #ffffff);
-  text-decoration: none;
-  line-height: 1.3;
-  transition: color 0.3s ease;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.blog-card-title a:hover {
-  color: var(--blog-gold, #ffd700);
-}
-
-/* Excerpt Enhancement */
-.blog-card-excerpt {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--blog-text-muted, #c9b3e0);
-  margin-bottom: 1.25rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Read More Button Enhancement */
-.read-more-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--blog-gold, #ffd700);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.read-more-btn svg {
-  transition: transform 0.3s ease;
-}
-
-.read-more-btn:hover {
-  gap: 0.75rem;
-}
-
-.read-more-btn:hover svg {
-  transform: translateX(5px);
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .blog-card-meta {
-    gap: 0.75rem;
-    font-size: 0.65rem;
-  }
-  
-  .blog-card-title a {
-    font-size: 1.1rem;
-  }
-  
-  .blog-card-excerpt {
-    font-size: 0.85rem;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-  }
-  
-  .read-more-btn {
-    font-size: 0.8rem;
-  }
-  
-  .blog-swiper .swiper-button-next,
-  .blog-swiper .swiper-button-prev {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .blog-swiper .swiper-button-next::after,
-  .blog-swiper .swiper-button-prev::after {
-    font-size: 8px;
-  }
-}
-
-@media (max-width: 576px) {
-  .blog-card-meta {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .blog-card-category {
-    font-size: 0.6rem;
-    padding: 0.2rem 0.6rem;
-  }
+  animation: fadeInUp 0.5s ease-out;
 }

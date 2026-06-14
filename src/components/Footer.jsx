@@ -282,54 +282,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Floating Action Buttons */}
-      <AnimatePresence>
-        {isVisible && (
-          <>
-            <motion.button
-              className="floating-action-btn whatsapp-float"
-              onClick={handleWhatsAppClick}
-              initial={{ opacity: 0, scale: 0, x: 100 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              exit={{ opacity: 0, scale: 0, x: 100 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaWhatsapp />
-              <span className="float-label">WhatsApp</span>
-            </motion.button>
-
-            <motion.button
-              className="floating-action-btn call-float"
-              onClick={handleCallClick}
-              initial={{ opacity: 0, scale: 0, x: 100 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              exit={{ opacity: 0, scale: 0, x: 100 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaPhone />
-              <span className="float-label">Call Now</span>
-            </motion.button>
-
-            <motion.button
-              className="floating-action-btn back-to-top"
-              onClick={scrollToTop}
-              initial={{ opacity: 0, scale: 0, x: 100 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              exit={{ opacity: 0, scale: 0, x: 100 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FiArrowUp />
-              <span className="float-label">Top</span>
-            </motion.button>
-          </>
-        )}
-      </AnimatePresence>
+    
     </footer>
   );
 };
