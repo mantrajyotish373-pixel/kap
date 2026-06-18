@@ -84,21 +84,21 @@ const FullScreenBanner = () => {
   const bannerSlides = [
     {
       id: 1,
-      image: "/src/data/banner1.png",
+      image: "https://res.cloudinary.com/ds77jb59m/image/upload/v1781787140/banner1_dpwqej.png",
       fallbackImage: "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=1920",
       title: "Connect with Trusted Astrologers",
       ctaLink: "/astro-connect"
     },
     {
       id: 2,
-      image: "/src/data/banner2.png",
+      image: "https://res.cloudinary.com/ds77jb59m/image/upload/v1781787139/banner2_r5xlse.png",
       fallbackImage: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1920",
       title: "Ancient Vedic Astrology Experts",
       ctaLink: "/horoscope"
     },
     {
       id: 3,
-      image: "/src/data/banner3.png",
+      image: "https://res.cloudinary.com/ds77jb59m/image/upload/v1781787138/banner3_rkdv1f.png",
       fallbackImage: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920",
       title: "24/7 Spiritual Guidance Available",
       ctaLink: "/astro-connect"
