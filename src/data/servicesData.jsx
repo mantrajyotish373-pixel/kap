@@ -18,8 +18,6 @@ import { GiCrystalBall, GiLoveMystery } from 'react-icons/gi';
 export const premiumServicesData = [
   { title: 'Live Pooja', icon: <FaPrayingHands />, link: '/pooja' },
   { title: 'Astrologers', icon:<FaOm />, link: '/astro-connect' },
-  { title: 'Kundali', icon: <FaStar />, link: '/remedies' },
-  { title: 'Astrology Shop', icon: <FaGift />, link: '/shop' },
 ];
 
 // Data for the main grid with bilingual descriptions

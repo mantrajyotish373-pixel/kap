@@ -56,21 +56,20 @@ export const backendApi = createApi({
       invalidatesTags: ["Astrologers"],
     }),
     getProducts: builder.query({
-      query: () => "/api/products/all",
-      transformResponse: (response) => response?.data || [],
-      providesTags: ["Products"],
-
-    }),
+  query: () => "/api/product/get-all",
+  transformResponse: (response) => response?.data || [],
+  providesTags: ["Products"],
+}),
     getPoojas: builder.query({
-      query: () => "/api/All-poojas",
-      transformResponse: (response) => response?.data || response || [],
-      providesTags: ["Poojas"],
-    }),
+  query: () => "/api/pooja/get-all",
+  transformResponse: (response) => response?.data || [],
+  providesTags: ["Poojas"],
+}),
     getPoojaById: builder.query({
-      query: (id) => `/api/poojas/${id}`,
-      transformResponse: (response) => response?.data || null,
-      providesTags: (_result, _error, id) => [{ type: "Poojas", id }],
-    }),
+  query: (id) => `/api/pooja/get-one/${id}`,
+  transformResponse: (response) => response?.data || null,
+  providesTags: (_result, _error, id) => [{ type: "Poojas", id }],
+}),
     sendContactQuery: builder.mutation({
       query: (body) => ({
         url: "/api/contact/add",

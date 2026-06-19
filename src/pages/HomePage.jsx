@@ -68,6 +68,7 @@ const bannerSlides = [
     subtitle: "Connect anytime - Solutions for every problem with our experts",
     ctaText: "Talk Now",
     ctaLink: "/astro-connect"
+    
   }
 ];
 
@@ -623,7 +624,7 @@ const HomePage = () => {
       <section className="our-astrologers-section">
         <div className="section-header">
          
-          <h2><span data-translate="ourExperts">Our</span> <span className="title-highlight" data-translate="ourExperts">Astrologers</span></h2>
+          <h2><span data-translate="ourExperts">Our Astrologers</span> </h2>
          
         </div>
 

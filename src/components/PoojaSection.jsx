@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import "./PoojaSection.css";
 import Footer from "./Footer";
+import { motion, AnimatePresence } from "framer-motion";
 import { useGetPoojasQuery } from "../services/backendApi";
 
 const PoojaSection = () => {
